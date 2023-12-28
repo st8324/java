@@ -30,7 +30,7 @@ public class LottoEx2 {
 		lotto2.addAll(lotto);
 		bonus = lotto2.remove(lotto2.size() - 1);
 		
-		System.out.println(lotto + ", 보너스 : " + bonus);
+		System.out.println(lotto2 + ", 보너스 : " + bonus);
 		
 		//사용자가 당첨 번호를 입력
 		Scanner scan = new Scanner(System.in);
