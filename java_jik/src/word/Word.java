@@ -1,6 +1,8 @@
 package word;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,8 +10,10 @@ import lombok.Data;
 
 //영어 단어 하나를 의미하는 클래스
 @Data
-public class Word {
+public class Word implements Serializable {
 	
+	private static final long serialVersionUID = -7560275734731361902L;
+
 	private String word;//단어
 	private List<Mean> meanList;//품사와 뜻 리스트
 	private int views;//조회수
@@ -100,6 +104,31 @@ public class Word {
 		this.word = word;
 		meanList = new ArrayList<Mean>();
 		meanList.add(new Mean(partOfSpeech, mean));
+	}
+	public Word(String word, List<Mean> newMeanList) {
+		this.word = word;
+		this.meanList = 
+			newMeanList != null ? newMeanList : new ArrayList<Mean>();
+	}
+	public String getRandomMean() {
+		List<Mean> tmp = new ArrayList<Mean>(meanList);
+		Collections.shuffle(tmp);
+		//뜻이 없거나 비어 있으면
+		if(tmp == null || tmp.size() == 0) {
+			return null;
+		}
+		return tmp.get(0).getMean();
+	}
+	public void views() {
+		views++;
+	}
+	public void addMean(List<Mean> newMeanList) {
+		if(meanList == null) {
+			meanList = newMeanList;
+			return;
+		}
+		meanList.addAll(newMeanList);
+		
 	}
 	
 }
