@@ -68,9 +68,87 @@ public class WordProgram implements Program {
 	}
 
 	private void meanManage() {
-		// TODO Auto-generated method stub
-		
+		int menu;
+		do {
+			//뜻 관리 메뉴 출력
+			printService.printMeanMenu();
+			//메뉴 선택
+			menu = scan.nextInt();
+			//메뉴 실행
+			runMeanMenu(menu);
+		}while(menu != MEAN_EXIT);
 	}
+
+	private void runMeanMenu(int menu) {
+		switch(menu) {
+		case 1:
+			addMean();
+			break;
+		case 2:
+			setMean();
+			break;
+		case 3:
+			break;
+		case 4:
+			System.out.println("이전 메뉴로 돌아갑니다.");
+			break;
+		default:
+			throw new InputMismatchException();
+		}
+	}
+		
+	private void setMean() {
+		//단어 입력
+		System.out.print("단어 : ");
+		scan.nextLine();
+		String word = scan.nextLine();
+
+		//입력한 단어와 일치하는 단어 객체를 가져옴
+		Word selectedWord = vocabulary.getWord(word);
+		//없는 단어이면
+		if(selectedWord == null) {
+			System.out.println("등록되지 않은 단어입니다.");
+			return;
+		}
+		//입력한 단어의 뜻을 출력
+		selectedWord.printWord();
+		//수정할 뜻 선택
+		int index = scan.nextInt() - 1;
+		//수정할 품사, 뜻을 입력
+		System.out.print("수정할 품사 : ");
+		String partOfSpeech = scan.next();
+		System.out.print("수정할 의미 : ");
+		scan.nextLine();//엔터 처리
+		String mean = scan.nextLine();
+		//뜻을 수정
+		if(selectedWord.setMean(index, partOfSpeech, mean)) {
+			System.out.println("의미를 수정했습니다.");
+		}else {
+			System.out.println("의미를 수정하지 못했습니다.");
+		}
+	}
+
+	private void addMean() {
+		//뜻을 추가할 단어 입력, 품사, 뜻 입력
+		System.out.print("단어 : ");
+		scan.nextLine();//엔터 처리
+		String word = scan.nextLine();
+		System.out.print("품사 : ");
+		String partOfSpeech = scan.next();
+		System.out.print("의미 : ");
+		scan.nextLine();//엔터 처리
+		String mean = scan.nextLine();
+		
+		//뜻 추가
+		if(vocabulary.addMean(word, partOfSpeech, mean)) {
+			System.out.println("새 의미를 추가했습니다.");
+		}else {
+			System.out.println("새 의미를 추가하지 못했습니다.");
+		}
+		System.out.println(vocabulary);
+	}
+
+	
 
 	private void wordManage() {
 		int menu;

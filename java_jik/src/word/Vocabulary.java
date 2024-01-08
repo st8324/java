@@ -68,6 +68,33 @@ public class Vocabulary {
 		//삭제 후 삭제 여부를 리턴
 		return list.remove(new Word(word));
 	}
+
+	public boolean addMean(String word, String partOfSpeech, String mean) {
+		//list가 비었으면
+		if(list == null) {
+			return false;
+		}
+		//해당 단어 위치 검색
+		int index = list.indexOf(new Word(word));
+		//단어가 없으면
+		if(index < 0) {
+			return false;
+		}
+		//단어에 뜻을 추가 후 성공 여부를 알려줌
+		Word selectedWord = list.get(index);
+		return selectedWord.addMean(partOfSpeech, mean);
+	}
+
+	public Word getWord(String word) {
+		int index = list.indexOf(new Word(word));
+		/*
+		if(index < 0) {
+			return null;
+		}
+		return list.get(index);
+		*/
+		return index < 0 ? null : list.get(index);
+	}
 }
 
 

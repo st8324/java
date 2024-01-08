@@ -6,4 +6,6 @@ public interface PrintService {
 
 	void printWordMenu();
 
+	void printMeanMenu();
+
 }

@@ -25,4 +25,15 @@ public class PrintServiceImp implements PrintService {
 		
 	}
 
+	@Override
+	public void printMeanMenu() {
+		System.out.println("------의미 메뉴------");
+		System.out.println("1. 의미 추가");
+		System.out.println("2. 의미 수정");
+		System.out.println("3. 의미 삭제");
+		System.out.println("4. 이전으로");
+		System.out.println("-------------------");
+		System.out.print("메뉴 선택 : ");
+	}
+
 }
