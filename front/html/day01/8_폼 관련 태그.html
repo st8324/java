@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 관련 태그</title>
+</head>
+<body>
+    <!-- 
+        form 태그
+        - 서버로 데이터를 전송하는 태그
+        - 속성
+          - action
+            - 서버로 보낼 주소
+          - method
+            - 데이터 전송 방식
+            - get : 기본값, url에 데이터를 추가하여 전송. 데이터가 노출. 검색
+            - post: http request에 데이터를 추가하여 전송. 데이터가 노출 X, 회원가입, 로그인, 파일전송
+          - enctype
+            - method가 post인 경우에만 사용
+            - 서버로 데이터를 보낼 때 인코딩 방식을 설정
+            - 값
+              - application/x-www-form-urlencoded
+                - 기본값, 서버로 보내기 전에 모두 인코딩
+              - multipart/form-data
+                - 모든 문자를 인코딩하지 않음
+                - 서버에 파일을 전송할 때 사용
+              - text/plain
+                - 공백 문자는 +로 변환, 나머지는 인코딩하지 않음
+        - 서버로 데이터를 get방식으로 전송하면 기본 url 뒤에 ?name명=값&name명=값&....로 전송
+     -->
+    <!-- 
+        fieldset 태그
+        - form태그 안에 요소들을 묶어서 테두리로 표시
+        legend 태그
+        - fieldset 태그 안에서 묶인 요소들의 대표 이름을 지정
+     -->
+    <!-- 
+        input 태그
+        - form태그 안에서 정보를 입력받는 태그
+        - type에 따라 다양한 형태가 존재
+        - 속성
+          - value : 초기값을 설정
+          - name 
+            - 서버로 데이터를 전송하기 위해 반드시 지정해야 속성. 
+            - 서버에서는 name과 일치하는 변수명에 데이터를 저장
+          - readonly
+            - 읽기 전용으로 서버에 데이터를 전송
+            - 값을 변경할 수 없음
+          - disabled
+            - 값을 변경할 수 없음
+            - 서버로 데이터를 전송하지 않음
+          - required
+            - 필수 항목에 지정
+          - placeholder
+            - 입력하기전 안내 문구를 표시
+            - 값이 입력되어 있으면 문구가 사라짐
+          - type
+            - input태그의 종류를 지정
+            - text
+              - 기본 입력창, 텍스트를 한 줄 입력
+            - password
+              - 비밀번호 입력창, 입력한 값이 *로 안보임
+            - hidden
+              - 사용자는 볼 필요가 없지만 서버에서는 필요한 정보를 감출 때 사용
+            - button, reset, submit
+              - button 태그로 대체 가능
+              - button은 일반 버튼
+              - reset은 같은 form태그 입력된 값들을 초기화
+              - submit은 서버로 전송
+              - value로 버튼 텍스트를 지정
+            - file
+              - accept 속성과 multiple 속성을 이용할 수 있다
+              - accept은 파일 종류를 지정
+              - multiple은 다중 선택
+              - form태그의 method를 post로 수정, enctype을 수정
+            - checkbox
+              - 다중 선택하는 항목에서 사용
+              - checked 속성을 이용해서 초기 선택 여부를 결정
+              - value값을 이용해서 선택됐을 때 전송할 값을 지정
+              - 같은 항목인 경우 name을 공통으로 지정
+            - radio
+              - 지정된 값 중에서 하나만 선택해야하는 경우 사용
+              - checked 속성을 이용해서 초기 선택 여부를 결정
+              - value값을 이용해서 선택됐을 때 전송할 값을 지정
+              - 같은 항목인 경우 name을 공통으로 지정
+        
+        label 태그
+          - 요소에 레이블을 붙이는 태그
+          - checkbox, radio에 붙여서 글자를 클릭해도 체크가 되게 할 때 사용
+          - 레이블을 클릭했을 때 해당 레이블과 연결된 입력창을 선택할 때 사용
+     -->
+    <form action="7_하이퍼 링크 태그.html">
+        <fieldset>
+            <legend>회원정보</legend>
+            <input type="text" name="id" > <br>
+            <input type="password" name="pw"> <br>
+            <input type="hidden" name="age" value="21">
+            <input type="reset" value="리셋버튼"> <br>
+            <input type="file" name="file" multiple accept="video/*, audio/*" > <br>
+            좋아하는 취미는? <br>
+            <label>
+                <input type="checkbox" name="hobby" value="music" checked>음악감상
+            </label>
+            <input type="checkbox" name="hobby" value="soccer">축구
+            <input type="checkbox" name="hobby" value="baseball">야구 <br>
+            본인의 나이대는? <br>
+            <input type="radio" name="age2" value="20under" checked id="under20">
+            <label for="under20">20세 미만</label>
+            <input type="radio" name="age2" value="60under">20세 이상 60세 미만
+            <input type="radio" name="age2" value="60over">60세 이상
+            <input type="submit" value="전송">
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <!-- 
+        select 태그
+        - 지정된 값들 중에서 선택할 때 사용하는 태그
+        - option태그와 함께 사용
+        option 태그
+        - value 속성이 없으면 option태그 안에 있는 문자열이 value로 지정 됨
+        optgroup 태그
+        - option 태그들을 묶을 때 사용
+        - label 속성을 이용하여 목록 이름을 지정
+     -->
+    <!-- 
+        datalist 태그
+        - 지정된 값들 중에서 입력할 때 사용하는 태그
+        - option태그, input태그와 함께 사용
+        - datalist 태그에 id를 지정하고, input태그에서 list속성의 값으로 datalist 태그의
+          id값을 입력
+    -->
+    <!-- 
+        textarea 태그
+        - 여러 줄을 입력 받을 때 사용하는 태그
+        - col과 row를 이용하여 입력받는 행과 열을 지정
+     -->
+    <!-- 
+        button 태그
+        - 버튼을 만드는 태그
+        - type을 통해 button, submit, reset 버튼을 지정
+        - type이 생략되면 submit
+     -->
+    <form action="">
+        성별을 선택하세요.
+        <select name="gender">
+            <option>선택 안함</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+        </select>
+        <br>
+        좋아하는 동물을 선택하세요.
+        <select name="pet">
+            <optgroup label="개">
+                <option>불독</option>
+                <option>진돗개</option>
+                <option>보더콜리</option>
+            </optgroup>
+            <optgroup label="고양이">
+                <option>페르시안</option>
+                <option>시암</option>
+                <option>스핑크스</option>
+            </optgroup>
+        </select>
+        <br>
+        도시를 입력하세요.
+        <input type="text" list="cities" name="city">
+        <datalist id="cities">
+            <option>서울</option>
+            <option>서산</option>
+            <option>울산</option>
+            <option>인천</option>
+        </datalist>
+        <input type="submit" value="전송">
+    </form>
+
+
+</body>
+</html>

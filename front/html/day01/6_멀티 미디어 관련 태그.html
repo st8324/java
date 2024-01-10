@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멀티 미디어 관련 태그</title>
+</head>
+<body>
+    <!-- 
+        img 태그
+        - 이미지를 추가하는 태그
+        - inline-block태그
+        - 크기를 지정하지 않으면 원본 크기로 불러옴
+        - 속성
+          - src : 이미지가 있는 주소
+          - alt : 이미지를 불러오지 못했을 때 보여줄 문자열. 없으면 웹 표준검사에 걸림
+          - width : 너비
+          - height : 높이
+          - width와 heigth에 단위를 안 쓰면 px로 적용. auto를 값으로 지정하면 비율이 유지
+     -->
+    <img 
+        src="https://www.fitpetmall.com/wp-content/uploads/2023/10/230420-0668-1.png" 
+        alt="고양이"
+        width="500"
+        height="auto">
+    <!-- 
+        audio 태그
+        - 음원을 재생하는 태그
+        - 속성
+          - controls
+            - 컨트롤러를 보여줌
+          - autoplay
+            - 자동 재생
+            - 브라우저 설정에 따라서 자동 재생이 안될 수 있다
+          - loop
+            - 음원 재생이 끝났을 때 다시 실행할지를 결정
+          - preload
+            - 음원이 재생하기 전 미리 다운로드 받아 놓을지를 결정
+            - none : 안 받음
+            - metadata : 메타데이터만 받음
+            - auto : 받음
+     -->
+    <audio 
+        src="../../static/audio.mp3"
+        controls
+        autoplay
+        loop
+        preload="none"
+    ></audio>
+    <!-- 
+        video 태그
+        - 비디오 재생을 위한 태그
+        - audio태그 속성을 그대로 사용할 수 있음
+        - 추가적인 속성 
+          - poster
+            - 재생 시작 전 보여줄 이미지
+     -->
+    <video 
+        src="https://player.vimeo.com/external/371589800.sd.mp4?s=c67aa04c85839e76d473e9e73f8488ffab8fb791&profile_id=164&oauth2_token_id=57447761"
+        controls
+        autoplay
+        loop
+        preload="auto"
+        poster="https://www.fitpetmall.com/wp-content/uploads/2023/10/230420-0668-1.png"
+    ></video>
+
+    <img 
+        src="https://www.fitpetmall.com/wp-content/uploads/2023/10/230420-0668-1.png" 
+        alt="고양이"
+        width="500"
+        height="500" 
+        usemap="#testmap">
+    <!-- 
+        map 태그
+        - 요소의 영역을 분할하여 링크를 걸 때 사용
+        - 영역을 분할할 요소에 usemap을 지정. 값으로 # + map의 name속성값
+        area태그
+        - 영역을 지정
+        - 속성
+          - shape
+            - rect(사각형), circle(원), poly(다각형)를 이용하여 도형의 종류를 선택
+          - coords
+            - 좌표
+            - 도형 종류에 맞게 좌표를 입력. x,y좌표 순으로
+          - href
+            - 이동할 문서의 주소
+          - alt
+            - 대체 문자
+     -->
+    <map name="testmap">
+        <area shape="rect" coords="0,0,250,250" href="http://www.naver.com" alt="네이버">
+        <area shape="circle" coords="375,125,125" href="http://google.com" alt="구글">
+        <area shape="poly" coords="0,250,500,250,500,500,0,500" href="http://daum.net" alt="다음">
+    </map>
+    
+</body>
+</html>
