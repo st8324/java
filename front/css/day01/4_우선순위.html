@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 적용 우선순위</title>
+    <style>
+        /*
+        css 적용 우선순위
+        - 태그 > 클래스 > id > 인라인 > !important
+        태그 : 1점
+        클래스 : 10점
+        id : 100점
+        - 점수가 높은 선택자가 우선적으로 적용
+        - 점수가 같은 경우 아래 있는 코드가 적용
+        - !important는 우선순위와 상관없이 무조건 적용
+        */
+        a{ color : blue !important}
+        .link{color: gray;}
+        .link-menu{ color: green;}
+        /* #menu1{ color: red;} */
+    </style>
+</head>
+<body>
+    <ul class="list-menu">
+        <li class="item-menu">
+            <a href="" class="link-menu link" id="menu1" style="color: black;">메뉴1</a>
+        </li>
+    </ul>
+</body>
+</html>
