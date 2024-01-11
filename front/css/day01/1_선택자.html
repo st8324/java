@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+    <style>
+        /* 전체 선택자 : * */
+        /* *{
+            color: red;
+        } */
+        /* 태그 선택자 : 태그명만 사용 */
+        /* label, button{
+            color: blue;
+        } */
+        /* 아이디 선택자 : #아이디명 */
+        /* #id{
+            color: red;
+        } */
+        /* 클래스 선택자 : .클래스명 */
+        /* .a{
+            color: red;
+        } */
+        /* 
+        속성 선택자 : [속성명=값] 
+         - [속성명~=값] : 값을 단어로 가지는 요소를 선택
+         - [속성명|=값] : 값- 형태로 된 요소를 선택
+         - [속성명^=값] : 값으로 시작하는 요소
+         - [속성명$=값] : 값으로 끝나는 요소
+         - [속성명*=값] : 값을 포함하는 요소
+        */
+        /* [type=text]{
+            color: red;
+        } */
+        /* [class~=input]{
+            color: red;
+        } */
+        /* [class|=input]{
+            color: red;
+        } */
+        /* [class^=input]{
+            color: red;
+        } */
+        /* [class$=a]{
+            color: red;
+        } */
+        /* [class*=a]{
+            color: red;
+        } */
+
+        /*
+        자손 선택자 : 공백으로 구분, 자손에는 자식도 포함
+        조상선택자 자손선택자{
+            속성명 : 값;
+        }
+        */
+        /* .box li{
+            color: red;
+        } */
+        /* 
+        자식 선택자 : >로 구분 */
+        /* ul>li{
+            color: red;
+        } */
+        /*  동위 선택자 
+            - 형제들을 선택
+            선택자1+선택자2 : 선택자1 바로 뒤에 선택자2가 있는 요소를 선택
+            선택자1~선택자2 : 선택자1 뒤에 있는 모든 선택자2를 요소로 선택
+        */
+        /*.first-item+.item{
+            color: red;
+        }*/
+        /*.first-item~.item{
+            color: red;
+        }*/
+        /* 
+        반응 선택자
+        - :active : 클릭한 요소
+        - :hover  : 마우스가 올려진 요소
+        */
+        /*a:active{
+            color: blue;
+        }*/
+        /*a:hover{
+            color: aqua;
+        }*/
+        /* 
+        :focus : 활성화된 input태그 요소
+        :checked : checked 상태인 input태그 요소
+        */
+        /*[name=food]:checked{
+            width: 100px;
+        }
+        [name=age]:focus{
+            background-color: yellow;
+        }*/
+        /* 
+        :xxx-child : 요소 종류의 상관 없이 순서를 따져서 요소를 선택
+        :xxx-of-type : 지정한 요소들 중에서 순서를 따져서 요소를 선택
+        */
+        /*.container1>:first-child{
+            color: red;
+        }
+        .container2>h1:first-of-type{
+            color: red;
+        }*/
+        .container1>:nth-child(2n){
+            color: red;
+        }
+        .container2>div:nth-of-type(2n){
+            color: red;
+        }
+        .container3 .btn::before{
+            content: '앞';
+            display: inline;
+        }
+        .container3 .btn::after{
+            content: '뒤';
+            display: inline;
+        }
+        .container4 li:not(.first){
+            color: red;
+        }
+        /* 요소를 구체적으로 선택하는 선택자
+        - div 태그이고 class 이름이 abc인 요소를 선택하는 선택자
+        - 순서가 중요
+        - 태그선택자가 있으면 무조건 제일 먼저 나와야 함
+        선택자1선택자2선택자3
+        */
+        div.abc{
+            
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="id" class="a">아이디</label>
+        <input type="text" placeholder="아이디를 입력하세요." id="id" class="input-id a" name="id">
+        <br>
+        <input type="password" name="pw" class="input pw">
+        <br>
+        <input type="button" value="버튼">
+        <button type="submit" class="a">전송</button>
+    </form>
+    <div class="box">
+        <h1>안녕하세요</h1>
+        <ul>
+            <li class="item first-item">1</li>
+            <li class="item">2</li>
+            <li class="item">3</li>
+            <li class="item">4</li>
+        </ul>
+    </div>
+    <div class="box2">
+        <h2>인사</h2>
+        <ol>
+            <li>1</li>
+            <li>2</li>
+        </ol>
+    </div>
+    <a href="http://www.naver.com" target="_blank">네이버로</a>
+    <br>
+    좋아하는 음식은?
+    <input type="checkbox" name="food">중식 
+    <input type="checkbox" name="food">한식
+    <input type="checkbox" name="food">일식
+    <br>
+    나이 : <input type="text" name="age">
+    <br>
+    <hr>
+    <div class="container1">
+        <div>안녕하세요1</div>
+        <h1>안녕하세요2</h1>
+        <div>안녕하세요3</div>
+        <h2>안녕하세요4</h2>
+    </div>
+    <hr>
+    <div class="container2">
+        <div>안녕하세요1</div>
+        <h1>안녕하세요2</h1>
+        <div>안녕하세요3</div>
+        <h2>안녕하세요4</h2>
+    </div>
+    <div class="container3">
+        <button class="btn">버튼</button>
+    </div>
+    <div class="container4">
+        <ul>
+            <li class="first">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+</html>
