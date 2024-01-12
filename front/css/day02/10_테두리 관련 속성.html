@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테두리 관련 속성</title>
+    <style>
+    /* 
+    border-style 
+    - 테두리 종류
+    border-width
+    - 테두리 두께
+    border-color
+    - 테두리 색상
+    border
+    - 두께 종류 색상을 한번에 쓰는 속성
+    */
+    [class^=box]{ width: 150px; height: 150px; margin: 10px; background-color: yellow;}
+    .box1{
+        border-width: 10px;
+        border-top-style: solid;
+        border-bottom-style: dashed;
+        border-right-style: dotted;
+        border-left-style: double;
+        /* 위 4개의 속성과 아래 속성 값이 같은 결과. 위->오른쪽->아래->왼쪽순 */
+        border-style: solid dotted dashed double;
+        /* 좌우가 대칭인 경우 */
+        border-style: solid dotted dashed dotted;
+        border-style: solid dotted dashed;
+        /* 좌우가 대칭이고 상하가 대칭인 경우 */
+        border-style: solid dotted solid dotted;
+        border-style: solid dotted;
+        /* 상하 좌우가 모두 같은 경우 */
+        border-style: solid solid solid solid;
+        border-style: solid;
+    }
+    .box2{
+        border-style: solid;
+        border-width: 10px 20px 30px 40px;
+        border-width: 10px;
+    }
+    .box3{
+        border-style: solid; border-width: 10px;
+        border-color: red green blue gray;
+    }
+    .box4{
+        border-top : 10px solid red;
+        border-bottom : 10px solid red;
+        border-right : 10px solid red;
+        border-left : 10px solid red;
+        border: 10px solid red;
+    }
+    .box5{
+        border: 10px solid red;
+        border-top: 0;
+    }
+    .box6{
+        border-top: 10px solid red;
+    }
+    .box7{
+        border: 10px solid red;
+        /*border-radius: 50px;*/
+        border-top-left-radius: 10px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 40px;
+        border-radius: 10px 20px 30px 40px;
+    }
+    .box8{
+        border: 10px solid red;
+        border-radius: 50%;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">4</div>
+    <!-- 왼쪽, 오른쪽, 아래는 실선, 위에는 테두리가 없는 박스를 만들기 위해 스타일을 적용 -->
+    <div class="box5">5</div>
+    <!-- 위쪽만 실선 테두리를 적용 -->
+    <div class="box6">6</div>
+    <div class="box7">7</div>
+    <div class="box8">8</div>
+</body>
+</html>
