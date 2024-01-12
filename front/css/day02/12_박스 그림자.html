@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스 그림자</title>
+    <style>
+        /*
+        box-shadow
+        - 박스에 그림자 효과를 줌
+        - 수평 수직 흐림 번짐 [inset] 순으로 적용
+        */
+        .box1{
+            width: 100px; height: 100px; border: 1px solid black;
+            box-shadow: 2px 2px 10px 10px red;
+        }
+        .box2{
+            width: 100px; height: 100px;
+            box-shadow: 0 1px 1px 0px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>
