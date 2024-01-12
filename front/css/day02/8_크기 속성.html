@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크기 속성</title>
+    <style>
+    /*
+    width, height
+    - box-sizing에 따라 의미하는 바가 달라짐
+    - box-sizing : content-box(기본값)인 경우
+      - width,height는 컨텐츠의 너비와 높이를 의미
+    - box-sizing : border-box인 경우
+      - width,height는 컨텐츠 + 패딩 + 테두리의 너비와 높이를 의미
+    - px : 고정 크기
+    - % : 부모 요소 크기의 %
+    */
+    [class^=box]{ 
+        width: 200px; height: 200px; background-color: yellow; 
+        border: 50px solid black; padding: 20px;
+    }
+    /* 
+    .box1의 요소의 전체 너비 : 컨텐츠 너비 + 왼쪽여백 + 오른쪽 여백 + 오른쪽 테두리 + 왼쪽 테두리
+    => 200px + 20px + 20px + 50px + 50px => 340px
+    */
+    .box1{ box-sizing: content-box;}
+    /* 
+    .box2의 요소의 전체 너비 : 200px => 
+    컨텐츠 너비 + 왼쪽여백 + 오른쪽 여백 + 오른쪽 테두리 + 왼쪽 테두리
+    => 컨텐츠 너비 + 20px + 20px + 50px + 50px 
+    컨텐츠 너비 => 60px
+    */
+    .box2{ box-sizing: border-box;}
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>
