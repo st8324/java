@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>말줄임</title>
+    <style>
+        [class^=box]{ width: 300px;}
+        .box1{ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+        .box2{ 
+            overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2;
+            display: -webkit-box; -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">한줄 예제입니다. 한줄 예제입니다. 한줄 예제입니다. 한줄 예제입니다. 한줄 예제입니다.</div>
+    <hr>
+    <div class="box2">두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. 두줄 예제입니다. </div>
+</body>
+</html>
