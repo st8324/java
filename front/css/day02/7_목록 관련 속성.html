@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 관련 속성</title>
+    <style>
+        /* 
+        list-style-type
+        - 마커 모양을 지정
+        list-style-image
+        - 마커 모양을 이미지로 대체
+        list-style-position
+        - 마커의 위치를 지정
+        list-sytle
+        - type, postion, image속성을 한번에 적용
+        */
+        ul, ol{ background-color: yellow; margin-top: 10px;}
+        li{ background-color: gray;}
+        .list1{ list-style-type: circle;}
+        .list2{ list-style-image: url(../../static/마커.png);}
+        .list3{ list-style-position: inside;}
+        .list4{ list-style-type: upper-alpha;}
+        .list5{ list-style: inside url(../../static/마커.png);}
+    </style>
+</head>
+<body>
+    <ul class="list1">
+        <li>1</li>
+    </ul>
+    <ul class="list2">
+        <li>1</li>
+    </ul>
+    <ul class="list3">
+        <li>1</li>
+    </ul>
+    <ol class="list4">
+        <li>1</li>
+    </ol>
+    <ol class="list5">
+        <li>1</li>
+    </ol>
+</body>
+</html>
