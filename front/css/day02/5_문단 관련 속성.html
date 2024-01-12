@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문단 관련 속성</title>
+    <style>
+    /* direction
+    - 글자 쓰기 방향 지정
+    - 왼->오 또는 오->왼
+    */
+    *{ font-size: 20px;}
+    .direction1 { direction: ltr;}
+    .direction2 { direction: rtl;}
+    /* text-align
+    - inline 또는 inline-block 요소를 정렬하는 방법을 지정
+     */
+    .align1{ text-align: center;}
+    .align2{ text-align: left;}
+    .align3{ text-align: right;}
+    .align4{ text-align: justify;}
+    /* text-indent
+    - 문단의 들여쓰기. 값에따라 내어쓰기 효과를 줄 수 있다
+    */
+    .indent1{ text-indent: 30px; margin-left: 30px;}
+    .indent2{ text-indent: -30px;margin-left: 30px;}
+    /* text-overflow
+    - 글자가 영역을 넘어갔을 때 처리할 방법을 지정
+    - width가 고정이고(넘어가는 영역이 생기기 때문에), overflow가 hidden이어야 함
+    */
+    .overflow1{ text-overflow: clip; white-space: nowrap; width: 400px; overflow: hidden;}
+    .overflow2{ text-overflow: ellipsis; white-space: nowrap; width: 400px; overflow: hidden;}
+    </style>
+</head>
+<body>
+    <div class="direction1">왼쪽에서 오른족으로</div>
+    <div class="direction2">오른쪽에서 왼쪽으로</div>
+    <hr>
+    <div class="align1">가운데 정렬방법으로 정렬합니다. 정렬합니다. 정렬합니다. </div>
+    <div class="align2">왼쪽 정렬방법으로 정렬합니다. 정렬합니다. 정렬합니다. </div>
+    <div class="align3">오른쪽 정렬방법으로 정렬합니다. 정렬합니다. 정렬합니다. </div>
+    <div class="align4">양쪽 정렬방법으로 정렬합니다. 정렬합니다. 정렬합니다. </div>
+    <div class="align1">
+        <!-- 
+        block 태그인 div태그는 크기가 200px이지만 가운데 정렬이 안됨.
+        단, 안에있는 글자는 정렬이 됨. 상속을 받음 -->
+        <div style="background-color: yellow; width: 200px;">안녕하세요.</div>
+        <img width="200" src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202306/25/488f9638-800c-4bac-ad65-82877fbff79b.jpg" alt="고양이">
+    </div>
+    <hr>
+    <div class="indent1">안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. </div>
+    <div class="indent2">안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. </div>
+    <hr>
+    <div class="overflow1">안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. </div>
+    <div class="overflow2">안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. </div>
+    <hr>
+</body>
+</html>
