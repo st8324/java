@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <style>
+    /* 
+    position 
+    - 요소를 배치하는 방식을 지정하는 속성
+    - 값으로는 static(기본값), relative, absolute, fixed
+
+    position : relative
+    - 요소의 상대적인 위치를 계산해서 배치
+    - top, left, right, bottm을 이용해서 기준 위치에서 
+      지정한 top, left, right, bottom 만큼 움직인 위치에 요소를 배치
+    - position:absolute의 기준점이 될 수 있다
+
+    position : absoulte
+    - 기준 요소를 기준으로 위치를 조절
+    - top, left, right, bottm을 이용
+    - 기준 요소는 조상 요소 중에서 position이
+      relative인 여소를 찾아서 배치
+    - 조상 요소 중에서 relative가 없으면 브라우저를 
+      기준으로 배치
+    - absolute를 이용하면 편하기는 하지만 무분별한
+      사용은 자제
+    - 다른 요소에 영향을 주지 않으면서, 원하는
+      위치에 배치할 때 사용하면 좋다
+    - absolute 사용 시 너비와 높이를 지정하거나
+      top,bottom을 이용하여 높이대신, 
+      left, right를 이용하여 너비대신 사용해야 한다
+    - absolute인 요소는 부모 요소의 높이에 영향을
+      주지 않음
+    */    
+    .relative>[class^=box]{ 
+        width: 100px; height: 100px; 
+        border: 1px solid black; 
+        display: inline-block;
+        margin-left: 20px; line-height: 100px; 
+        text-align: center;
+        font-size: 30px; font-weight: bold;
+        position: relative;
+    }
+    .relative>.box1{ top: 30px;}
+    .relative>.box2{ left: -10px;}
+    .relative>.box3{ bottom: 10px;}
+    .relative>.box4{ right: -20px;}
+
+    .absolute{margin-top: 100px;}
+    .absolute div{
+        padding: 30px; border: 1px solid black;
+    }
+    .absolute .content-box{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 30px;
+    }
+    .absolute .box1 .inner-box{
+        position: relative;
+    }
+    body{ height: 1500px;}
+    /*
+    position : fixed
+    - 요소를 브라우저를 기준으로 위치를 고정 시킴
+    - 위로가기 버튼을 만들 때 사용
+    - top, botton, left, right를 이용
+    */
+    .fixed{ position: fixed; bottom: 0;}
+    </style>
+</head>
+<body>
+    <div class="relative">
+        <div class="box1">H</div>
+        <div class="box2">E</div>
+        <div class="box3">L</div>
+        <div class="box4">L</div>
+        <div class="box5">O</div>
+    </div>
+    <div class="absolute">
+        <div class="box1">
+            <div class="inner-box">
+                <div class="content-box">1</div>
+                123 <br>456 <br>
+            </div>
+        </div>
+        <div class="box2">
+            <div class="inner-box">
+                <div class="content-box">2</div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed">fixed</div>
+</body>
+</html>
