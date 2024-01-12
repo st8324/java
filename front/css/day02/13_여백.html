@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여백</title>
+    <style>
+    /* 
+    margin 
+    - 테두리 밖의 여백. 
+    - 요소의 위치를 조절할 때 사용
+    - 요소와 요소 사이의 간격을 조절할 때 사용
+    padding
+    - 테두리와 컨텐츠 사이이의 여백. 
+    - 요소 안의 컨텐츠 위치를 조절할 때 사용
+    - 컨텐츠의 시작 위치를 조절할 사용. 대부분의 요소에 사용
+    - 부모 요소에서 자식 요소의 시작 위치를 조정할 때
+    */
+    [class^=box]{ 
+        width: 100px; height: 100px; 
+        border: 1px solid black;
+    }
+    .box1{ margin-left: 50px;}
+    .box2{ padding-left: 50px;}
+    .box3{ margin: 0 auto;}
+    .inner-box{ 
+        /*
+        width : 100%
+        - 부모 컨텐츠 width를 가져와서 
+          자식 컨텐츠 width로 사용
+        - 자식 요소의 크기
+         => 컨텐츠 크기 + 패딩 + 테두리
+         => 100px + 0 + 3px * 2 = 106px
+        */
+        width: 100%; height: 100%; 
+        border: 3px solid red;
+        box-sizing: border-box;
+    }
+    .box4{ padding: 10px;}
+    .main-box{ 
+        width: 700px; border: 1px solid black;
+        height: 300px; margin: 0 auto;
+        box-sizing: border-box;
+    }
+    /* 
+    단위
+    - px, %, em, rem, vh, vw, deg
+    - vh
+      - view height의 약자로 브라우저 높이를
+        100등분한 것이 1vh
+    - vw
+      - view width의 약자로 브라우저 너비를 
+        100등분 한 것이 1vw
+    */
+    .container{
+        padding: 10px; border: 3px solid red;
+        min-width: 700px;
+    }
+    /*
+    - margin은 겹치면 둘 중에 큰 margin이 적용
+      합이 아님
+    */
+    .margin1{
+        border: 1px solid black;
+        height: 50px;
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">
+        <div class="inner-box"></div>
+    </div>
+    <div class="container">
+        <div class="main-box"></div>
+    </div>
+    <div class="margin1">1</div>
+    <div class="margin1">2</div>
+</body>
+</html>
