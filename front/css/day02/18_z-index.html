@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>z-index</title>
+    <style>
+    /* 
+    z-index
+    - 요소들이 겹칠 때 누굴 위로 보낼지 기준이 되는 속성
+    - 값이 클수록 위로 올라감 
+    - z-index가 같으면 마지막 요소가 위로 올라감
+    */
+    [class^=box]{ 
+        position: absolute; width: 150px;
+        height: 300px; border: 3px solid black;
+        font-size: 30px; background: #fff;
+    }
+    .box1{ z-index: 100;}
+    .box2{top: 50px; left: 50px; z-index: 50;}
+    .box3{top: 100px; left: 100px;}
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</body>
+</html>
