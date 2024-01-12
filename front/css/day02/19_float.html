@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float 예제</title>
+    <style>
+    /*  
+    float
+    - 요소를 왼쪽 또는 오른쪽으로 배치할 때 사용
+    - 특징
+      - float이 적용된 속성은 부모요소가 float속성이 적용된
+        요소의 높이를 인식하지 못함
+      - float이 적용된 속성이 있으면, 부모 속성에
+        ::after선택자를 추가 후 clear:both, display:block,
+        content : ''을 추가해서 부모 높이가 인식되게 해야 함
+      - width를 직접 지정해야 함. 지정하지 않으면 컨텐츠의 너비만큼 자동으로 잡힘
+      - display에 영향을 받지 않음
+
+    clear
+    - float이 적용된 요소가 있으면 다음 요소에 영향을 미치는데,
+      이를 초기화하는 속성
+    - left를 적용하면 float이 적용된 요소들 중 
+      왼쪽을 기준으로 높이를 계산 후 이후에 배치
+    - right를 적용하면 float이 적용된 요소들 중
+      오른쪽을 기준으로 높이를 계산 후 이후에 배치
+    - both를 적용하면 float이 적용된 요소들 중 왼쪽과 
+      오른쪽 중 높이가 더 긴 요소를 기준으로 계산후 배치
+    */
+    .container div{
+        border: 1px solid black;
+        line-height: 30px;
+    }
+    .container::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+    .float-left{ float: left;}
+    .float-right{ float: right; height: 60px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="float-left"> 안녕하세요.</div>
+        <div class="float-right"> 안녕하세요.</div>
+    </div>
+    <div>안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. </div>
+</body>
+</html>
