@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform style</title>
+    <style>
+        .container1 {
+            display: inline-block;
+            border: 10px solid #aaa;
+            transform: perspective(500px) rotateY(-60deg);
+        }
+
+        .container1 .box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transform: perspective(500px) rotateY(60deg);
+        }
+
+        .container2 {
+            display: inline-block;
+            border: 10px solid #aaa;
+            transform-style: preserve-3d;
+            transform: perspective(500px) rotateY(-60deg);
+        }
+
+        .container2 .box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transform: perspective(500px) rotateY(60deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="box"></div>
+    </div>
+    <div class="container2">
+        <div class="box"></div>
+    </div>
+</body>
+</html>
