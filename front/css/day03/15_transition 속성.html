@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition 속성</title>
+    <style>
+        .box{
+            width: 100px; height: 100px;text-align: center;
+            border: 1px solid black;
+            line-height: 100px;
+        }
+        .box:hover{
+            font-size: 50px; font-weight: bold; transition: font-size 2s, transform 2s;
+            transform: rotateY(45deg);
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        꽝
+    </div>
+</body>
+</html>
