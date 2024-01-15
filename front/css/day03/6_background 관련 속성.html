@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>background 관련 속성</title>
+    <style>
+        [class^=box]{ width: 300px; height: 300px; padding: 50px;}
+        .box1{
+            border: 20px solid transparent;
+            background-color: yellow;
+            background-clip: border-box;
+        }
+        .box2{
+            border: 1px solid black;
+            width: 1000px; height: 1000px;
+            background-image: url(http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 0px 0px;
+            background-origin: content-box;
+            background-attachment: fixed;
+            background: url(http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg)
+                no-repeat fixed 0 0 content-box contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>
