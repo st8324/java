@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+	<style>
+		*{ padding: 0; margin: 0;}
+		#signupForm{ width: 600px; margin: 0 auto;}
+		.text-center{ text-align: center; margin-bottom: 10px;}
+		#signupForm [class^=lb]{display: block; margin: 5px 0;}
+		.box-input .input{
+			display: block; border: 1px solid gainsboro;
+			border-radius: 5px; height: 30px; width: 100%;
+			margin-bottom: 5px;
+		}
+		.btn-submit{ 
+			display: block; width: 100%; border: green 1px solid;
+			border-radius: 5px; height: 30px; background-color: #fff;
+			margin-top: 10px;
+		}
+		.btn-submit:hover{
+			color: #fff; background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="post" id="signupForm">
+		<h1 class="text-center">회원가입</h1>
+		<div class="box-input">
+			<label for="id" class="lb-id">아이디</label>
+			<input type="text" name="id" id="id" class="input" placeholder="아이디를 입력하세요.">
+		</div>
+		<div class="box-input">
+			<label for="pw" class="lb-pw">비번</label>
+			<input type="password" name="pw" id="pw" class="input" placeholder="비번을 입력하세요.">
+		</div>
+		<div class="box-input">
+			<label for="pw2" class="lb-pw2">비번 확인</label>
+			<input type="password" id="pw2" class="input" placeholder="비번 확인을 입력하세요.">
+		</div>
+		<div class="box-input">
+			<input type="radio" name="gender" value="남성" id="male"> 
+			<label for="male">남성</label>
+			<input type="radio" name="gender" value="여성" id="female"> 
+			<label for="female">여성</label>
+		</div>
+		<button class="btn-submit">회원가입</button>
+	</form>
+</body>
+</html>
