@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 예제</title>
+    <style>
+        .container{ border: 5px solid black; padding: 0 10px;}
+        .container::after{clear: both; content: ''; display: block;}
+        /* 
+        width, height의 %는 부모 컨텐츠 크기의 %
+        - box-sizing 속성이 기본값인 content-box이면 요소의 컨텐츠 크기가 부모 컨텐츠 크기가 됨
+          그래서, 테두리, paddin이 있는 경우 실제 요소의 크기는 더 커짐
+        - box-sizing 속성이 border-box이면 요소의 컨텐츠 + 패딩 + 테두리의 합이 부모 컨텐츠 크
+          기가 됨
+        */
+        .box{ 
+            margin: 10px 0; border: 5px solid red; float: left;
+            width: calc(50% - 5px); box-sizing: border-box;
+        }
+        .box:nth-of-type(2n){
+            margin-left: 10px;
+        }
+        @media screen and (min-width:900px) {
+            .box{ width: calc((100% - 20px) / 3); margin-left: 10px;}
+            .box:nth-of-type(3n+1){
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        박스 6개를 배치
+     -->
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+</html>

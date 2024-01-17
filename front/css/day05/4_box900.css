@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.box{ width: calc((100% - 20px) / 3); margin-left: 10px;}
+.box:nth-of-type(3n+1){
+    margin-left: 0;
+}
