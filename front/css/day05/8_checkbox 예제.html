@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스 예제</title>
+    <style>
+        [name=gender]{ display: none;}
+        [name=gender]+label{ padding-left: 24px; height: 24px; line-height: 24px; position: relative;}
+        [name=gender]+label::before{
+            width: 20px; height: 20px; position: absolute;top: 2px; left: 2px; content: '';
+            background: url(../../static/checkbox_off.png);
+            background-size: 20px 20px;
+        }
+        [name=gender]:checked+label::before{
+            background-image: url(../../static/checkbox_on.png);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="radio" value="male" id="male" name="gender">
+        <label for="male">남성</label>
+    </div>
+    <div class="box">
+        <input type="radio" value="female" id="female" name="gender">
+        <label for="female">여성</label>
+    </div>
+</body>
+</html>
