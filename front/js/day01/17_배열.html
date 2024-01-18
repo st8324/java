@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+</head>
+<body>
+    <script>
+        /* 
+        자바 배열
+        - 같은 자료형을 여러개 관리
+        - 기능이 없음
+        js 배열
+        - 자료형에 상관없이 여러개를 관리
+        - 함수를 제공
+
+        - 배열 선언
+        var 배열명 = [];
+        var 배열명 = new Array(크기);
+        var 배열명 = new Array(값1, 값2, ..., 값n);
+        
+        - 배열에 값을 추가하는 함수
+        - push
+          - 값을 배열 뒤에 추가
+        - unshift
+          - 값을 배열 맨 앞에 추가
+        - 배열에 값을 제거하는 함수
+        - pop
+          - 값을 배열 뒤에서 제거 후 리턴
+        - shift
+          - 값을 배열 맨 앞에서 제거 후 리턴
+        
+        요소를 탐색
+        - indexOf(요소) : 요소와 일치하는 값이 몇번지에 
+          있는지 리턴
+        - lastIndexOf(요소) : 요소를 뒤에서부터 탐색해서
+          일치하는 값이 몇번지에 있는지 리턴
+        - includes
+        */
+        var arr = [1, '안녕', true, {}];
+        arr.push(1,2,3);
+        arr.unshift('a','b','c');
+        console.log(arr);
+        console.log(arr.pop());
+        console.log(arr.shift());
+        console.log(arr);
+        console.log(`${1}은 몇번지에? ${arr.indexOf(1)}`);
+        console.log(`${1}은 몇번지에? ${arr.lastIndexOf(1)}`);
+        console.log(`${1}이 있습니까? ${arr.includes(1)}`);
+        
+        /*
+        - join(구분자) : 배열값들을 구분자로 구분이 된
+          하나의 문자열로 리턴
+        - slice() 
+          - 배열을 잘라냄
+          - 부분 배열을 생성해서 리턴
+          - 원본은 안바뀜
+        - splice()
+          - 배열을 삭제하거나 추가
+          - 원본이 바뀜
+          */
+        console.log(arr.join("-"));
+        console.log(arr.slice(3));
+        console.log(arr);
+        console.log(arr.splice(0,2));//b,c를 삭제
+        console.log(arr);
+        //0번지부터 0개를 삭제 후 0번지부터 '100',200,false
+        //를 추가
+        console.log(arr.splice(0,0,'100', 200, false));
+        console.log(arr);
+        /*
+        자바에서 제공하는 stream 메서드와 이름이 같은 함수들
+        - map(callback)
+          - 각 요소에 주어진 함수를 호출하고, 결과로 새로 
+            만들어진 배열을 반환
+          - 원본은 안바뀜
+        - filter(callback)
+          - callback이 true인 요소들만 필터링
+        - reduce(callback, initValue)
+          - callback함수를 이용하여 하나의 값을 도출,
+          - initValue는 초기값
+        - find(callback)
+          - callbakc이 true가 되는 처음 요소를 반환
+        - forEach(callback)
+          - 각 요소에 callback을 실행
+        */
+        console.log(arr.map((item)=>{
+            return item + 1;
+        }));
+        console.log(arr);
+        console.log(arr.filter((item)=>{
+            return item > 100;
+        }));
+        console.log(arr.reduce((acc, item)=>{
+            if(typeof item == 'number'){
+                return acc + item;
+            }
+            return acc;
+        },0));
+        console.log(arr.find((item)=>{
+            return item != 0;
+        }));
+        arr.forEach((item, index)=>{
+            console.log(`${index}번지 : ${item}`);
+        });
+    </script>
+</body>
+</html>
