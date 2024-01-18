@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 선언</title>
+</head>
+<body>
+    <script>
+        /*함수 선언식
+        - 호이스팅이 일어나서 아래 코드가 다음과 같이 됨
+        function test1(){
+            document.write('테스트');
+            document.write('<br>');
+        }
+
+        test1();
+        */
+        test1();
+
+        //브라우저에 테스트를 출력하는 함수
+        function test1(){
+            document.write('테스트');
+            document.write('<br>');
+        }
+
+        /*함수 표현식
+        아래 코드는 호이스팅이 일어나서 다음과 같이 동작
+        var test2;
+        test2();//이 때 test2는 함수가 아니므로 에러 발생
+        test2 = function(){
+            document.write('테스트');
+            document.write('<br>');
+        }
+        */
+        test2();
+        var test2 = function(){
+            document.write('테스트');
+            document.write('<br>');
+        }
+    </script>
+</body>
+</html>
