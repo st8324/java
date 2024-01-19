@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Window 객체</title>
+	<style>
+		body{ height: 2000px;}
+		.top{position: fixed; right: 50px; bottom: 50px;}
+	</style>
+</head>
+<body>
+	<button onclick="openNewWindow();">새창 띄우기</button>
+	<button onclick="closeWindow();">새창 닫기</button>
+	<button class="top" onclick="moveToTop();">위로 가기</button>
+	<script>
+		let childWindow; //새창 열었을 때 자식창
+
+		function openNewWindow(){
+			childWindow = 
+				window.open(
+					'3_새창.html',
+					'_blank',
+					'width=400, height=400, top=200, left=200');
+			if(!childWindow){
+				alert('팝업이 차단되었습니다. 팝업 차단을 해주세요.');
+			}
+		}
+		function closeWindow(){
+			if(childWindow){
+				childWindow.close();
+			}
+		}
+		function moveToTop(){
+			window.scrollTo({
+				top:0,
+				behavior : 'smooth'
+			})
+		}
+
+	</script>
+</body>
+</html>
