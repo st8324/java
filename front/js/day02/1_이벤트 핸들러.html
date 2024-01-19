@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 핸들러</title>
+</head>
+<body>
+    <button onclick="alert('클릭했습니다.');">버튼 클릭</button>
+    <!-- input태그의 
+        change 이벤트는 텍스트가 변경되고, 엔터를 치거나
+        포커스가 비활성화 될 때 발생
+    -->
+    <!-- this는 이벤트가 발생한 요소 -->
+    <input type="text" onchange="change(this);" >
+
+    <script>
+        function change(obj){
+            var text = obj.value;
+            alert(text);
+        }
+        /* 
+        대표적인 이벤트들
+        - click
+        - 입력태그 : change, keydown, keypress, keyup, input
+        - 마우스 : mouseover, mouseleave, mouseenter 등..
+        - 폼 태그 : sumbit
+        */
+    </script>
+</body>
+</html>
