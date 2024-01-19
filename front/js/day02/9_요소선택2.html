@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 선택</title>
+</head>
+<body>
+	<nav id="nav">
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		/* getElementxxx과 querySelectorxxx 비교
+		getElementxxx
+		- 요소가 나중에 추가되도 검색이 가능
+
+		querySelectorxxx
+		- 요소가 나중에 추가되면 검색이 안됨. 다시 검색해야 함
+		*/
+		let links1 = document.getElementsByClassName('menu-link');
+		console.log(`getElementsClassName : ${links1.length}`);
+		let links2 = document.querySelectorAll('.menu-link');
+		console.log(`querySelectorAll : ${links2.length}`);
+	</script>
+	
+	<nav id="nav2">
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		/* 
+		- getElementsByClassName
+		  - 요소를 선택할 당시 없던 요소들도
+		    나중에 추가되면 자동으로 선택이 됨
+		- querySelectorAl
+		  - 요소를 선택할 당시 없던 요소들은 
+		    나중에 추가되도 선택이 안됨. 선택되게 하려면 다시 요소를
+			  선택해야 함.
+		*/
+		console.log(`getElementsClassName : ${links1.length}`);
+		console.log(`querySelectorAll : ${links2.length}`);
+		
+		Array.from(links1).forEach(item=>{
+			console.log(item);
+		});
+		console.log('-----------------');
+		links2.forEach(item=>{
+			console.log(item);
+		});
+	</script>
+</body>
+</html>
