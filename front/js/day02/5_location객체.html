@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>location 객체</title>
+</head>
+<body>
+	<button onclick="writeBoard();">글쓰기</button>
+	<script>
+		alert(location.href);
+		function writeBoard(){
+			if(confirm(`게시글 등록은 로그인이 필요한 서비스입니다.\n
+					로그인 하겠습니까?`)){
+					location.href = "http://www.naver.com"
+			}
+		}
+	</script>
+</body>
+</html>
