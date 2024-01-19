@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>예제4</title>
+	<style>
+		.container{ width: 600px; margin: 0 auto;}
+		.img-container{
+			display: flex; 
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+		.img-box{
+			border: 1px solid black; width: 30%;
+			border-radius: 5px; padding: 5px;
+			cursor: pointer;
+		}
+		.img-box img{
+			width: 100%; display: block; height: 180px;
+			border-radius: 5px;
+		}
+		.show{
+			border: 1px solid black; padding: 5px;
+			box-sizing: border-box; border-radius: 5px;
+			margin-top: 10px;
+		}
+		.show img{
+			display: block; height: 588px; border-radius: 5px;
+			visibility: hidden; width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="img-container">
+			<div class="img-box">
+				<img src="http://www.audioht.co.kr/news/photo/202106/14880_40144_4012.png" alt="고양이">
+			</div>
+			<div class="img-box">
+				<img src="http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg" alt="강아지">
+			</div>
+			<div class="img-box">
+				<img src="https://img.freepik.com/premium-photo/picture-of-a-cute-puppy-world-animal-day_944128-5890.jpg?w=900" alt="">
+			</div>
+		</div>
+		<div class="show">
+			<img src="" alt="확대">
+		</div>
+	</div>
+	<script>
+		/* 여러개의 이미지가 있고, 이미지를 클릭하면 클릭한 이미지가
+		크게 보이는 예제*/
+		document.querySelectorAll('.img-box').forEach(element=>{
+			element.onclick = function(){
+				let src = this.getElementsByTagName('img')[0].src;
+				let showImg = document.querySelector('.show img');
+				showImg.src = src;
+				showImg.style.visibility = 'visible';
+			};
+		});
+	</script>
+</body>
+</html>
