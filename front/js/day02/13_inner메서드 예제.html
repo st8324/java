@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>inner메서드 예제</title>
+</head>
+<body>
+	<ul id="ul">
+		<li>
+			<a href="#">메뉴1</a>
+		</li>
+		<li>
+			<a href="#" style="display: none;">메뉴2</a>
+		</li>
+	</ul>
+	<div class="container">
+		<div class="box">박스1</div>
+	</div>
+	<script>
+		let ul = document.getElementById('ul');
+		console.log(ul.innerText);//스타일에 영향을 받아서 메뉴2를 못 불러옴
+		console.log(ul.textContent);//스타일에 영향을 받지 않음
+		console.log(ul.innerHTML);//html코드를 가져옴
+
+		let box = document.getElementsByClassName('box')[0];
+		box.innerText = "수정된 박스";
+
+		let container = document.getElementsByClassName('container')[0];
+		container.innerHTML += `<a href="http://naver.com">네이버로</a>`;
+	</script>
+</body>
+</html>
