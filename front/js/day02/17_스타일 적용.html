@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스타일 적용</title>
+</head>
+<body>
+	<div class="box">안녕하세요. 홍길동입니다.</div>
+	<script>
+		let box = document.getElementsByClassName("box")[0];
+		/*
+		box.style.color = "red";
+		box.style.fontSize = "30px";
+		box.style.backgroundColor = "yellow"
+		*/
+		box.style.cssText 
+		= "color : red;font-size : 30px;background-color : yellow";
+	</script>
+</body>
+</html>
