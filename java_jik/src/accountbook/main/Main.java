@@ -1,4 +1,4 @@
-package accountbook;
+package accountbook.main;
 
 public class Main {
 
