@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform 속성</title>
+    <style>
+        /* transform 
+        - 다양한 함수들을 이용하여 요소를 변형시키는 속성
+        - 함수
+          - translate??? : 요소를 이동
+          - scale??? : 요소를 비율에 맞춰 크기를 변경
+          - rotate???: 요소를 기준에 맞게 회전. 
+            실제 요소 크기와 모양이 변경되지 않음. 변경되어 보일순 있음.
+          - skew??? : 요소를 비틀어 모양을 변형
+
+        perspective 
+        - 3d 변환을 적용할 때 원근 효과를 조절할 때 사용하는 속성.
+        - 값이 클수록 더 멀리 있는 것처럼 보임, 작을수록 가까이 있는 것처럼 보임
+
+        perspective-origin
+        - 3D 원근에 대한 시점을 조절
+        - x축, y축 위치를 지정, 기본은 50%, 50%으로 중심을 의미
+
+        transform-origin
+        - transform 속성을 이용하여 요소를 변형할 때 기준점을 설정하는 속성
+
+        transform-style
+        - 부모 요소에 적용한 변형을 하위 요소에 적용하는 속성
+        - flat : 하위 요소를 평면으로 처리
+        - perserve-3D : 하위 요소들에 3D 효과를 적용
+
+        backface-visibility
+        - 회전하여 뒷면이 보일 경우 보이게할건지 말건지를 설정하는 속성
+        - hidden : 안보임. visible : 보임
+        */
+        .container{
+            height: 200px; width: 500px; border: 1px solid black;
+            /* perspective: 500px; perspective-origin: 50% 50%; */
+        }
+        .box{ background-color: red;width: 400px; height: 50px;}
+        .translate .box1{ transform: translate(100px, 100px );}
+        .translate .box2{ transform: translateX(50%);}
+        .translate .box3{ transform: translateZ(100px);}
+
+        .scale .box{background: gray;}
+        .scale .box1{ transform: scale(2, 3); transform-origin: 0 0;}
+        .scale .box2{ transform: scaleX(2); transform-origin: 0 0;}
+
+        .rotate .box{ background: pink;}
+        .rotate .box1{ transform: rotateX(45deg); transform-origin: 0 0;}
+        .rotate .box2{ transform: rotatey(45deg); transform-origin: 0 0;}
+        .rotate .box3{ transform: rotatez(45deg); transform-origin: 0 0;}
+
+        .skew .box{ background: blue;}
+        .skew .box1{ transform: skewX(30deg);}
+        .skew .box2{ transform: skewY(30deg);}
+        .skew .box3{ transform: skew(30deg, 30deg);}
+
+        .backface .box{
+            background: url(http://image.dongascience.com/Photo/2020/03/5bddba7b6574b95d37b6079c199d7101.jpg);
+            background-size: 200px 200px; 
+        }
+        .backface .box1{ 
+            transform: rotateY(135deg); transform-origin: 100px 0;
+            width: 200px; height: 200px; 
+            backface-visibility: hidden;
+        }
+        .container.style{
+            perspective: 800px;
+        }
+        .style .box{
+            width: 100px;height: 100px;
+            background-color: red; margin: 0 auto;
+            transform: rotateY(0deg);
+            transition: transform 3s;
+        }
+        .style .box:hover{ transform: rotateY(180deg); }
+        .style .box span{ transform: rotateZ(180deg); transition: transform 6s;}
+        .style .box1{transform-style: flat; }
+        .style .box2{transform-style: preserve-3d;}
+    </style>
+</head>
+<body>
+    <div class="container translate">
+        <div class="box box1"></div>
+    </div>
+    <div class="container translate">
+        <div class="box box2"></div>
+    </div>
+    <div class="container translate">
+        <div class="box box3"></div>
+    </div>
+    <div class="container scale">
+        <div class="box box1"></div>
+    </div>
+    <div class="container scale">
+        <div class="box box2"></div>
+    </div>
+    <div class="container rotate">
+        <div class="box box1"></div>
+    </div>
+    <div class="container rotate">
+        <div class="box box2"></div>
+    </div>
+    <div class="container rotate">
+        <div class="box box3"></div>
+    </div>
+    <div class="container skew">
+        <div class="box box1"></div>
+    </div>
+    <div class="container skew">
+        <div class="box box2"></div>
+    </div>
+    <div class="container skew">
+        <div class="box box3"></div>
+    </div>
+    <div class="container backface">
+        <div class="box box1"></div>
+    </div>
+    <div class="container style">
+        <div class="box box1">
+            <span>Text</span>
+        </div>
+    </div>
+    <div class="container style">
+        <div class="box box2">
+            <span>Text</span>
+        </div>
+    </div>
+</body>
+</html>

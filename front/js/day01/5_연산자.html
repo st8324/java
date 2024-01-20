@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연산자</title>
+</head>
+<body>
+    <script>
+    /* +연산자
+    - 문자열 앞에 쓰면 숫자로 변환
+    */
+    var str = "123";
+    var num = +str;
+    console.log(`${str}의 자료형은? ${typeof str}` );
+    console.log(`${num}의 자료형은? ${typeof num}` );
+
+    str = "abc";
+    num = +str;
+    console.log(`${str}의 자료형은? ${typeof str}` );
+    console.log(`${num}의 자료형은? ${typeof num}` );
+
+    var num1 = 1;
+    var num2 = 2;
+    console.log(`${num1} / ${num2} = ${num1 / num2 }`);
+    var num3 = 2;
+    var num4 = 3;
+    console.log(`${num3}의 ${num4}제곱 = ${num3**num4}`);
+    var num5 = '123';
+    var num6 = '3';
+    console.log(`문자열 ${num5} / 문자열 ${num6} = ${num5 / num6}`);
+
+    var num7 = '1';
+    var num8 = 1;
+    console.log(`문자열 ${num7} == 정수 ${num8} : ${num7 == num8}`);
+    console.log(`문자열 ${num7} === 정수 ${num8} : ${num7 === num8}`);
+
+    console.log(`문자열 ${num7} != 정수 ${num8} : ${num7 != num8}`);
+    console.log(`문자열 ${num7} !== 정수 ${num8} : ${num7 !== num8}`);
+
+    /* || 안에 있는 값들 중 처음으로 참이 되는 값을 선택 */
+    console.log(`0 || 1 || 2 => ${0 || 1 || 2}`);
+    /* && 안에 있는 값들 중 처음으로 거짓이 되는 값을 선택 */
+    console.log(`1 && null && 0 => ${1 && null && 0}`);
+    /* a ?? b는 a가 null이 아니고 undefined가 아니면 a, 맞으면 b를 선택 */
+    var age = 30;
+    console.log(`성인인 당신의 나이는? ${age ?? 20}`);
+    </script>
+</body>
+</html>

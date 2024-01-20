@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예제2</title>
+</head>
+<body>
+    <script>
+        /* 두 정수를 입력받아 두 정수의 합을 브라우저 화면에 출력하는 예제 */
+        var num1 = prompt('정수1을 입력하세요.', 0);
+        var num2 = prompt('정수2를 입력하세요.', 0);
+        num1 = +num1;
+        num2 = +num2;
+        num1 = num1 ?? 0;
+        num2 = num2 ?? 0;
+        document.write(`${num1} + ${num2} = ${num1 + num2}`);
+
+        var str = "123abc";
+        console.log(`+${str} = ${+str}`);
+        console.log(`Number(${str}) = ${Number(str)}`);
+        console.log(`parseInt(${str}) = ${parseInt(str)}`);
+    </script>
+</body>
+</html>

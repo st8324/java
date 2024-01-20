@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입출력</title>
+</head>
+<body>
+    <script>
+        /* 
+        - alert(변수 또는 문자열 등) : 알림창을 띄움
+        - 문자열 : '', "", ``
+        - console.log(변수 또는 문자열 등) : 콘솔창에 출력
+        - confirm(문자열) : 문자열을 알림창으로 띄우고,
+          확인 버튼을 클릭하면 true를, 취소를 버튼을 
+          클릭하면 fasle를 리턴
+        - js에서는 ;이 필수가 아니지만 ;을 써주자.
+        - prompt(문자열, 초기값)
+          - 문자열을 출력 후 값을 입력받는 알림창을 띄움
+          - 입력받을 초기값을 설정
+          - 초기값은 생략 가능
+          - 입력받은 값을 리턴
+          - 취소를 누르면 null
+        document.write(문자열);
+          - 문자열을 브라우저에 출력
+          - html 코드인 경우 해당 태그에 맞게 적용
+          - 이어쓰기
+        */
+        //alert('안녕하세요');
+        console.log('안녕하세요', '만나서 반갑습니다');
+        console.log(123);
+        //console.log(confirm("성인이 맞습니까?"));
+        console.log(prompt("당신의 나이는?", 0));
+        document.write('안녕하세요<br>');
+        document.write('반갑습니다.');
+        document.write('<h1>안녕하세요.</h1>');
+    </script>
+</body>
+</html>

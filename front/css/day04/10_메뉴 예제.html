@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 예제</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        ul{ list-style: none;}
+        a{ text-decoration: none; color: black;}
+        .sub-list{ display: none;}
+        .menu-item:hover .sub-list{ display: block;}
+        .menu-list::after{
+            clear: both; content: ''; display: block;
+        }
+        .menu-item{
+            float: left; 
+            line-height: 50px; font-size: 24px; font-weight: bold;
+            width: 33.33%; box-sizing: border-box;
+            position: relative;
+        }
+        .menu-item~.menu-item{
+            margin-left: -3px;
+        }
+        .menu-item:last-of-type{
+            margin-right: -3px;
+        }
+        .menu-link{ 
+            display: block; border: 3px solid black;
+        }
+        .sub-link{ display: block; border: 3px solid black; margin-top: -3px;}
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴1</a>
+                <ul class="sub-list">
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴1-1</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴1-2</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴1-3</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴2</a>
+                <ul class="sub-list">
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴2-1</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴2-2</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴2-3</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">메뉴3</a>
+                <ul class="sub-list">
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴3-1</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴3-2</a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="#" class="sub-link">메뉴3-3</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

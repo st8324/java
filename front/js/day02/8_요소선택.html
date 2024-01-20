@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 선택</title>
+</head>
+<body>
+	<nav id="nav">
+		<ul class="menu-list">
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+
+		let nav = document.getElementById('nav');
+		console.log(nav);
+		//일치하는 요소가 없어서 null을 리턴
+		let nav1 = document.getElementById('nav1');
+		console.log(nav1);
+
+		let items = document.getElementsByClassName('menu-item');
+		console.log(items);
+		//일치하는 요소가 없어서 빈 배열을 리턴
+		let h1 = document.getElementsByClassName('h1');
+		console.log(h1);
+
+		let aTags = document.getElementsByTagName('a');
+		console.log(aTags);
+
+		let links = document.querySelectorAll('.menu-link');
+		console.log(links);
+
+		let links2 = document.querySelectorAll('.menu-link2');
+		console.log(links2);
+	</script>
+</body>
+</html>

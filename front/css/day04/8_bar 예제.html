@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bar 예제</title>
+    <style>
+        .container{
+            margin-bottom: 20px;
+        }
+        .container>*{ 
+            float: left; /* 엔터에 의한 공백을 없애기 위해*/
+            line-height: 20px; font-size: 14px; color: black; text-decoration: none;
+        }
+        .container::after{
+            clear: both; content: ''; display: block;
+        }
+        .bar1{
+            display: block; width: 1px; height: 12px; background-color: gray;
+            margin: 5px 8px 0;
+        }
+        .sports{ padding-left: 26px; position: relative;}
+        .sports::before{
+            content: ''; display: block; position: absolute;
+            width: 1px; height: 14px; background-color: gray;
+            position: absolute; top: 4px; left: 13px;
+            transform: skewX(-15deg);
+        }
+        .cupang{ position: relative; padding-right: 26px;}
+        .cupang::after{
+            content: ''; display: block; position: absolute;
+            width: 4px; height: 4px; background-color: gray; border-radius: 50%;
+            position: absolute; top: 8px; right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#">뉴스 스탠드</a>
+        <span class="bar1"></span>
+        <a href="#">뉴스 홈</a>
+    </div>
+    <div class="container">
+        <a href="#">엔터</a>
+        <a href="#" class="sports">스포츠</a>
+    </div>
+    <div class="container">
+        <a href="#" class="cupang">쿠팡</a>
+        <a href="#">11번가</a>
+    </div>
+</body>
+</html>

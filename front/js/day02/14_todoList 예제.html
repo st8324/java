@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>오늘의 할일</title>
+</head>
+<body>
+	<input type="text" class="text" onchange="addTodoList();">
+	<button onclick="addTodoList();">등록</button>
+	<h1>오늘의 할일</h1>
+	<ul id="todoList"></ul>
+	<script>
+		/* 
+		input태그를 이용하여 오늘의 할일을 입력받고
+		추가 버튼을 클릭하면 오늘의 할일 화면에 추가되도록 코드를
+		작성하세요.
+		*/
+		function addTodoList(){
+			//innerHtml과 value를 이용해서 구현
+			let textElement 
+				= document.getElementsByClassName("text")[0];
+			let todoList = document.getElementById("todoList");
+			//입력한 문자열을 가져옴
+			let todo = textElement.value;
+			
+			//오늘의 할일에 추가
+			todoList.innerHTML += `<li>${todo}</li>`;
+
+			//입력창에 입력한 문자열을 지움
+			textElement.value = '';
+			
+			//입력창을 포커싱
+			textElement.focus();
+		}
+	</script>
+</body>
+</html>

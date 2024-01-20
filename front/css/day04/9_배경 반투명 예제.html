@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경 반투명 예제</title>
+    <style>
+        .container{ position: fixed; 
+            top: 0; bottom: 0;/* 높이 대신 top, bottom 0 */
+            left:0; right: 0; /* 너비 대신 elft, rifght 0 */
+            /* opacity는 자식 요소도 같이 투명하게 하기 때문에 조심해서 사용 */
+            background-color: rgba(0,0,0, 0.3); 
+        }
+        .container .box{
+            background-color: #fff; width: 400px; height: 400px;
+            position: absolute; top: 50%; left: 50%;
+            transform: translateX(-50%);
+            margin-top: -200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">컨텐츠</div>
+    </div>
+    <h1>뒤에 컨텐츠 있습니다.</h1>
+</body>
+</html>

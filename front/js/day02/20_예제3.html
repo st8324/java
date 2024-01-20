@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>예제3</title>
+	<style>
+		.box{border: 1px solid black; height: 300px;}
+	</style>
+</head>
+<body>
+	<button onclick="toggle();">클릭</button>
+	<div class="box"></div>
+	<script>
+		/*박스와 버튼을 만들고, 버튼을 클릭하면 박스가 사라지고,
+		다시 클릭하면 박스가 보여지도록 코드를 작성*/
+		function toggle(){
+			let box = document.getElementsByClassName('box')[0];
+			let display = box.style.display;
+			display = display =='none'?'block' : 'none';
+			box.style.display = display;
+		}
+	</script>
+</body>
+</html>

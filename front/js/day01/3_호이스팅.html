@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호이스팅</title>
+</head>
+<body>
+    
+    <script>
+        /* 
+        - 호이스팅
+          - 페이지 로딩시 변수나 함수가 위로 올려지는 동작
+        */
+        console.log(x);
+        var x = 10;
+        console.log(x);
+        /* 위 코드가 호이스팅이 발생하면
+        var x;
+        console.log(x);
+        x = 10;
+        console.log(x);
+        */
+       //에러 발생, 호이스팅이 일어나지 않아서 이 위치에서 y
+       //변수가 없음
+       console.log(y);
+       let y = 10;
+       console.log(y);
+
+    </script>
+</body>
+</html>

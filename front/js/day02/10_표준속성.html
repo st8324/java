@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>표준 속성</title>
+</head>
+<body>
+	<img src="/static/checkbox_off.png" alt="체크박스">
+	<br>
+	<button onclick="showImgSrc();">이미지 주소 확인</button>
+	<br>
+	<button onclick="changeImgSrc('/static/checkbox_on.png');">이미지 변경</button>
+	<script>
+		function showImgSrc(){
+			let img = document.getElementsByTagName('img');
+			alert(img[0].src);
+		}
+		function changeImgSrc(src){
+			let img = document.getElementsByTagName('img');
+			img[0].src = src;
+		}
+	</script>
+</body>
+</html>

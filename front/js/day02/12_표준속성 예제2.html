@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>표준 속성 예제2</title>
+</head>
+<body>
+	<button onclick="add(-1);">-</button>
+	<input type="number" value="0" readonly id="num">
+	<button onclick="add(1);">+</button>
+	<script>
+		/* 
+		+를 클릭하면 input태그 값이 1씩 증가하고,
+		-를 클릭하면 input태그 값이 1씩 감소하게 코드를 작성
+		*/
+		function add(amount){
+			let textElement = document.getElementById('num');
+			let num = textElement.value;
+			num = +num;
+			num += amount;
+			textElement.value = num;
+		}
+	</script>
+</body>
+</html>

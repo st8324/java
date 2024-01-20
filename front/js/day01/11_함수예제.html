@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 예제</title>
+</head>
+<body>
+    <script>
+        /* 
+        - 두 수를 더하는 함수를 만들고, 호출해서 화면에
+        테스트 하는 예제
+        - 두 수를 입력받아 합을 구하도록 추가
+        */
+        function sum(num1, num2=0){
+            num1 = parseInt(num1);
+            num2 = parseInt(num2);
+            return num1 + num2;
+        }
+        var num1 = prompt('정수1 입력', 0)??0;
+        var num2 = prompt('정수2 입력', 0)??0;
+        var res = sum(num1);
+        document.write(`${num1} + ${num2} = ${res}`);
+    </script>
+</body>
+</html>

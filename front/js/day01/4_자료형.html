@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료형</title>
+</head>
+<body>
+    <script>
+    /* 백크 ``를 이용한 문자열 활용 방법 */
+    var name = '홍길동';
+    var age = 21;
+    /* name과 age를 이용해서 홍길동은 21살입니다라고 출력 */
+    var str1 = name + "은 " + age + "살입니다";
+    document.write(str1);
+    document.write('<br>');
+    var str2 = `${name}은 ${age}살입니다.`;
+    document.write(str2);
+    /* typeof : 변수의 자료형을 확인하는 연산자 */
+    document.write('<br>');
+    document.write(`정수 1의 자료형은? ${typeof 1}`);
+    document.write('<br>');
+    document.write(`문자열 1의 자료형은? ${typeof '1'}`);
+    document.write('<br>');
+    document.write(`배열의 자료형은? ${typeof []}`);
+    </script>
+</body>
+</html>

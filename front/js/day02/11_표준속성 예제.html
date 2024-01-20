@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>표준 속성 예제</title>
+</head>
+<body>
+	<input type="text" id="text">	
+	<button id="btn" onclick="alertText();">클릭</button>
+	<script>
+		/* 
+		input태그에 글자를 입력한 후, 클릭 버튼을 클릭하면
+		input태그에 있는 글자를 alert으로 출력
+		- value를 이용
+		*/
+		function alertText(){
+			let textElement = document.getElementById('text');
+			let text = textElement.value;
+			alert(text);
+		}
+	</script>
+</body>
+</html>
