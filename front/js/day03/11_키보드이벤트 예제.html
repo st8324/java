@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>키보드 예제</title>
+</head>
+<body>
+	<input type="text" id="text">
+
+	<script>
+		/*
+		- keypress : 키보드의 키가 눌렸을 때, 특수키는 제외
+		- keydown : 키보드의 키가 눌렸을 때
+		- keyup : 키보드으의 키가 올라왔을 때
+		*/
+		let text = document.getElementById("text");
+		text.onkeydown = function(event){
+			console.log("down : " + event.key);
+		}
+		text.onkeypress = function(event){
+			console.log("press : " + event.key);
+		}
+		text.onkeyup = function(event){
+			console.log("up : " + event.key);
+		}
+
+	</script>
+</body>
+</html>
