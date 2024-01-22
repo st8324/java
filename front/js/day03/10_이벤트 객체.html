@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>이벤트 객체</title>
+</head>
+<body>
+	<button id="btn">버튼</button>
+	<script>
+		/*
+		- 이벤트 객체 : 이벤트 발생시, 발생한 이벤트와 관련된 
+		  정보를 관리하는 객체
+			- target : 이벤트가 발생한 요소
+			위치
+			- screenX/Y : 스크린(모니터) 기준 이벤트 발생 위치
+			- pageX/Y : 페이지 기준 이벤트 발생 위치
+			- clientX/Y : 브라우저 기준 이벤트 발생 위치
+			- offsetX/Y : 요소 기준 발생 위치
+			키보드
+			- key : 눌린 키의 값
+			- keyCode/which : 눌린 키의 코드
+			- ctrlKey/altKey/shiftKey : 컨트롤, 알트, 쉬프트키의 눌림 여부
+		*/
+		let btn = document.getElementById("btn");
+		btn.onclick = function(event){
+			console.log(event);
+		};
+	</script>
+</body>
+</html>
