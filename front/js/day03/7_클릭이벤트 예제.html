@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클릭 이벤트 예제</title>
+	<style>
+		.box{height: 400px;}
+		#box1{ background-color: yellow;}
+		#box2{ background-color: red; display: none;}
+		#box3{ background-color: green; display: none;}
+	</style>
+</head>
+<body>
+	<div class="btn-group">
+		<button class="btn" data-target="#box1">버튼1</button>
+		<button class="btn" data-target="#box2">버튼2</button>
+		<button class="btn" data-target="#box3">버튼3</button>
+	</div>
+	<div class="box-group">
+		<div class="box" id="box2">박스2</div>
+		<div class="box" id="box3">박스3</div>
+		<div class="box" id="box1">박스1</div>
+	</div>
+	<script>
+		/*
+		- 버튼을 3개 만들고 박스를 3개 만든 후 다음 기능이 동작되도록
+		  구현
+		- 기능
+		  - 버튼1을 클릭하면 박스1이 보이고, 박스2와 박스3이
+			  감춰진다.
+			- 버튼2를 클릭하면 박스2가 보이고, 박스1과 박스3이 
+			  감춰진다.
+			- 버튼3을 클릭하면 박스3이 보이고, 박스1과 박스2가
+			  감춰진다.
+		*/
+		let btns = document.querySelectorAll(".btn");
+		btns.forEach(function(item){
+			item.onclick = function(){
+				//data-target 속성 값을 읽어와서 선택자로 활용
+				let target = this.getAttribute("data-target");
+				displayNone(".box");
+				let targetElement = document.querySelector(target);
+				targetElement.style.display = "block";
+			}
+		});
+		//선택자와 일치하는 요소들을 안보이게 감춤
+		function displayNone(selector){
+			let elements = document.querySelectorAll(selector);
+			elements.forEach(function(item){
+				item.style.display = "none";
+			});
+		}
+	</script>
+</body>
+</html>

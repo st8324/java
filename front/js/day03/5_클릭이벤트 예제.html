@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클릭 이벤트 예제</title>
+	<style>
+		.box{height: 400px;}
+		#box1{ background-color: yellow;}
+		#box2{ background-color: red; display: none;}
+		#box3{ background-color: green; display: none;}
+	</style>
+</head>
+<body>
+	<div class="btn-group">
+		<button class="btn" id="btn1">버튼1</button>
+		<button class="btn" id="btn2">버튼2</button>
+		<button class="btn" id="btn3">버튼3</button>
+	</div>
+	<div class="box-group">
+		<div class="box" id="box1">박스1</div>
+		<div class="box" id="box2">박스2</div>
+		<div class="box" id="box3">박스3</div>
+	</div>
+	<script>
+		/*
+		- 버튼을 3개 만들고 박스를 3개 만든 후 다음 기능이 동작되도록
+		  구현
+		- 기능
+		  - 버튼1을 클릭하면 박스1이 보이고, 박스2와 박스3이
+			  감춰진다.
+			- 버튼2를 클릭하면 박스2가 보이고, 박스1과 박스3이 
+			  감춰진다.
+			- 버튼3을 클릭하면 박스3이 보이고, 박스1과 박스2가
+			  감춰진다.
+		*/
+		/*
+		- 아이디가 btn1인 요소를 클릭하면 아이디가 box1인 요소를
+		  보이게 하고, 아이디가 box2,box3인 요소를 안보이게 함
+		- 이 방법은 이벤트를 3개 등록
+		  - 아이디가 btn1인 요소를 클릭
+			- 아이디가 btn2인 요소를 클릭
+			- 아이디가 btn3인 요소를 클릭
+		*/
+		let btn1 = document.getElementById("btn1");
+		let btn2 = document.getElementById("btn2");
+		let btn3 = document.getElementById("btn3");
+
+		let box1 = document.getElementById("box1");
+		let box2 = document.getElementById("box2");
+		let box3 = document.getElementById("box3");
+
+		btn1.onclick = function(){
+			boxDisplayNone();
+			box1.style.display = "block";
+			// box2.style.display = "none";
+			// box3.style.display = "none";
+		}
+		btn2.onclick = function(){
+			boxDisplayNone();
+			box2.style.display = "block";
+			// box1.style.display = "none";
+			// box3.style.display = "none";
+		}
+		btn3.onclick = function(){
+			boxDisplayNone();
+			box3.style.display = "block";
+			// box1.style.display = "none";
+			// box2.style.display = "none";
+		}
+		//box 클래스들을 모두 안보이게 하는 함수
+		function boxDisplayNone(){
+			let boxes = document.getElementsByClassName("box");
+			for(box of boxes){
+				box.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>

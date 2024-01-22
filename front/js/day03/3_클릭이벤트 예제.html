@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클릭 이벤트 예제</title>
+</head>
+<body>
+	<button id="btn">더보기</button>
+	<script>
+		/* 
+		더보기 버튼을 추가하고, 더보기 버튼을 클릭하면 접기 버튼으로
+		수정하는 코드를 작성.
+		이 때, 텍스트만 변경되면 됨.
+		더보기 => 접기, 접기=>더보기
+		- html 코드를 이용해서 버튼 추가
+		- 버튼 요소 선택
+		- 버튼에 클릭이벤트 등록
+		  - 텍스트를 접기로 변경
+		*/
+		/* 
+		- id로 된 요소는 id명으로 직접 요소를 선택해서 사용할 수 있다
+		- 추천하는 방법은 아님
+		- btn이 어떻게 변경될지 모르기 때문에.
+		*/
+		//let bnt = document.getElementById("btn");
+		btn.onclick = function(){
+			//this.innerText = "접기";
+			let text = this.textContent;
+			if(text == "더보기"){
+				this.textContent = "접기";
+			}else{
+				this.textContent = "더보기";
+			}
+		}
+	</script>
+</body>
+</html>

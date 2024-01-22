@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클릭 이벤트 예제</title>
+	<style>
+		.box{ height: 400px; background-color: yellow;}
+	</style>
+</head>
+<body>
+	<button id="btn">접기</button>
+	<div class="box">내용</div>
+	<script>
+		/* 
+		접기 버튼과 박스를 만들고, 
+		접기 버튼을 클릭하면 박스가 감춰지고 더보기 버튼으로 바뀌고, 
+		더보기 버튼을 클릭하면 박스가 보여지고 접기 버튼으로 바뀌도록
+		코드를 작성
+		- 접기 버튼과 박스를 html 코드로 작성
+		- 접기 버튼 요소를 선택
+		- 접기 버튼 요소에 클릭 이벤트를 등록
+		  - 현재 버튼의 텍스트가 접기이면 
+			  버튼의 텍스트를 더보기로 수정하고 박스를 안보이게 감춤,
+				아니면 
+				버튼의 텍스트를 접기로 수정하고 박스를 보이게 함
+			- 요소.style을 이용
+		*/
+		let btn = document.getElementById("btn");
+		let box = document.getElementsByClassName("box")[0];
+		btn.onclick = function(){
+			let text = this.innerText;
+			if(text == "접기"){
+				this.innerText = "더보기";
+				box.style.display = "none";
+			}else{
+				this.innerText = "접기";
+				box.style.display = "block";
+			}
+		};
+	</script>
+</body>
+</html>
