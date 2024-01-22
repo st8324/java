@@ -1,71 +1,61 @@
 package accountbook.main;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import accountbook.controller.AccountController;
-import accountbook.service.PrintService;
-import accountbook.service.PrintServiceImp;
-import accountbook.vo.Item;
-import program.Program;
+import accountbook.program.Program;
+
 
 public class AccountBookProgram implements Program {
 
-	List<Item> list;//수입 지출 내역
+	private final int EXIT = 5;
 	
-	private AccountController accountController;
-	private PrintService printService;
+	private Scanner scan = new Scanner(System.in);
+	private AccountController controller = new AccountController(scan);
 	
-	//생성자에서 서비스와 컨트롤러 생성
-	public AccountBookProgram() {
-		list = new ArrayList<Item>();
-		accountController = new AccountController(list);
-		printService = new PrintServiceImp();
-	}
-	
+	private final String fileName = "src/accountbook/item.txt";
 	@Override
 	public void run() {
-		//메뉴 초기값은 종료만 아니면 됨
-		int menu = AccountController.EXIT+1;
-		Scanner scan = new Scanner(System.in);
+		
+		int menu = 0;
+		controller.load(fileName);
 		do {
 			try {
-				//메뉴 출력
 				printMenu();
-				//메뉴 선택
 				menu = scan.nextInt();
-				//메뉴 선택
 				runMenu(menu);
+				
+			}catch(InputMismatchException e) {
+				System.out.println("없는 메뉴입니다.");
+				scan.nextLine();//입력 버퍼 비우기
 			}
-			//잘못 입력된 메뉴 처리
-			catch(InputMismatchException e) {
-				System.out.println("잘못된 메뉴입니다.");
-			}
-			//종료 메뉴를 static 상수로 지정
-		}while(menu != AccountController.EXIT);
+		}while(menu != EXIT);
+		controller.save(fileName);
 	}
 
 	@Override
 	public void printMenu() {
-		printService.printMainMenu();
+		controller.printMainmenu();
 	}
 
 	@Override
 	public void runMenu(int menu) {
 		switch(menu) {
-		case 1:
-			accountController.insertItem();
+		case 1 : 
+			controller.insertItem();
 			break;
-		case 2: 
-			accountController.updateItem();
+		case 2:
+			controller.updateItem();
 			break;
 		case 3:
-			accountController.deleteItem();
+			controller.deleteItem();
 			break;
 		case 4:
-			accountController.printItem();
+			controller.printIem();
+			break;
+		case 5:
+			System.out.println("프로그램을 종료합니다.");
 			break;
 		default:
 			throw new InputMismatchException();
