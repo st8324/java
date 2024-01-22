@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>마우스 이벤트 예제</title>
+	<style>
+		.box{ border: 1px solid black; padding: 20px;}
+		.inner-box{ 
+			background-color: yellow; padding: 20px;
+			border: 1px solid; height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box box1">
+		<span id="text1">0</span>
+		<div class="inner-box"></div>
+	</div>
+	<div class="box box2">
+		<span id="text2">0</span>
+		<div class="inner-box"></div>
+	</div>
+	<script>
+		/*
+		박스에 마우스가 들어가면 배경색이 파란색이 되게하는 코드
+		*/
+		/* 
+		mouseover/out
+		- 마우스가 요소안으로 들어갈 때/나갈 때 발생하는 이벤트
+		- 마우스가 자식 요소안으로 들어가는 경우 요소를 나간것을 판별
+		mouseenter/leave : 일반적으로 hover이벤트를 구현할 때 사용
+		- 마우스가 요소안으로 들어갈 때/나갈 때 발생하는 이벤트
+		- 마우스가 자식 요소안으로 들어가도 유지가 됨
+		*/
+		let box1 = document.getElementsByClassName("box1")[0];
+		let count1 = 0;
+		let text1 = document.getElementById("text1");
+		box1.onmouseover = function(){
+			this.style.backgroundColor = "gray";
+			text1.innerText = ++count1;
+		}
+		box1.onmouseout = function(){
+			this.style.backgroundColor = "white";
+			text1.innerText = ++count1;
+		}
+
+		let box2 = document.getElementsByClassName("box2")[0];
+		let count2 = 0;
+		let text2 = document.getElementById("text2");
+		box2.onmouseenter = function(){
+			this.style.backgroundColor = "gray";
+			text2.innerText = ++count2;
+		}
+		box2.onmouseleave = function(){
+			this.style.backgroundColor = "white";
+			text2.innerText = ++count2;
+		}
+	</script>
+</body>
+</html>
