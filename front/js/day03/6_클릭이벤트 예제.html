@@ -36,6 +36,29 @@
 		*/
 		let btns = document.querySelectorAll(".btn");
 		let boxes = document.querySelectorAll(".box");
+
+		/*
+		btns[0].onclick = function(){
+			boxDisplayNone();
+			boxes[0].style.display = "block";
+		}
+		btns[1].onclick = function(){
+			boxDisplayNone();
+			boxes[1].style.display = "block";
+		}
+		btns[2].onclick = function(){
+			boxDisplayNone();
+			boxes[2].style.display = "block";
+		}
+		*/
+		for(let i = 0; i<btns.length; i++){
+			let item = btns[i];
+			item.onclick = function(){
+				boxDisplayNone();
+				boxes[i].style.display = "block";
+			}
+		}
+		
 		btns.forEach(function(item, index){
 			item.onclick = function(){
 				boxDisplayNone();
