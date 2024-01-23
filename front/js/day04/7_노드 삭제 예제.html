@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>노드 삭제 예제</title>
+</head>
+<body>
+	<button id="btn">메뉴 삭제</button>
+	<nav>
+		<ul>
+			<li>
+				<a href="#">메뉴1</a>
+			</li>
+			<li>
+				<a href="#">메뉴2</a>
+			</li>
+			<li>
+				<a href="#">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<script>
+		/* 삭제 버튼을 클릭하면 제일 하단에 있는 메뉴가 삭제되는 예제 */
+		let btn = document.getElementById("btn");
+		btn.onclick = click;
+
+		function click(){
+			let lastLi = document.querySelector("li:last-of-type");
+			let ul = document.querySelector("ul");
+			ul.removeChild(lastLi);//ul태그에 있는 마지막 li를 삭제
+			//ul.remove();//ul태그 자체를 삭제
+		}
+	</script>
+</body>
+</html>
