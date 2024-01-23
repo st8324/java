@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가 예제</title>
+</head>
+<body>
+	<button id="btn">이미지 추가</button>
+	<div id="box"></div>
+	<script>
+		let btn = document.getElementById("btn");
+		btn.onclick = function(){
+			//<img>
+			let img = document.createElement("img");
+			//src=""
+			let src = document.createAttribute("src");
+			//alt=""
+			let alt = document.createAttribute("alt");
+			//width=""
+			let width = document.createAttribute("width");
+			//src="https://img.freepik.com/premium-photo/picture-of-a-cute-puppy-world-animal-day_944128-5890.jpg?w=1480";
+			src.value = "https://img.freepik.com/premium-photo/picture-of-a-cute-puppy-world-animal-day_944128-5890.jpg?w=1480";
+			//alt="강아지"
+			alt.value = "강아지";
+			//width=100
+			width.value = "100";
+			img.setAttributeNode(src);
+			img.setAttributeNode(alt);
+			img.setAttributeNode(width);
+			//<img alt="강아지" src="https://img.freepik.com/premium-photo/picture-of-a-cute-puppy-world-animal-day_944128-5890.jpg?w=1480">
+			let box = document.getElementById("box");
+			box.append(img);
+		}
+	</script>
+</body>
+</html>

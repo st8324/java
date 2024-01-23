@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가 예제</title>
+	<style>
+		.btn{ 
+			display: block; height: 30px; background-color: #fff;
+			border-radius: 5px; 
+			border-color: red; border-width: 1px;
+			cursor: pointer;
+		}
+		.btn:hover{
+			background-color: red; color: #fff;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn btn-add">버튼 추가하기</button>
+	<div id="box"></div>
+	<script>
+		let btnAdd = document.getElementsByClassName("btn-add")[0];
+		let count = 0;
+		btnAdd.onclick = function(){
+			//요소 생성
+			//<button></button>
+			let button = document.createElement("button");
+			//텍스트 노드 생성(텍스트가 필요한 노드에만, input,img등은 필요 없음)
+			//버튼1, 버튼2,...
+			let text = document.createTextNode(`버튼${++count}`);
+			//요소에 텍스트 노드 추가(연결)
+			//<button>버튼1</button>
+			button.append(text);
+			//요소를 기존 요소를 통해 배치
+			let base = document.getElementById("box");
+			//base.appendChild(button);
+			base.prepend(button);
+		}
+	</script>
+</body>
+</html>
