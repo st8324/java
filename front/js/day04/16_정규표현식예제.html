@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>정규표현식 예제</title>
+</head>
+<body>
+	<input type="text" id="input">
+	<div id="error"></div>
+	<script>
+		/* 입력한 값이 숫자로된 문자열인지 아닌지 확인한는 예제*/
+		let input = document.getElementById("input");
+		input.onchange = function(){
+			let text = this.value;
+			let regex = /^\d+$/;
+			let error;
+			//text가 정규표현식에 맞으면
+			if(regex.test(text)){
+				error = "숫자로만 되어 있습니다.";
+			}else{
+				error = "숫자가 아닌 문자가 있습니다."
+			}
+			let errorBox = document.getElementById("error");
+			errorBox.innerText = error;
+		}
+	</script>
+</body>
+</html>
