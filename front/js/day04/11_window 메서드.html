@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>window 메서드</title>
+</head>
+<body>
+	<button id="btn">중지</button>
+	<script>
+		/* 3000밀리초(3초) 뒤에 함수가 실행 */
+		/*setTimeout(function(){
+			alert("3초");
+		}, 3000);*/
+		let count = 0;
+		let id = setInterval(function(){
+			console.log(++count);
+		}, 1000);
+		let btn = document.getElementById("btn");
+		btn.onclick = function(){
+			clearInterval(id);
+		}
+	</script>
+</body>
+</html>
