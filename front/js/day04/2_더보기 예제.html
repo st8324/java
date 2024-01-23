@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>더보기 예제</title>
+	<style>
+		.box{
+			height: 400px; background: yellow;
+		}
+		.box.fold{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn">접기</button>
+	<div class="box">내용</div>
+	<script>
+		/* 접기 버튼과 박스를 만든 후, 버튼을 클릭하면
+			박스가 사라지고 접기 글자가 더보기로 변경되도록 구현
+		*/
+		let btn = document.getElementsByClassName("btn")[0];
+		btn.addEventListener("click",function(){
+
+			if(this.classList.contains("fold")){
+				this.innerText = "접기";
+			}else{
+				this.innerText = "더보기";
+			}
+			this.classList.toggle("fold");
+			let box = document.getElementsByClassName("box")[0];
+			box.classList.toggle("fold");
+		});
+	</script>
+</body>
+</html>
