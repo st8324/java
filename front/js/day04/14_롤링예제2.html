@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링 예제1</title>
+	<style>
+		.container{
+			width: 300px; border: 5px solid black; overflow: hidden;
+		}
+		.content-box{
+			width: 200%; background-color: red;
+		}
+		.box{
+			float: left; height: 50px; width: 50%;
+			transition: margin-left 1s;
+		}
+		.content-box::after{
+			clear: both; content: ''; display: block;
+		}
+		.box1{background-color: gray;}
+		.box2{ background-color: yellow;}
+		.left{
+			animation: moveLeft 1s forwards;
+		}
+		.right{
+			animation: moveRight 1s forwards;
+		}
+		@keyframes moveLeft {
+			from{
+				margin-left: 0;
+			}
+			to{
+				margin-left: -300px;
+			}
+		}
+		@keyframes moveRight {
+			from{
+				margin-left: -300px;
+			}
+			to{
+				margin-left: 0px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content-box">
+			<div class="box box1">1</div>
+			<div class="box box2">2</div>
+		</div>
+	</div>
+	<div class="btn-group">
+		<button id="prevBtn"><</button>
+		<button id="nextBtn">></button>
+	</div>
+	<script>
+		let prevBtn = document.getElementById("prevBtn");
+		let nextBtn = document.getElementById("nextBtn");
+		let contentBox = document.getElementsByClassName("content-box")[0];
+
+		let firstBox;
+		let lastBox;
+
+		prevBtn.onclick = function(){
+			firstBox = document.getElementsByClassName("box")[0];
+			firstBox.classList.add("left");
+			
+			//애니메이션 종료 후 앞의 요소를 떼서 뒤로 이동
+			firstBox.addEventListener("animationend", prevComplete);
+		}
+		nextBtn.onclick = function(){
+			//마지막 박스를 떼서 제일 앞으로 이동
+			lastBox = document.getElementsByClassName("box")[1];
+			contentBox.prepend(lastBox);
+			lastBox.classList.add("right");
+			lastBox.addEventListener("animationend", nextComplete);
+		}
+		function clearClass(element){
+			element.classList.remove("left");
+			element.classList.remove("right");
+		}
+
+		//요소가 애니메이션 중인지 아닌지 확인하는 메서드
+		function isAnimationRunning(element){
+			let style = window.getComputedStyle(element);
+			return style.animationPlayState == "runing";
+		}
+		
+		function prevComplete(){
+			clearClass(firstBox);
+			contentBox.append(firstBox)
+			//애니메이션 종료 이벤트를 제거
+			firstBox.removeEventListener("animationend", prevComplete);
+		}
+		function nextComplete(){
+			clearClass(lastBox);
+			lastBox.removeEventListener("animationend", nextComplete);
+		}
+	</script>
+</body>
+</html>

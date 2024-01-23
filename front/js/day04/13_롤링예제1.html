@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링 예제1</title>
+	<style>
+		.container{
+			width: 300px; border: 5px solid black; overflow: hidden;
+		}
+		.content-box{
+			width: 200%; background-color: red;
+		}
+		.box{
+			float: left; height: 50px; width: 50%;
+			transition: margin-left 1s;
+		}
+		.content-box::after{
+			clear: both; content: ''; display: block;
+		}
+		.box:nth-of-type(2){ background-color: yellow;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content-box">
+			<div class="box">1</div>
+			<div class="box">2</div>
+		</div>
+	</div>
+	<div class="btn-group">
+		<button id="prevBtn"><</button>
+		<button id="nextBtn">></button>
+	</div>
+	<script>
+		let prevBtn = document.getElementById("prevBtn");
+		let nextBtn = document.getElementById("nextBtn");
+		let firstBox = document.querySelector(".box:first-of-type");
+
+		prevBtn.onclick = function(){
+			if(!isAnimationRunning(firstBox)){
+				firstBox.style.marginLeft = "0px";
+			}
+		}
+		nextBtn.onclick = function(){
+			if(!isAnimationRunning(firstBox)){
+				firstBox.style.marginLeft = "-300px";
+			}
+		}
+		//요소가 애니메이션 중인지 아닌지 확인하는 메서드
+		function isAnimationRunning(element){
+			let style = window.getComputedStyle(element);
+			return style.animationPlayState == "runing";
+		}
+	</script>
+</body>
+</html>
