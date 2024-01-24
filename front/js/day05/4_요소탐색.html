@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 탐색</title>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		/* 
+		요소 탐색은 이벤트가 발생되고, 이벤트가 발생한 요소를 
+		기준으로 다른 요소를 가져와야 할 때 사용 
+		*/
+		let li = document.querySelector("li:nth-of-type(3)");
+		let parent = li.parentElement;
+		console.log(parent);//li태그의 부모인 ul태그 출력
+
+		//3번째 li태그의 앞 요소
+		let prevLi = li.previousElementSibling;
+		console.log(prevLi);//2번째 li태그 출력
+
+		//3번째 li태그의 뒤 요소
+		let nextLi = li.nextElementSibling
+		console.log(nextLi);//4번째 li태그 출력
+
+		let ul = document.querySelector("#list");
+		//ul태그의 자식 요소들
+		let childrenLi = ul.children;
+		console.log(childrenLi);//li태그들 출력
+
+		//ul태그의 첫번째 자식 요소
+		let firstLi = ul.firstElementChild;
+		console.log(firstLi); //첫번째 li태그 출력
+
+		//ul태그의 마지막 자식 요소
+		let lastLi = ul.lastElementChild;
+		console.log(lastLi); //마지막 li태그 출력
+
+	</script>
+</body>
+</html>
