@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DocumentFragment 예제</title>
+</head>
+<body>
+	<ul id="list1"></ul>
+	<ul id="list2"></ul>
+	<script>
+		/*DocumentFragment를 이용하지 않고 요소를 추가*/
+		let list1 = document.getElementById("list1");
+		for(let i=1; i<=5; i++){
+			//li태그 생성
+			let li = document.createElement("li");
+			//li태그에 넣을 텍스트 생성
+			let textNode = document.createTextNode(i);
+			//li태그에 텍스트를 추가
+			li.append(textNode);
+			//li태그를 ul태그 마지막에 추가
+			list1.append(li);
+			/*
+			list1.innerHTML += `<li>${i}</li>`;
+			*/
+		}
+		/*DocumentFragment를 이용하여 요소를 추가*/
+		let fragment = new DocumentFragment();
+		for(let i = 1; i<=5; i++){
+			//li태그 생성
+			let li = document.createElement("li");
+			//li태그에 넣을 텍스트 생성
+			let textNode = document.createTextNode(i);
+			//li태그에 텍스트를 추가
+			li.append(textNode);
+			//DocumentFragment에 li태그 추가
+			fragment.append(li);
+		}
+		let list2 = document.querySelector("#list2");
+		list2.append(fragment);
+	</script>
+</body>
+</html>
