@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSON과 fetch 예제</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>유저 아이디</th>
+				<th>제목</th>
+				<th>내용</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<script>
+		fetch("https://jsonplaceholder.typicode.com/posts")
+			.then(function(res){
+				return res.text();
+			})
+			.then(function(text){
+				//JSON 문자열을 객체로 변환. 
+				//현재 받아온 text는 JSON 배열을 이용했기 때문에
+				let arr = JSON.parse(text);
+				insertTable(arr);
+
+			});
+		function insertTable(arr){
+			if(!arr){
+				return;
+			}
+			let tbody = document.querySelector("table tbody");
+			for(user of arr){
+				//tr태그 생성 <tr></tr>
+				let tr = createElement("tr");
+				/*
+				//td태그 생성 후 tr태그에 추가 <td>아이디(JSON에서 가져온 id)</td>
+				let td1 = createElement("td", user["id"]);
+				//td태그 생성 후 tr태그에 추가 <td>userId</td>
+				let td2 = createElement("td", user["userId"]);
+				//td태그 생성 후 tr태그에 추가 <td>title</td>
+				let td3 = createElement("td", user["title"]);
+				//td태그 생성 후 tr태그에 추가 <td>body</td>
+				let td4 = createElement("td", user["body"]);
+				//tr태그에 td태그들을 추가
+				tr.append(td1, td2, td3, td4);
+				*/
+				for(let key in user){
+					let td = createElement("td", user[key]);
+					tr.append(td);
+				}
+				//이미 있는 tbody태그에 tr태그를 앞에 추가
+				tbody.prepend(tr);
+			}
+		}
+
+		function createElement(tagName, text, attr){
+			let element = document.createElement(tagName);
+			if(text){
+				let textNode = document.createTextNode(text);
+				element.append(textNode);
+			}
+			if(!attr){
+				return element;
+			}
+			for( key in attr){
+				let attrNode = document.createAttribute(key);
+				attrNode.value = attr[key];
+				element.append(attrNode);
+			}
+			return element;
+		}
+	</script>
+</body>
+</html>
