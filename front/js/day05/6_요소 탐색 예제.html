@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 탐색 예제</title>
+</head>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성일</th>
+				<th>기능</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>2</th>
+				<td>가입인사</td>
+				<td>2024-01-02</td>
+				<td>
+					<button class="btn-del">삭제</button>
+				</td>
+			</tr>
+			<tr>
+				<th>1</th>
+				<td>공지사항</td>
+				<td>2024-01-01</td>
+				<td>
+					<button class="btn-del">삭제</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+		let btns = document.querySelectorAll(".btn-del");
+		btns.forEach(function (btn) {
+			btn.onclick = function () {
+				//이벤트가 발생한 버튼의 부모 td를 선택
+				//let td = this.parentElement;
+				//이벤트가 발생한 버튼의 조상 tr을 선택
+				//let tr = td.parentElement;
+				//- closest("선택자") : 조상 요소중 선택자와 일치하는 
+				//	가장 가까운 조상요소를 선택
+				let tr = this.closest("tr");
+				//이벤트가 발생한 버튼의 조상 tr의 첫번째 자식요소를 선택
+				let numTd = tr.firstElementChild;
+				//텍스트를 가져옴
+				let num = numTd.innerText;
+				alert(`${num}번 게시글이 삭제되었습니다.`);
+				//실제 한 행을 삭제하는 코드
+				tr.remove();
+				//마지막 요소를 삭제하면 등록된 게시글이 없습니다라고 
+				//테이블에 출력
+				/*
+				<tr>
+					<th colspan="4">등록된 게시글이 없습니다.</th>
+				</tr>
+				*/
+				let trList = document.querySelectorAll("tbody>tr");
+				if(trList.length){
+					return;
+				}
+				let lastTh 
+				= createElement("th","등록된 게시글이 없습니다.",{colspan:4});
+				let lastTr
+				= createElement("tr", null, null);
+				lastTr.append(lastTh);
+				let tbody = document.querySelector("tbody");
+				tbody.append(lastTr);
+			}
+		});
+		function createElement(tagName, text, attr){
+			//요소 생성
+			let element = document.createElement(tagName);
+			if(text){
+				//요소에 넣을 텍스트 노드 생성
+				let textNode = document.createTextNode(text);
+				//요소에 텍스트 노드 추가
+				element.append(textNode);
+			}
+			if(!attr){
+				return element;
+			}
+			//객체로 넘겨받은 속성들을 이용해서 속성노드를 생성하고
+			//생성된 속성 노드를 요소에 추가
+			for(key in attr){
+				//속성 노드 생성
+				let attrNode = document.createAttribute(key);
+				//속성 노드의 값을 설정
+				attrNode.value = attr[key];
+				//요소에 속성 노드를 추가
+				element.setAttributeNode(attrNode);
+			}
+			return element;
+		}
+	</script>
+</body>
+
+</html>
