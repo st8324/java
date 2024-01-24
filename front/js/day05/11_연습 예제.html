@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습예제</title>
+	<style>
+		.container{
+			max-width: 500px; margin: 0 auto;
+		}
+		.box-group{
+			border: 3px solid black; margin-bottom: 20px;
+		}
+		.box{
+			height: 400px; display: none;
+		}
+		.box.select{
+			display: block;
+		}
+		.box.box1 { background-color: yellow;}
+		.box.box2 { background-color: red;}
+		.box.box3 { background-color: green;}
+		.nav-group{
+			display: flex; align-items: center;
+			justify-content: center;
+		}
+		.page-group{
+			margin: 0 10px;
+		}
+		.max-page{ font-weight: bold;}
+		.btn-prev,.btn-next{
+			width: 30px; height: 30px; border-radius: 50%;
+			border-width: 1px; background-color: #fff;
+			cursor: pointer;
+		}
+		.btn-prev:hover, .btn-next:hover{
+			font-weight: bold; background-color: aliceblue;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box-group">
+			<div class="box box1" data-page="1"></div>
+			<div class="box box2 select" data-page="2"></div>
+			<div class="box box3" data-page="3"></div>
+		</div>
+		<div class="nav-group">
+			<button class="btn-prev">&lt;</button>
+			<span class="page-group">
+				<span class="cur-page">1</span> / <span class="max-page">3</span>
+			</span>
+			<button class="btn-next">></button>
+		</div>
+	</div>
+	<script>
+		
+		let prevBtn = document.querySelector(".btn-prev");
+		// 이전 버튼에 클릭이벤트 등록
+		prevBtn.onclick = function(){
+			//  select 요소를 선택
+			let select = document.querySelector('.select');
+			// 	select가 있는 요소의 앞 요소를 선택
+			let prevElement = select.previousElementSibling;
+			// 	앞 요소가 없으면 종료
+			if(!prevElement){
+				return;
+			}
+			// 	앞 요소에 select 클래스를 추가
+			prevElement.classList.add("select");
+			// 	기존에 select가 있 요소에 select 클래스를 제거
+			select.classList.remove("select");
+			updatePage();
+		}
+		// 다음 버튼 요소를 선택
+		let nextBtn = document.querySelector(".btn-next");
+		// 다음 버튼에 클릭 이벤트를 등록
+		nextBtn.onclick = function(){
+			//  select가 있는 요소 선택
+			let select = document.querySelector(".select");
+			// 	select가 있는 요소의 다음 요소를 선택
+			let nextElement = select.nextElementSibling;
+			// 	다음 요소가 없으면 종료
+			if(!nextElement){
+				return;
+			}
+			// 	다음 요소에 select 클래스를 추가
+			nextElement.classList.add("select");
+			// 	이벤트가 발생한 요소에 select 클래스를 제거
+			select.classList.remove("select");
+			updatePage();
+		}
+
+		function updatePage(){
+			//select가 있는 요소 선택
+			let select = document.querySelector(".select");
+			//선택한 요소의 data-page를 가져옴
+			let page = select.getAttribute("data-page");
+			//cur-page 요소를 선택
+			let curPage = document.querySelector(".cur-page");
+			//가져온 page를 cur-page의 텍스트로 수정
+			curPage.innerText = page;
+		}
+		updatePage();
+	</script>
+
+</body>
+
+</html>
