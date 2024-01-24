@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Promise 예제</title>
+</head>
+<body>
+	<script>
+		function increase(n, callback){
+			setTimeout(function(){
+				let tmp = n + 1;
+				console.log(tmp);
+				if(callback){
+					callback(tmp);
+				}
+			}, 1000);
+		}
+		//1부터 5까지 출력
+		/*
+		increase(0, function(n){
+			increase(n, function(n){
+				increase(n, function(n){
+					increase(n, function(n){
+						increase(n, function(){
+							console.log("종료");
+						})
+					})
+				});
+			});
+		});
+		*/
+		function increase2(n){
+			return new Promise(function(resolve, reject){
+				setTimeout(function(){
+					let tmp = n + 1;
+					console.log(tmp);
+					resolve(tmp);
+				}, 1000);
+			});
+		}
+		let promise 
+			= increase2(0)
+				.then(function(n){ 
+					return increase2(n);
+				})
+				.then(function(n){ 
+					return increase2(n);
+				})
+				.then(function(n){ 
+					return increase2(n);
+				})
+				.then(function(n){ 
+					return increase2(n);
+				});
+	</script>
+</body>
+</html>

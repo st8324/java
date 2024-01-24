@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Promise 예제</title>
+</head>
+<body>
+	<script>
+		let count = 0;
+		//매개변수로 콜백 함수가 필요
+		let promise = new Promise(function(resolve, reject){
+		
+			//작업
+			//작업 완료 후 성공 조건에 따라 resolve 또는 reject를 호출
+			if(count < 3){
+				resolve();
+			}else{
+				reject();
+			}
+
+		});
+		promise.then(function(){
+			console.log("작업 완료.");
+		}).catch(function(){
+			console.log("에러 발생");
+		}).finally(function(){
+			console.log("종료합니다.");
+		});
+		console.log("작업중입니다.");
+	</script>
+</body>
+</html>
