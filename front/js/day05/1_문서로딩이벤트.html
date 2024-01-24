@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>문서로딩이벤트 예제</title>
+	<script>
+		/*window의 load이벤트는 요소들이 다 로딩 된 후 
+			실행하도록 하는 이벤트*/
+		/*
+		window.onload = function(){
+			let box = document.getElementById("box");
+			let text = box.innerText;
+			alert(text);
+		}
+		*/
+		//DOM 컨텐츠가 로딩이 완료 되면 동작하는 이벤트
+		document.addEventListener("DOMContentLoaded", function(){
+			let box = document.getElementById("box");
+			let text = box.innerText;
+			alert(text);
+		});
+	</script>
+</head>
+<body>
+	<div id="box">안녕하세요.</div>
+</body>
+</html>
