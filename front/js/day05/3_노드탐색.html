@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>노드 탐색</title>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<script>
+		/* 노드 탐색은 텍스트 노드와 요소 노드를 포함한 노드들을 탐색*/
+		let list = document.querySelector("#list");
+		//자식 노드들을 탐색
+		let listChildren = list.childNodes;
+		for(let listChild of listChildren){
+			console.log(listChild);
+		}
+	</script>
+</body>
+</html>
