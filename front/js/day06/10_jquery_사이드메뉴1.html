@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jquery 예제1</title>
+	<script src="../../static/jquery.js"></script>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		*{ padding: 0; margin: 0;}
+		.btn-menu, .btn-close{
+			width: 50px; height: 50px; border: 1px solid black;
+			border-radius: 5px; background-color: white;
+			cursor: pointer;
+		}
+		.btn-menu:hover{
+			background-color: aliceblue;
+		}
+		.box{
+			height: 500px; border: 1px solid black;
+			display: none; background-color: white;
+			position: absolute; top: 0; left: 0;
+			width: 300px;
+		}
+		.btn-close{
+			 position: absolute;top: -1px; left: -1px;
+			 border-top-left-radius: 0;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn-menu">클릭</button>
+	<div class="box">
+		<button class="btn-close">X</button>
+	</div>
+	<script>
+		/* 
+		버튼 1개와 박스를 만들어서 버튼을 클릭하면 박스가 나타나도록
+		코드를 작성
+		박스에 X버튼을 추가해서 X버튼을 클릭하면 박스가 사라지도록
+		코드를 작성
+		*/
+		$(".btn-menu").click(function(){
+			$(".box").show();
+		});
+		$(".btn-close").click(function(){
+			$(".box").hide();
+		});
+	</script>
+</body>
+</html>
