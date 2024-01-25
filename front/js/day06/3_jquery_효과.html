@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>효과</title>
+</head>
+<body>
+	<button class="btn-show">show</button>
+	<button class="btn-hide">hide</button>
+	<button class="btn-toggle">toggle</button>
+	<div class="box" id="show" style="background-color: yellow;height: 400px;"></div>
+
+	<script>
+		/*
+		- 효과
+		- 요소를 보임/감춤
+			hide(속도, 콜백함수) 
+			- 콜백함수 : 보임/감춤이 끝난후 실행될 함수
+			- 속도 : 보임/감추는 속도
+			show(속도, 콜백함수)
+			toggle(속도, 콜백함수)
+		- 요소를 서서히 감추고 서서히 보임
+			fadeIn(속도, 콜백함수)
+			fadeOut(속도, 콜백함수)
+			fadeToggle(속도, 콜백함수)
+			fadeTo(속도, 투명도, 콜백함수)
+		- 요소를 슬라이드로 내리고 올림
+			slideUp(속도, 콜백함수)
+			slideDown(속도, 콜백함수)
+			slideToggle(속도, 콜백함수)
+		*/
+		$(".btn-show").click(function(){
+			$("#show").fadeIn(2000);
+		});
+		$(".btn-hide").click(function(){
+			$("#show").fadeOut(2000);
+		});
+		$(".btn-toggle").click(function(){
+			$("#show").fadeTo(2000, 0.5);
+		});
+	</script>
+</body>
+</html>

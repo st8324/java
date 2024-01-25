@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스타일 변경 예제</title>
+	<script src="../../static/jquery.js"></script>
+	<style>
+		.box{
+			height: 400px; background-color: yellow;
+		}
+		.select{
+			background-color: aliceblue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<button id="add">select 추가</button>
+	<button id="remove">select 삭제</button>
+	<button id="toggle">select toggle</button>
+	<button id="border">테두리 변경</button>
+	<button id="width">width 확인</button>
+	<button id="css">복합 변경</button>
+	<script>
+		/* 
+		$("선택자").addClass("클래스명")
+		 - 요소에 클래스를 추가
+		$("선택자").removeClass("클래스명")
+		 - 요소에 클래스를 삭제
+		$("선택자").toggleClass("클래스명")
+		 - 요소에 클래스가 있으면 삭제, 없으면 추가
+		$("선택자").hasClass("클래스명")
+		 - 요소에 클래스가 있는지 없는지를 리턴
+		$("선택자").css("속성명")
+		 - 요소에 속성명과 일치하는 스타일값을 가져옴
+		$("선택자").css("속성명", "값");
+		 - 요소에 속성명과 일치하는 스타일 값을 수정
+		$("선택자").css({
+			속성명 : 값,
+			속성명 : 값
+		}) 
+		 - 요소에 속성명과 일치하는 스타일 값을 수정
+		*/
+		$("#add").click(function(){
+			$(".box").addClass("select");
+		})
+		$("#remove").click(function(){
+			$(".box").removeClass("select");
+		})
+		/*$("#toggle").click(function(){
+			$(".box").toggleClass("select");
+		});
+		*/
+		let toggle = document.getElementById("toggle");
+		toggle.onclick = function(){
+			let box = document.getElementsByClassName("box")[0];
+			box.classList.toggle("select");
+		}
+		$("#border").click(function(){
+			$(".box").css("border", "3px solid black");
+		})
+		$("#width").click(function(){
+			alert($(".box").css("width"));
+		})
+		$("#css").click(function(){
+			$(".box").css({
+				"background-color" : "red",
+				"border-radius" : "50px"
+			});
+		})
+	</script>
+</body>
+</html>

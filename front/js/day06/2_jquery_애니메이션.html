@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>애니메이션</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		.box{
+			width: 100px; height: 100px; background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<button class="btn-right">오른쪽으로 이동</button>
+	<button class="btn-stop">중지</button>
+	<div class="box"></div>
+	<script>
+		/* 
+		애니메이션 적용
+		$("선택자").animate({옵션}, 동작시간, 콜백함수)
+		- 옵션 : 객체로 전달
+		  {
+				css속성명 : 값,
+				css속성명 : 값,
+				...
+			}
+		- 값 활용
+		  - 누적 : +=
+			- 명시된 값 : "show", "hide", "toggle"
+		- 같은 요소에 여러 애니메이션을 적용하면 순서대로 실행
+		애니메이션 중지
+		 - 진행중인 애니메이션을 중지
+		$("선택자").stop(sttopAll);
+		 - stopAll : 해당 요소에 등록된 모든 애니메이션을 중지할지를
+		   선택
+		애니메이션 작동 중인지 확인
+		$("선택자").is(":animated") : true/false를 리턴
+		*/
+		$(".btn-right").click(()=>{
+			if(!$(".box").is(":animated")){
+				$(".box").animate({"margin-left" : "+=100px"}, 1000);
+			}
+		});
+		$(".btn-stop").click(()=>{
+			$('.box').stop(true);
+		})
+	</script>
+</body>
+</html>

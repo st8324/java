@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가 예제</title>
+	<script src="../../static/jquery.js"></script>
+</head>
+<body>
+	<ul class="list">
+		<li>1</li>
+		<li>2</li>
+		<li class="center">3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		/*
+		$("선택자").append(html코드) 
+		 - 요소 마지막 자식 요소 다음에 추가
+		$("선택자").prepend(html코드) 
+		 - 요소 첫번째 자식 요소 앞에 추가
+		$("선택자").before(html코드) 
+		 - 요소 앞에 추가
+		$("선택자").after(html코드) 
+		 - 요소 다음에 추가
+		$("html코드").appendTo("선택자");
+		 - 요소 마지막 자식 요소 다음에 추가
+		$("html코드").prependTo("선택자");
+		 - 요소 첫번째 자식 요소 앞에 추가
+		$("선택자").remove()
+		 - 요소와 자손요소를 삭제
+		$("선택자").empty()
+		 - 자손요소를 삭제
+		*/
+		$(".list").append("<li>6(append로 추가)</li>");
+		$(".list").prepend("<li>7(prepend로 추가)</li>");
+		$(".center").before("<li>8(before로 추가)</li>");
+		$(".center").after("<li>9(after 추가)</li>");
+		$("<li>10(appendTo 추가)</li>").appendTo(".list");
+		$("<li>11(prependTo 추가)</li>").prependTo(".list");
+	</script>
+</body>
+</html>

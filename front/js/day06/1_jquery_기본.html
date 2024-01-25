@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery 기본 예제</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box" id="box3">3</div>
+	</div>
+	
+	<script>
+		/* 
+		- 요소 선택
+		$("선택자")
+		- 이벤트 등록
+		$("선택자").이벤트명(function(){
+
+		});
+		$("선택자").on("이벤트명", function(){
+
+		});
+		//선택자1 안에 있는 선택자2들에게 이벤트 등록
+		$("선택자1").on("이벤트명","선택자2", function(){
+
+		});
+		
+		*/
+		let container = $(".container");
+		console.log(container);
+		/*$(".box").click(function(){
+			alert("안녕하세요");
+		});*/
+		$(document).on("click",".box",function(){
+			alert("안녕하세요");
+		});
+		
+	</script>
+</body>
+</html>

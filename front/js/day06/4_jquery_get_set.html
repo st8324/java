@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>get/set예제</title>
+	<script src="../../static/jquery.js"></script>
+</head>
+<body>
+	<div class="box">
+		<input type="text" id="id"> <br>
+		<input type="radio" name="fruit" value="apple" checked id="apple"> 사과
+		<input type="radio" name="fruit" value="banana" id="banana"> 바나나
+		<br>
+		<button class="btn-banana">바나나</button>
+		<button class="btn-apple">사과</button>
+	</div>
+	<script>
+		/*
+		요소 가져오기
+		$("선택자").text() : 요소 안에 문자열을 가져옴
+		$("선택자").html() : 요소 안에 html코드를 가져옴
+		$("선택자").val() : 요소 안에 value값을 가져옴(input, select등)
+		$("선택자").attr("속성명") : 요소의 속성값을 가져옴
+		$("선택자").prop("속성명") : 요소의 속성값을 가져옴
+		- attr : HTML 속성을 가져옴. 초기에 HTML 코드에 정의된 속성
+		  값을 가져옴
+			boolean값에 대해 true/undefined로 리턴
+		- prop : DOM 요소의 속성값을 가져옴
+		  boolean값에 대해 true/false로 리턴
+		*/
+		console.log($("#apple").attr("checked"));
+		console.log($("#apple").prop("checked"));
+		console.log($(".box").text());
+		console.log($(".box").html());
+		$("#id").change(function(){
+			alert($(this).val());
+		});
+		/*
+		요소 설정하기
+		$("선택자").text(문자열1) : 요소 안에 문자열을 문자열1로 수정
+		$("선택자").html(문자열1) : 요소 안에 문자열1을 html코드로 수정
+		$("선택자").val(문자열) : 요소 안에 value값을 문자열로 수정
+		$("선택자").attr("속성명", 값) : 요소의 속성값을 값으로 수정
+		$("선택자").prop("속성명", 값) : 요소의 속성값을 값으로 수정
+		*/
+		$(".btn-banana").click(function(){
+			$("#banana").prop("checked", true);
+		})
+		$(".btn-apple").click(function(){
+			$("#apple").prop("checked", true);
+		})
+	</script>
+</body>
+</html>
