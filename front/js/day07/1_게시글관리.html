@@ -38,6 +38,19 @@
 		.table.table-hover>tbody>tr:hover{
 			background-color: aliceblue;
 		}
+		.modal-box{
+			position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+			background-color: rgba(0,0,0,0.3); display: none;
+		}
+		.modal-box .inner-box{
+			background-color: #fff; max-width: 500px;
+			height: 400px; margin: 50px auto 0; position: relative;
+		}
+		.modal-box .btn-close{
+			position: absolute; top: 0; right: 0; width: 30px; height: 30px;
+			text-decoration: none; color: black; text-align: center;
+			line-height: 30px;
+		}
 	</style>
 </head>
 <body>
@@ -73,13 +86,21 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="modal-box">
+		<div class="inner-box">
+			<a href="#" class="btn-close">X</a>
+			<div class="content-box"></div>
+		</div>
+	</div>
 	<script>
 		//게시글 리스트를 관리할 배열
 		let list = [];
 		display(list);
 
 		//버튼을 선택
-		let btn = document.querySelector(".btn");
+		const btn = document.querySelector(".btn");
+		const closeBtn = document.querySelector(".btn-close");
+		const modal = document.querySelector(".modal-box");
 		//버튼에 클릭 이벤트 등록
 		btn.onclick = function(){
 			//입력한 제목, 내용, 작성자를 가져옴
@@ -114,8 +135,60 @@
 			//return false를 통해 서버로 전송되는 것을 막아줌
 			return false;
 		}
+		
+		closeBtn.onclick = function(){
+			modal.style.display = "none";
+			display(list);
+		}
+
+
+		//리스트에서 num와 일치하는 게시글 번호를 가진 게시글을 반환하는 함수
+		function getBoard(list, num){
+			for(board of list){
+				if(board["num"] == num){
+					return board;
+				}
+			}
+			return null;
+		}
+
+		//제목을 클릭하면
 		function linkClick(){
-			alert(1);
+			modal.style.display = "block";
+			let num = this.getAttribute("data-num");
+			let board = getBoard(list, num);
+			let modalIn = modal.querySelector(".inner-box .content-box");
+			if(board){
+				++board["view"];
+				let html = 
+				`
+				<h1>게시글 상세</h1>
+				<div class="input-box">
+					<label class="label">번호:</label>
+					<input type="text" name="num" class="input" readonly value="${board["num"]}">
+				</div>
+				<div class="input-box">
+					<label class="label">제목:</label>
+					<input type="text" name="title" class="input" readonly value="${board["title"]}">
+				</div>
+				<div class="input-box">
+					<label class="label">작성자:</label>
+					<input type="text" name="writer"class="input" readonly value="${board["wirete"]}">
+				</div>
+				<div class="input-box">
+					<label class="label">조회수:</label>
+					<input type="text" name="view" class="input" readonly value="${board["view"]}">
+				</div>
+				<div class="input-box">
+					<label class="label">내용:</label>
+					<textarea name="content" rows="10" class="input text-area" readonly>${board["content"]}</textarea>
+				</div>
+				`;
+				modalIn.innerHTML = html;
+			}else{
+				//없는 게시글입니다를 구성해 모달창에 출력 
+				modalIn.innerHTML = "<h1>없는 게시글입니다.</h1>";
+			}
 		}
 
 		//display 함수
@@ -157,7 +230,12 @@
 						//td태그 생성
 						let td = createElement("td", null, {class : key});
 						//a태그 생성
-						let a = createElement("a", String(obj[key]), {class : "link", href : "#"});
+						let attr = {
+							class : "link", 
+							href : "#", 
+							"data-num" : obj["num"]
+						}
+						let a = createElement("a", String(obj[key]), attr);
 						a.onclick = linkClick;
 						//td태그에 a태그 추가
 						td.append(a);
