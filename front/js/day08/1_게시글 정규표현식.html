@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글 정규 표현식</title>
+	<style>
+		.container{
+			max-width: 500px; margin: 0 auto;
+		}
+		.input-group{
+			margin-bottom: 10px;
+		}
+		/* 
+		선택자1 선택자2 : 선택자1이 조상이고, 선택자2가 자손. 자손은 자식, 손자, 증손자 등
+		선택자1>선택자2 : 선택자1이 부모이고, 선택자2가 자식
+		*/
+		.input-group .input{
+			display: block; width: 100%; box-sizing: border-box;
+			margin: 10px 0; height: 30px; border-radius: 5px;
+			border: 1px solid black;
+		}
+		.input-group textarea.input{
+			height: 300px;
+		}
+		.btn-submit{
+			width: 100%; box-sizing: border-box; 
+			height: 30px; border-radius: 5px; border: 1px solid black;
+			background-color: #fff; cursor: pointer;
+		}
+		[class^=error]{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<form action="" class="container">
+		<h1>게시글 등록</h1>
+		<div class="input-group">
+			<label for="">제목</label>
+			<input type="text" name="title" id="title" class="input" placeholder="제목을 입력하세요.">
+			<label class="error-title"></label>
+		</div>
+		<div class="input-group">
+			<label for="">작성자</label>
+			<input type="text" name="writer" id="writer" class="input" placeholder="작성자를 입력하세요.">
+			<label class="error-writer"></label>
+		</div>
+		<div class="input-group">
+			<label for="">내용</label>
+			<textarea name="content" id="content" rows="15" class="input" placeholder="내용을 입력하세요."></textarea>
+			<label class="error-content"></label>
+		</div>
+		<button class="btn-submit">전송</button>
+	</form>
+	<script>
+		let title = document.querySelector("[name=title]");
+		let writer = document.querySelector("[name=writer]");
+		let content = document.querySelector("[name=content]");
+		let titleError = document.querySelector(".error-title");
+		let writerError = document.querySelector(".error-writer");
+		let contentError = document.querySelector(".error-content");
+		let form = document.querySelector("form");
+		/* 
+		?title=&writer=&content=
+		- name이 title인 요소의 값을 서버로 전송
+		- name이 writer인 요소의 값을 서버로 전송
+		- name이 content인 요소의 값을 서버로 전송
+		*/
+		form.onsubmit = function(){
+			//각 요소의 정규 표현식
+			let titleRegex = /^[a-zA-Z0-9ㄱ-힣?!,\.]{0,50}$/;
+			let writerRegex = /^[a-zA-Z0-9]{0,8}$/;
+			//현재 입력된 각 요소의 값(value)
+			let titleValue = title.value;
+			let writerValue = writer.value;
+			let contentValue = content.value;
+			let submitOk = true;
+			//에러 박스 내용 초기화
+			titleError.innerText = "";
+			writerError.innerText = "";
+			contentError.innerText = "";
+
+			//제목 필수항목 처리
+			//trim() : 첫 문자(공백제외)의 앞 공백과 마지막 문자(공백제외)의 뒤 공백을 제거하는 메서드
+			//         공백은 \t,\n,&nbsp;같은 빈 글자들
+			if(!titleValue.trim().length){ //if(titleValue.trim().length != 0)
+				titleError.innerText = "필수항목입니다.";
+				submitOk = false;
+			}
+			//제목의 유효성 검사
+			if(!titleRegex.test(titleValue.trim())){
+				titleError.innerText 
+				= "제목은 영문,한글,숫자,특수기호(.,!?)만 사용가능하며, 최대 50자까지 작성할 수 있습니다."
+				submitOk = false;
+			}
+
+			//내용 필수항목 처리
+			if(!contentValue.trim().length){
+				contentError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+
+			//작성자 필수항목 처리
+			if(!writerValue.trim().length){
+				writerError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+
+			//작성자 유효성 검사
+			if(!writerRegex.test(writerValue)){
+				writerError.innerText = "작성자는 영어, 숫자만 가능하며 최대 8자입니다.";
+				submitOk = false;
+			}
+
+			return submitOk;
+		}
+	</script>
+</body>
+</html>
