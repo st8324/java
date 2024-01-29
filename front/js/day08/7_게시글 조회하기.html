@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글 조회하기</title>
+	<script src="../../static/jquery.js"></script>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		.table{
+			width: 100%; border-collapse: collapse;
+		}
+		.table tr>td, 
+		.table tr>th{
+			border: 1px solid black; border-width: 1px 0;
+			height: 50px;
+		}
+		.table thead{
+			background-color: aliceblue;
+		}
+		.table tbody tr:hover{
+			background-color: aquamarine;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		/* 
+		json : Javscript Object notation
+		- 자바스크립트에서 네트워크를 목적으로 사용하는 데이터 포맷
+		- 자바스크립트의 객체와 유사
+		  - 차이점
+			  - js에서는 속성명에 "", '' 또는 생략이 가능
+				- json에서는 속성명에서 반드시 ""를 붙여야함
+			- 공통점
+				- 값으로 문자열, 정수, 배열, 객체등이 올 수 있다
+		{
+			"name" : "홍길동",
+		}
+			- JSON.stringify(객체) : 객체를 JSON형태의 문자열로 반환
+			- JSON.parse(문자열) : JSON형태의 문자열을 객체로 반환
+		*/
+		let obj = {
+			name : "홍길동",
+			"address" : "서울시",
+			'age' : 21,
+			score : [
+				{
+					title : "국어",
+					point : 100
+				},
+				{
+					title : "영어",
+					point : 50
+				}
+			]
+		};
+		console.log(obj);
+		let jsonObj = JSON.stringify(obj);
+		console.log(jsonObj);
+		let count = 1;
+		function getPromise(){
+			return new Promise(callback);
+		}
+		function callback(resolve, reject){
+			//구현
+			if(count < 3){
+				console.log(`count : ${count++}`);
+				resolve();
+			}else{
+				reject();
+			}
+		}
+		let promise = 
+			getPromise()
+			.then(function(){
+				return getPromise();
+			})
+			.then(()=>getPromise())
+			.catch(function(){
+				console.log(`count가 3보다 크거나 같습니다.`);
+			});
+		/* 
+		promise
+		- 비동기로 작업할 때 사용
+		- new Promise(콜백함수)를 이용하여 객체를 생성
+		  - 콜백함수는 매개변수가 2개 필요
+			- 첫번째 매개변수는 성공시 실행할 함수 : resolve
+			- 두번째 매개변수는 실패시 실행할 함수 : reject
+		- then : 성공시 실행. 매개변수로 실행할 함수
+		- catch : 실패시 실행. 매개변수로 실행할 함수
+		- finally : 성공, 실패 상관없이 실행. 매개변수로 실행할 함수
+		*/
+		fetch("https://my-json-server.typicode.com/st8324/repo/board")
+		.then(res=>res.text())
+		/* 
+		.then((res)=>{
+			return res.text()
+		})
+		*/
+		.then(data=>JSON.parse(data))
+		.then(data=>printBoard(data));
+
+		function printBoard(list){
+			//list에 있는 데이터를 이용하여 화면에 게시글 리스트를 출력하는 코드를 작성
+			//list를 이용하여 tr태그들을 만들고, 만들어진 tr태그들을 tbody에 추가
+			//문자열로 태그들을 구성한 후 html코드로 tbody안에 넣어줌
+			//기존에 있는 tbody태그 안에 있는 요소들을 제거
+			//$(".table tbody").html("");
+			$(".table tbody").empty();
+			for(let board of list){
+				console.log(board)
+				let tr = 
+				`
+				<tr>
+					<td>${board["num"]}</td>
+					<td>
+						<a href="#" onclick="alert('${board.num}번 게시글입니다.');">${board.title}<a>
+					</td>
+					<td>${board.writer}</td>
+					<td>${board.view}</td>
+				</tr>
+				`
+				$(".table tbody").append(tr);
+			}
+		}
+	</script>
+</body>
+</html>
