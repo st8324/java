@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요소 추가 예제</title>
+	<script src="../../static/jquery.js"></script>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		.box{ 
+			width: 100px; height: 100px; vertical-align: top;
+			border: 1px solid black;  text-align: center; line-height: 100px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<button class="btn">박스 추가</button>
+		<div class="box-group"></div>
+	</div>
+	<script>
+		$(".btn").click(()=>{
+			let count = $(".box").length;//클래스 이름이 box인 요소의 개수
+			let box = `<div class="box">${count+1}</div>`;
+			$(".box-group").prepend(box);
+		});
+		$(document).on("click", ".box", function(){
+			let num = $(this).text();
+			alert(num);
+		});
+	</script>
+</body>
+</html>
