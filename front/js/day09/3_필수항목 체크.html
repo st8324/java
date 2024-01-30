@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>필수항목 체크</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+	<style>
+		label{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<form action="">
+		<input type="text" name="id">
+		<label for="" style="display:none;">필수 항목입니다.</label>
+		<br>
+		<input type="password" name="pw">
+		<label for="" style="display:none;">필수 항목입니다.</label>
+	</form>
+	<script>
+		let input1 = document.querySelector("[name=id]");
+		input1.onblur = function(){
+			if(this.value == ""){
+				this.nextElementSibling.style.display = "block"
+			}else{
+				this.nextElementSibling.style.display = "none"
+			}
+		}
+		$("[name=pw]").blur(function(){
+			let value = $(this).val();
+			if(value == ""){
+				$(this).next().show();
+			}else{
+				$(this).next().hide();
+			}
+		})
+	</script>
+</body>
+</html>
