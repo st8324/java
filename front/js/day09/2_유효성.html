@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>유효성 검사</title>
+	<script src="//code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<form action="">
+		<h1>나이를 입력하세요.</h1>
+		<input type="text" name="age">
+		<button type="submit" onclick="return check();">확인</button>
+	</form>
+	<script>
+		//확인 버튼을 눌렀을 때 나이에 올바른 값이 들어갔는지 확인하는 코드를 작성
+		function check(){
+			let age = document.querySelector("[name=age]").value;
+			let regex = /^\d+$/;
+			if(regex.test(age)){
+				alert("서버로 전송합니다.");
+				return true;
+			}
+			alert("숫자만 입력하세요.");
+			return false;
+		}
+	</script>
+</body>
+</html>
