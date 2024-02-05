@@ -5,6 +5,11 @@
 <mapper namespace="db.mybatis.dao.MemberDAO">
 	<!-- id는 DAO의 메서드명과 같아야 함  -->
   	<insert id="insertMember">
+  	<!-- member.id는 member.getId()를 호출  -->
+  	<!-- #을 이용할 때와 $를 이용할 때 차이. id, pw, email이 a,b,c라고 할 때
+  	#은 values('a', 'b', 'c', now())가 실행
+  	$는 values(a,b,c, now())가 실행되어 a,b,c변수/열을 찾는데, 없어서 예외 발생
+  	 -->
   		insert into member values(#{member.id},#{member.pw} ,#{member.email}, now())
   	</insert>
   	<select id="selectMemberList" resultType="db.mybatis.model.vo.MemberVO">
