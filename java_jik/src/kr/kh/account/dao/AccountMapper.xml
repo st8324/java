@@ -13,4 +13,29 @@
 		insert into item(it_date, it_money, it_ca_num, it_content) 
 		values(#{item.it_date},#{item.it_money},#{item.it_ca_num},#{item.it_content})
 	</insert>
+	<select id="selectItemListByDate" resultType="kr.kh.account.model.vo.Item">
+		SELECT 
+		    item.*, ca_ty_name as it_ty_name, ca_name as it_ca_name
+		FROM
+		    item
+		        JOIN
+		    category ON ca_num = it_ca_num
+		WHERE
+			it_date like concat(#{it_date}, '%')
+	</select>
+	<update id="updateItem">
+		UPDATE item 
+		SET 
+		    it_ca_num = #{item.it_ca_num},
+		    it_date = #{item.it_date},
+		    it_money = #{item.it_money},
+		    it_content = #{item.it_content}
+		WHERE
+		    it_num = #{item.it_num}
+	</update>
+	<delete id="deleteItem">
+		DELETE 
+		FROM item
+		WHERE it_num = #{it_num}
+	</delete>
 </mapper>

@@ -2,6 +2,9 @@ package kr.kh.account.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -46,17 +49,48 @@ public class AccountServiceImp implements AccountService {
 	}
 
 	@Override
-	public boolean insertItem(Item item, String type) {
-		if(item == null) {
+	public boolean insertItem(Item item) {
+		if(item == null || item.getIt_ty_name() == null) {
 			return false;
 		}
-		List<Category> categoryList = accountDao.selectCategoryList(type);
-		System.out.println(categoryList);
-		System.out.println(item);
-		//type과 일치하지 않은 카테고리 체크
-		if(!categoryList.contains(new Category(item.getIt_ca_num()))) {
+		if(!checkCategoryNum(item.getIt_ty_name(), item.getIt_ca_num())) {
 			return false;
 		}
 		return accountDao.insertItem(item);
 	}
+
+	@Override
+	public List<Item> getItemListByDate(String dateStr) {
+		//날짜가 없는 경우 
+		if(dateStr == null) {
+			return null;
+		}
+		
+		return accountDao.selectItemListByDate(dateStr);
+	}
+
+	@Override
+	public boolean updateItem(Item item) {
+		if(item == null || item.getIt_ty_name() == null) {
+			return false;
+		}
+		if(!checkCategoryNum(item.getIt_ty_name(), item.getIt_ca_num())) {
+			return false;
+		}
+		return accountDao.updateItem(item);
+	}
+	private boolean checkCategoryNum(String ty_name, int ca_num) {
+		//type과 일치하지 않은 카테고리 체크
+		List<Category> categoryList = accountDao.selectCategoryList(ty_name);
+		return categoryList.contains(new Category(ca_num));
+	}
+
+	@Override
+	public boolean deleteItem(int it_num) {
+		return accountDao.deleteItem(it_num);
+	}
 }
+
+
+
+
