@@ -99,7 +99,8 @@ DROP TABLE IF EXISTS `member`;
 
 CREATE TABLE `member` (
 	`me_id`	varchar(20)	primary key,
-	`me_pw`	varchar(20)	NOT NULL
+	`me_pw`	varchar(20)	NOT NULL,
+    `me_authority` varchar(5) NOT NULL DEFAULT 'USER'
 );
 
 DROP TABLE IF EXISTS `schedule`;
