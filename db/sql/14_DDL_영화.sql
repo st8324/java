@@ -154,8 +154,16 @@ DROP TABLE IF EXISTS `ticketing_list`;
 
 CREATE TABLE `ticketing_list` (
 	`tl_num`	int	primary key auto_increment,
-	`tl_ti_num2`	int	NOT NULL,
+	`tl_ti_num`	int	NOT NULL,
 	`tl_se_num`	int	NOT NULL
+);
+
+DROP TABLE IF EXISTS `price`;
+
+CREATE TABLE `price` (
+	`pr_num`	int	primary key auto_increment,
+	`pr_type`	varchar(5)	NOT NULL,
+	`pr_price`	int	NOT NULL
 );
 
 ALTER TABLE `character` ADD CONSTRAINT `FK_nation_TO_character_1` FOREIGN KEY (
