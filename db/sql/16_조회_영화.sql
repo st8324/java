@@ -215,3 +215,35 @@ FROM
     movie
 WHERE
     mo_title LIKE '%카%';
+    
+# 2월 9,10일에 예매 가능한 영화 목록을 조회하는 쿼리 
+SELECT 
+    *
+FROM
+    schedule
+        JOIN
+    movie ON sh_mo_num = mo_num
+WHERE
+    sh_date BETWEEN '2024-02-09' AND '2024-02-10';
+
+SELECT DISTINCT
+    mo_title, sh_date
+FROM
+    (SELECT 
+        *
+    FROM
+        schedule
+    WHERE
+        sh_date BETWEEN '2024-02-09' AND '2024-02-10') AS sh
+        JOIN
+    movie ON sh_mo_num = mo_num;
+
+
+
+
+
+
+
+
+
+

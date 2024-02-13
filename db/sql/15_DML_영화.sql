@@ -234,8 +234,24 @@ insert into ticketing values(null, 2, 0, 11200*2, 1, 'abc123');
 insert into ticketing_list(tl_ti_num, tl_se_num)
 values(1, 1), (1,2);
 
+# 영화관의 전체 좌석수와 전체 상영관 수를 현재 데이터를 기준으로 업데이트하는 쿼리 
+update theater 
+set
+	th_seat = (select sum(sc_seat) from screen where sc_th_num = 1),
+    th_screen = (select count(sc_num) from screen where sc_th_num = 1)
+where
+	th_num = 1;
     
-    
+# 폴킹 감독이 웡카 영화(1)에 감독으로 참여하는 쿼리
+INSERT INTO `join` 
+SELECT 1, '감독', 1, mp_num 
+FROM
+    movie_person
+        JOIN
+    `character` ON mp_ch_num = ch_num
+WHERE
+    ch_name = '폴킹' AND mp_role = '감독';
+
     
 
 
