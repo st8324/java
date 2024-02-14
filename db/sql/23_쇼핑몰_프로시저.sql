@@ -40,7 +40,7 @@ END //
 DELIMITER ;
 
 # CALL INSERT_PRODUCT('ABC', '수정펜', '수정펜입니다', 3000, '기타');
-
+# CALL INSERT_PRODUCT('ABC', '수정펜', '수정펜입니다', 3000, 'ABC');
 /*
 SELECT 
     COUNT(*) + 1
@@ -63,3 +63,26 @@ WHERE
         WHERE
             CA_NAME = '기타');
 */
+
+# 제품을 주문하는 프로시저 
+DROP PROCEDURE IF EXISTS INSERT_ORDER;
+DELIMITER //
+CREATE PROCEDURE INSERT_ORDER(
+	IN _AMOUNT INT,
+    IN _ID VARCHAR(13),
+    IN _PR_CODE VARCHAR(15)
+)
+BEGIN
+	DECLARE _PRICE INT; # 제품 가격
+    DECLARE _TOTAL_PRICE INT; # 제품 총 가격 
+    
+    # 제품 가격을 가져옴 
+    SET _PRICE = (SELECT PR_PRICE FROM PRODUCT WHERE PR_CODE = _PR_CODE);
+    # 제품 총 가격을 계산 
+    SET _TOTAL_PRICE = _PRICE * _AMOUNT;
+    # ORDER 테이블에 데이터를 추가 
+    INSERT INTO `ORDER`(OR_AMOUNT, OR_TOTAL_PRICE, OR_ME_ID, OR_PR_CODE)
+    VALUES(_AMOUNT, _TOTAL_PRICE, _ID, _PR_CODE);
+END //
+DELIMITER ;
+CALL INSERT_ORDER(3, 'qwe123', 'ABC004');
