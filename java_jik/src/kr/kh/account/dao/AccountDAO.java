@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.kh.account.model.vo.Category;
 import kr.kh.account.model.vo.Item;
 import kr.kh.account.model.vo.Type;
+import kr.kh.account.pagination.Criteria;
 
 public interface AccountDAO {
 
@@ -22,5 +23,7 @@ public interface AccountDAO {
 	boolean updateItem(@Param("item")Item item);
 
 	boolean deleteItem(@Param("it_num")int it_num);
+
+	List<Item> selectItemListSearch(@Param("cri")Criteria cri);
 
 }
