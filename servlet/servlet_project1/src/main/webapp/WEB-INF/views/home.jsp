@@ -1,31 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인</title>
+<!-- 부트스트랩5 css/js -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<%
-	int num = 10;
-	%>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%=request.getContextPath() %>/">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=request.getContextPath() %>/login">로그인</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
 	<h1>메인 페이지입니다.</h1>
-	<a href="<%=request.getContextPath() %>?data=안녕">데이터 전송</a>
-	<form action="<%=request.getContextPath() %>">
-		<h2>form태그 get방식 전송</h2>
-		<input type="text" name="id">
-		<button>전송</button>
-	</form>
-	<h1><%=num %></h1>
-	<h1><%=request.getContextPath() %></h1>
-	<a href="<%=request.getContextPath()%>/login">로그인으로</a>
-	<a href="<%=request.getContextPath()%>/signup">회원가입으로</a>
-	<h1>서버에서 보낸 나이 : ${age}</h1> <!-- ${xx}  -->
-	<script type="text/javascript">
-		let age = 20;
-		let str = `나이 : \${age}`;
-		console.log(str);
-	</script>
+	<c:forEach begin="1" end="4" var="i">
+	${i },
+	</c:forEach>
+</div>
 </body>
 </html>
