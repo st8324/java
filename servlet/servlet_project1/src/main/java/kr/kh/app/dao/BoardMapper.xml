@@ -3,11 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.app.dao.BoardDAO">
+	<!-- 
+	resultMap은 클래스 멤버 이름과 테이블의 속성 이름이 다른 경우 맵핑하기위해 사용
+	property는 클래스 멤버변수이름, column은 테이블 속성 이름
+	-->
+	<resultMap type="kr.kh.app.model.vo.BoardVO" id="BoardMap">
+		<id property="bo_num" column="bo_num"/>
+		<result property="bo_co_num" column="bo_co_num"/>
+		<result property="bo_me_id" column="bo_me_id"/>
+		<result property="bo_title" column="bo_title"/>
+		<result property="bo_content" column="bo_content"/>
+		<result property="bo_view" column="bo_view"/>
+		<result property="bo_report_count" column="bo_report_count"/>
+		<collection property="community" ofType="kr.kh.app.model.vo.CommunityVO"
+			column="bo_co_num" select="selectCommunity"/>
+	</resultMap>
+
 	<insert id="insertBoard">
 		INSERT INTO BOARD(bo_title, bo_content, bo_co_num, bo_me_id)
 		VALUES(#{board.bo_title},#{board.bo_content},#{board.bo_co_num},#{board.bo_me_id})
 	</insert>
 	<select id="selectCommunityList" resultType="kr.kh.app.model.vo.CommunityVO">
 		SELECT * FROM COMMUNITY
+	</select>
+	<select id="selectBoardList" resultMap="BoardMap">
+		SELECT * FROM BOARD ORDER BY BO_NUM DESC
+	</select>
+	<select id="selectCommunity" resultType="kr.kh.app.model.vo.CommunityVO">
+		select * from community where co_num = #{bo_co_num}
 	</select>
 </mapper>

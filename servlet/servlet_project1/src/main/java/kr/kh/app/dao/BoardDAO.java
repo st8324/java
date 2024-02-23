@@ -13,4 +13,6 @@ public interface BoardDAO {
 
 	ArrayList<CommunityVO> selectCommunityList();
 
+	ArrayList<BoardVO> selectBoardList();
+
 }

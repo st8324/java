@@ -50,4 +50,9 @@ public class BoardServiceImp implements BoardService{
 	public ArrayList<CommunityVO> getCommunityList() {
 		return boardDao.selectCommunityList();
 	}
+
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		return boardDao.selectBoardList();
+	}
 }
