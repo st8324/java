@@ -17,7 +17,7 @@ public class EncodingFilter implements Filter {
 		//화면에서 서버로 전송할 때
 		request.setCharacterEncoding("UTF-8");
 		//서버에서 화면으로 전달할 때
-		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		//필터가 여러개인 경우 다음 필터에 적용하기 위한 작업
 		chain.doFilter(request, response);
 	}
