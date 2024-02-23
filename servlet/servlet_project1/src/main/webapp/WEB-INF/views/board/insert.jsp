@@ -36,7 +36,7 @@
   </div>
 </nav>
 <div class="container">
-	<form action="">
+	<form action="<c:url value="/board/insert" />" method="post">
 		<div class="mb-3 mt-3">
 		    <label for="title" class="form-label">제목:</label>
 		    <input type="text" class="form-control" id="title" placeholder="제목" name="title">
@@ -47,8 +47,9 @@
 	  	</div>
 	  	<div class="mb-3 mt-3">
 		    <label for="content" class="form-label">내용:</label>
-		    <textarea class="form-control" id="content" name="content" placeholder="내용"></textarea>
+		    <textarea rows="10" class="form-control" id="content" name="content" placeholder="내용"></textarea>
 	  	</div>
+	  	<button class="btn btn-outline-warning col-12">글 등록</button>
 	</form>
 </div>
 </body>

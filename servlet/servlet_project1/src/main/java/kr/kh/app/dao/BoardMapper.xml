@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.app.dao.BoardDAO">
+	<insert id="insertBoard">
+		INSERT INTO BOARD(bo_title, bo_content, bo_co_num, bo_me_id)
+		VALUES(#{board.bo_title},#{board.bo_content},#{board.bo_co_num},#{board.bo_me_id})
+	</insert>
+</mapper>
