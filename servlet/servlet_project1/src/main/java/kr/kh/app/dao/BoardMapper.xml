@@ -7,4 +7,7 @@
 		INSERT INTO BOARD(bo_title, bo_content, bo_co_num, bo_me_id)
 		VALUES(#{board.bo_title},#{board.bo_content},#{board.bo_co_num},#{board.bo_me_id})
 	</insert>
+	<select id="selectCommunityList" resultType="kr.kh.app.model.vo.CommunityVO">
+		SELECT * FROM COMMUNITY
+	</select>
 </mapper>
