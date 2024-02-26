@@ -31,10 +31,13 @@ public class SignupServlet extends HttpServlet {
 		MemberVO member = new MemberVO(id, pw, email, "이용중");
 		boolean res = memberService.signup(member);
 		if(res) {
-			response.sendRedirect(request.getContextPath() + "/");
+			request.setAttribute("msg", "회원 가입에 성공했습니다.");
+			request.setAttribute("url", "");
 		}else {
-			response.sendRedirect(request.getContextPath() + "/signup");
+			request.setAttribute("msg", "회원 가입에 실패했습니다.");
+			request.setAttribute("url", "signup");
 		}
+		request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 	}
 
 }
