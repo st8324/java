@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.MemberDAO;
+import kr.kh.app.model.dto.LoginDTO;
 import kr.kh.app.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
@@ -50,5 +51,25 @@ public class MemberServiceImp implements MemberService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	@Override
+	public MemberVO getMember(LoginDTO loginDto) {
+		if(loginDto == null) {
+			return null;
+		}
+		
+		//다오에게 아이디를 주면서 회원 정보를 가져오라고 시킴
+		MemberVO user = memberDao.selectMember(loginDto.getId());
+		//가져온 회원정보가 없으면 null을 리턴
+		if(user == null) {
+			return null;
+		}
+		//있으면 DB 정보의 비번과 사용자가 입력한 비번이 같으면 DB정보를, 다르면 null를 리턴 
+		//비번은 회원가입시 암호화가 되어 관리되기 때문에 DB에서 직접 비교할 수 없다
+		//그래서 비번 확인을 서버쪽에서 해야 함
+		if(user.getMe_pw().equals(loginDto.getPw())) {
+			return user;
+		}
+		return null;
 	}
 }
