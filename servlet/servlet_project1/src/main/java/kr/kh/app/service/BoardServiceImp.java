@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.pagination.Criteria;
 
 public class BoardServiceImp implements BoardService{
 
@@ -52,7 +53,18 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public ArrayList<BoardVO> getBoardList() {
-		return boardDao.selectBoardList();
+	public ArrayList<BoardVO> getBoardList(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return boardDao.selectBoardList(cri);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return boardDao.selectTotalCount(cri);
 	}
 }

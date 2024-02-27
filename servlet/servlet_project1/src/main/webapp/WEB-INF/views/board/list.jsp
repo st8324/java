@@ -37,6 +37,17 @@
 </nav>
 <div class="container">
 	<h1>게시글 리스트</h1>
+	<form action="<c:url value="/board/list"/>" class="mb-3 mt-3">
+		<div class="input-group">
+			<select name="type" class="form-control">
+				<option value="all">전체</option>
+				<option value="title">제목</option>
+				<option value="writer">작성자</option>
+			</select>
+			<input type="text" class="form-control" placeholder="검색어" name="search">
+			<button class="btn btn-outline-warning">검색</button>
+		</div>
+	</form>
 	<table class="table table-hover">
 		<thead>
 			<tr>
