@@ -13,5 +13,5 @@ public class BoardVO {
 	private String bo_content; 
 	private int bo_view; 
 	private int bo_report_count;
-	//private CommunityVO community;
+	private CommunityVO community;
 }

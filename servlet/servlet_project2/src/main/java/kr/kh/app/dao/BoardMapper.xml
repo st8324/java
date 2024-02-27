@@ -3,5 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.app.dao.BoardDAO">
+	<resultMap type="kr.kh.app.model.vo.BoardVO" id="BoardMap">
+		<id property="bo_num" column="bo_num"/>
+		<result property="bo_co_num" column="bo_co_num"/>
+		<result property="bo_me_id" column="bo_me_id"/>
+		<result property="bo_title" column="bo_title"/>
+		<result property="bo_content" column="bo_content"/>
+		<result property="bo_view" column="bo_view"/>
+		<result property="bo_report_count" column="bo_report_count"/>
+		<collection property="community" ofType="kr.kh.app.model.vo.CommunityVO"
+		 	column="bo_co_num" select="selectCommunity"/>
+	</resultMap>
 	
+	<select id="selectBoardList" resultMap="BoardMap">
+		select * from board order by bo_num desc
+	</select>
+	
+	<select id="selectCommunity" resultType="kr.kh.app.model.vo.CommunityVO">
+		select * from community where co_num = #{bo_co_num}
+	</select>
 </mapper>
