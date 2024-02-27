@@ -40,7 +40,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+	<a href="<c:url value="/board/insert"/>" class="btn btn-outline-primary">게시글 등록</a>
 		
 	
 </div>

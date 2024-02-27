@@ -8,4 +8,6 @@ public interface BoardService {
 
 	ArrayList<BoardVO> getBoardList();
 
+	boolean insertBoard(BoardVO board);
+
 }
