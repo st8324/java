@@ -15,6 +15,14 @@
 	<form action="<c:url value="/board/insert"/>" method="post">
 		<h1>게시글 등록</h1>
 		<div class="mb-3 mt-3">
+			<label for="community" class="form-label">게시판</label>
+			<select class="form-control" name="community" id="community">
+				<c:forEach items="${list}" var="community">
+					<option value="${community.co_num }">${community.co_name }</option>
+				</c:forEach>
+			</select>
+		</div>
+		<div class="mb-3 mt-3">
 			<label for="title" class="form-label">제목</label>
 			<input type="text" class="form-control" id="title" placeholder="제목" name="title">
 		</div>
