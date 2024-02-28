@@ -68,4 +68,11 @@
 	<delete id="deleteBoard">
 		delete from board where bo_num = #{num}
 	</delete>
+	<update id="updateBoard">
+		update board set
+			bo_title = #{board.bo_title},
+			bo_content = #{board.bo_content}
+		where
+			bo_num = #{board.bo_num}
+	</update>
 </mapper>
