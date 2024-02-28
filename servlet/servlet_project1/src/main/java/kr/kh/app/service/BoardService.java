@@ -16,4 +16,8 @@ public interface BoardService {
 
 	int getTotalCount(Criteria cri);
 
+	BoardVO getBoard(int num);
+
+	boolean updateView(int num);
+
 }
