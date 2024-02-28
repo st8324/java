@@ -23,7 +23,7 @@
 	  	</div>
 		<div class="mb-3 mt-3">
 		    <label for="pw" class="form-label">비밀번호:</label>
-		    <input type="text" class="form-control" id="pw" placeholder="비밀번호" name="pw">
+		    <input type="password" class="form-control" id="pw" placeholder="비밀번호" name="pw">
 	  	</div>
 		<button class="btn btn-outline-success col-12">로그인</button>
 	</form>

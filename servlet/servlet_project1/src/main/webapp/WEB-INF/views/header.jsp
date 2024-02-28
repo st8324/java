@@ -27,6 +27,11 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/board/list"/>">게시글</a>
         </li>
+        <c:if test="${user != null}">
+	        <li class="nav-item">
+	        	<a class="nav-link" href="<c:url value="/logout"/>">로그아웃</a>
+	        </li>
+        </c:if>
       </ul>
     </div>
   </div>
