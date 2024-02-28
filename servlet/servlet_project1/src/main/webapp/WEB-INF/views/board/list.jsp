@@ -48,7 +48,12 @@
 						<a href="">${board.bo_title}</a>
 					</td>
 					<td>
-						<a href="">${board.bo_me_id}</a>
+						<c:url var="page" value="/board/list">
+							<c:param name="type" value="writer" />
+							<c:param name="search" value="${board.bo_me_id}" />
+							<c:param name="page" value="1" />
+						</c:url>
+						<a href="${page}">${board.bo_me_id}</a>
 					</td>
 					<td>${board.bo_view }</td>
 				</tr>
