@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.pagination.Criteria;
 
 public class BoardServiceImp implements BoardService{
@@ -76,5 +77,20 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public boolean updateView(int num) {
 		return boardDao.updateView(num);
+	}
+
+	@Override
+	public boolean deleteBoard(int num, MemberVO user) {
+		if(user == null) {
+			return false;
+		}
+		//다오에게 게시글 번호를 주면서 게시글을 가져오라고 시킴
+		BoardVO board = boardDao.selectBoard(num);
+		//게시글이 없거나 게시글 작성자와 회원 아이디가 다르면 false 반환
+		if(board == null || !board.getBo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		//같으면 게시글 삭제 후 삭제 여부를 반환
+		return boardDao.deleteBoard(num);
 	}
 }
