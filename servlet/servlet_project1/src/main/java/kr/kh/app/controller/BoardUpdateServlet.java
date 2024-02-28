@@ -60,17 +60,19 @@ public class BoardUpdateServlet extends HttpServlet {
 		//로그인한 회원 정보를 가져옴 : 세션에 있는 회원 정보를 가져옴
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		
-		//화면에서 전송한 제목, 내용, 번호를 가져옴
-		int num;
+		//화면에서 전송한 제목, 내용, 번호, 게시판을 가져옴
+		int num , community;
 		try {
 			num = Integer.parseInt(request.getParameter("num"));
+			community = Integer.parseInt(request.getParameter("community"));
 		}catch(Exception e) {
 			num = 0;
+			community = 0;
 		}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		//게시글 객체로 생성
-		BoardVO board = new BoardVO(num, title, content);
+		BoardVO board = new BoardVO(num, title, content, community);
 		//서비스에게 게시글과 회원정보를 주면서 게시글 수정하라고 요청
 		boolean res = boardService.updateBoard(board, user);
 		//성공하면 성공했다고 알리고 게시글 상세로 이동
