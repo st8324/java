@@ -14,4 +14,6 @@ public interface BoardService {
 
 	ArrayList<CommunityVO> getCommunityList();
 
+	int getTotalCount(Criteria cri);
+
 }

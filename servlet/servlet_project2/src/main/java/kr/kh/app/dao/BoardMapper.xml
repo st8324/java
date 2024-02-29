@@ -32,6 +32,8 @@
 			</otherwise>
 		</choose>
 		order by bo_num desc
+		<!-- 현재 페이지 정보에 맞는 게시글을 위한 limit절 작성 -->
+		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="selectCommunity" resultType="kr.kh.app.model.vo.CommunityVO">
@@ -45,5 +47,22 @@
 	
 	<select id="selectCommunityList" resultType="kr.kh.app.model.vo.CommunityVO">
 		select * from community
+	</select>
+	
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from board 
+		<choose>
+			<!-- 전체 검색 -->
+			<when test='cri.type == "all"'>
+				where 
+					bo_title like concat('%',#{cri.search}, '%') or 
+					bo_me_id like concat('%',#{cri.search}, '%')
+			</when>
+			<!-- 제목 또는 작성자 검색 -->
+			<otherwise>
+				where
+					${cri.type} like concat('%',#{cri.search}, '%')
+			</otherwise>
+		</choose>
 	</select>
 </mapper>

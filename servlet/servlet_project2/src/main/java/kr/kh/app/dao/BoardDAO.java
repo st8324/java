@@ -16,4 +16,6 @@ public interface BoardDAO {
 
 	ArrayList<CommunityVO> selectCommunityList();
 
+	int selectTotalCount(@Param("cri")Criteria cri);
+
 }
