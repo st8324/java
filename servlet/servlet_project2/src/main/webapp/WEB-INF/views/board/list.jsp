@@ -22,7 +22,7 @@
 	 -->
 	<form action="<c:url value="/board/list"/>">
 		<div class="input-group">
-			<c:if test='${pm.cri.type == "all"}'>selected</c:if>
+			
 			<select class="form-control" name="type">
 				<option value="all" <c:if test='${pm.cri.type == "all"}'>selected</c:if>>전체</option>
 				<option value="bo_title" <c:if test='${pm.cri.type == "bo_title"}'>selected</c:if>>제목</option>
