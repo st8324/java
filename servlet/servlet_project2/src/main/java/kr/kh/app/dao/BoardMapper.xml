@@ -16,7 +16,22 @@
 	</resultMap>
 	
 	<select id="selectBoardList" resultMap="BoardMap">
-		select * from board order by bo_num desc
+		<!-- type과 검색어를 이용하여 쿼리를 구성, if태그를 활용 -->
+		select * from board 
+		<choose>
+			<!-- 전체 검색 -->
+			<when test='cri.type == "all"'>
+				where 
+					bo_title like concat('%',#{cri.search}, '%') or 
+					bo_me_id like concat('%',#{cri.search}, '%')
+			</when>
+			<!-- 제목 또는 작성자 검색 -->
+			<otherwise>
+				where
+					${cri.type} like concat('%',#{cri.search}, '%')
+			</otherwise>
+		</choose>
+		order by bo_num desc
 	</select>
 	
 	<select id="selectCommunity" resultType="kr.kh.app.model.vo.CommunityVO">

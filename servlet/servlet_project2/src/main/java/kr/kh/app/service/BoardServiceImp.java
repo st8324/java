@@ -13,6 +13,7 @@ import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.pagination.Criteria;
 
 public class BoardServiceImp implements BoardService {
 
@@ -33,8 +34,12 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public ArrayList<BoardVO> getBoardList() {
-		return boardDao.selectBoardList();
+	public ArrayList<BoardVO> getBoardList(Criteria cri) {
+		//현재 페이지정보 null 처리 
+		if(cri == null) {
+			cri = new Criteria();
+		}
+		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
