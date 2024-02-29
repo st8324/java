@@ -40,6 +40,10 @@
 			<h1>없는 게시글이거나 삭제된 게시글입니다.</h1>
 		</c:otherwise>
 	</c:choose>
+	<a href="<c:url value="/board/list"/>" class="btn btn-outline-primary">목록으로</a>
+	<c:if test="${user.me_id == board.bo_me_id }">
+		<a href="<c:url value="/board/delete?num=${board.bo_num }"/>" class="btn btn-outline-danger">삭제</a>
+	</c:if>
 </div>
 </body>
 </html>

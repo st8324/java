@@ -13,6 +13,7 @@ import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.dao.MemberDAO;
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.pagination.Criteria;
 
 public class BoardServiceImp implements BoardService {
@@ -80,6 +81,21 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public BoardVO getBoard(int num) {
 		return boardDao.selectBoard(num);
+	}
+
+	@Override
+	public boolean deleteBoard(int num, MemberVO user) {
+		if(user == null) {
+			return false;
+		}
+		//게시글을 가져옴
+		BoardVO board = boardDao.selectBoard(num);
+		//게시글이 없거나 작성자가 아니면 false를 리턴
+		if(board == null || !board.getBo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		//게시글을 삭제 요청
+		return boardDao.deleteBoard(num);
 	}
 	
 	
