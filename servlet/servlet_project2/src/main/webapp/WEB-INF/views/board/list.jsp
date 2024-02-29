@@ -50,7 +50,7 @@
 					<td>${board.bo_num}</td>
 					<td>${board.community.co_name}</td>
 					<td>
-						<a href="<c:url value=""/>">${board.bo_title}</a>
+						<a href="<c:url value="/board/detail?num=${board.bo_num}"/>">${board.bo_title}</a>
 					</td>
 					<td>
 						<a href="<c:url value=""/>">${board.bo_me_id}</a>

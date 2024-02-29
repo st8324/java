@@ -65,4 +65,16 @@
 			</otherwise>
 		</choose>
 	</select>
+	<update id="updateView">
+		update board
+		set
+			bo_view = bo_view + 1
+		where
+			bo_num = #{num}
+	</update>
+	<select id="selectBoard" resultMap="BoardMap">
+		select * from board
+		where
+			bo_num = #{num}
+	</select>
 </mapper>
