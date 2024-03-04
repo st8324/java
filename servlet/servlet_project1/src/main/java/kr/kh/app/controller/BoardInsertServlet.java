@@ -1,6 +1,5 @@
 package kr.kh.app.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -67,32 +66,12 @@ public class BoardInsertServlet extends HttpServlet {
 		
 		//첨부파일을 가져옴
 		Part filePart = request.getPart("file");
-		//파일을 저장할 폴더를 지정
-		String uploadPath = "D:\\uploads";
-		//저장할 파일 이름을 추가
-		String fileName = getFileName(filePart);
-		//경로가 포함된 파일명
-		String filePath = uploadPath + File.separator + fileName; 
-		
-		
 		
 		//서비스에게 게시글을 주면서 등록하라고 시킴
-		if(boardService.insertBoard(board)) {
+		if(boardService.insertBoard(board, filePart)) {
 			response.sendRedirect(request.getContextPath()+"/board/list");
 		}else {
 			response.sendRedirect(request.getContextPath()+"/board/insert");
 		}
-	}
-	private String getFileName(Part part) {
-		String contentDisposition = part.getHeader("content-disposition");
-		String [] items = contentDisposition.split(";");
-		for(String item : items) {
-			//item은 다음과 같은 형태로 구성
-			//속성명 = 값
-			if(item.trim().startsWith("filename")) {
-				return item.substring(item.indexOf("=") + 2);
-			}
-		}
-		return "";
 	}
 }

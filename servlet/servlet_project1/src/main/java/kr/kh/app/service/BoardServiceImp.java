@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.servlet.http.Part;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -33,19 +35,18 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public boolean insertBoard(BoardVO board) {
+	public boolean insertBoard(BoardVO board , Part filePart) {
 		if( board == null || 
-			board.getBo_title() == null || 
-			board.getBo_title().length() == 0) {
+			!checkString(board.getBo_content()) || 
+			!checkString(board.getBo_title())) {
 			return false;
 		}
-		if(board.getBo_me_id() == null) {
+		if(!checkString(board.getBo_me_id())) {
 			return false;
 		}
-		if(board.getBo_content() == null) {
-			return false;
-		}
-		return boardDao.insertBoard(board);
+		boolean res = boardDao.insertBoard(board);
+		
+		return res;
 	}
 
 	@Override
