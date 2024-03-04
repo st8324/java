@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.pagination.Criteria;
 
 public interface BoardDAO {
@@ -25,5 +26,7 @@ public interface BoardDAO {
 	boolean deleteBoard(@Param("num")int num);
 
 	boolean updateBoard(@Param("board")BoardVO board);
+
+	void insertFile(@Param("file")FileVO file);
 
 }

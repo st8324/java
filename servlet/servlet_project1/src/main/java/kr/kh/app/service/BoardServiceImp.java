@@ -14,13 +14,15 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import kr.kh.app.dao.BoardDAO;
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.pagination.Criteria;
+import kr.kh.app.utils.FileUploadUtils;
 
 public class BoardServiceImp implements BoardService{
 
 	private BoardDAO boardDao;
-	
+	private String uploadPath = "D:\\uploads";
 	public BoardServiceImp() {
 		String resource = "kr/kh/app/config/mybatis-config.xml";
 		
@@ -46,6 +48,15 @@ public class BoardServiceImp implements BoardService{
 		}
 		boolean res = boardDao.insertBoard(board);
 		
+		//첨부파일 업로드
+		//업로드할 첨부 파일이 없으면
+		if(filePart == null) {
+			return res;
+		}
+		String fileName = FileUploadUtils.upload(uploadPath, filePart);
+		String fileOriName = FileUploadUtils.getFileName(filePart);
+		FileVO file = new FileVO(board.getBo_num(), fileName, fileOriName);
+		boardDao.insertFile(file);
 		return res;
 	}
 
