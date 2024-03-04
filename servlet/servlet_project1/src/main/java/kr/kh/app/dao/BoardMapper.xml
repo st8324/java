@@ -80,4 +80,7 @@
 		insert into file(fi_bo_num, fi_ori_name, fi_name)
 		values(#{file.fi_bo_num},#{file.fi_ori_name},#{file.fi_name})
 	</insert>
+	<select id="selectFileByBo_num" resultType="kr.kh.app.model.vo.FileVO">
+		select * from file where fi_bo_num = #{num} 
+	</select>
 </mapper>
