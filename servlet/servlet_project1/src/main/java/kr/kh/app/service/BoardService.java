@@ -12,7 +12,7 @@ import kr.kh.app.pagination.Criteria;
 
 public interface BoardService {
 
-	boolean insertBoard(BoardVO board, Part filePart);
+	boolean insertBoard(BoardVO board, ArrayList<Part> partList);
 
 	ArrayList<CommunityVO> getCommunityList();
 
