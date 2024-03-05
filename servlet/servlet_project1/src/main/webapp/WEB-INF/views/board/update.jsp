@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <div class="container">
-	<form action="<c:url value="/board/update" />" method="post">
+	<form action="<c:url value="/board/update" />" method="post" enctype="multipart/form-data">
 		<h1>게시글 수정</h1>
 		<input type="hidden" name="num" value="${board.bo_num }">
 		<div class="mb-3 mt-3">
@@ -35,8 +35,36 @@
 		    <label for="content" class="form-label">내용:</label>
 		    <textarea rows="10" class="form-control" id="content" name="content" placeholder="내용">${board.bo_content }</textarea>
 	  	</div>
+	  	<div class="mb-3 mt-3" id="attachment">
+		    <label class="form-label">첨부파일:</label>
+		    <c:choose>
+		    	<c:when test="${file != null }">
+		    		<span class="form-control">${file.fi_ori_name}<a id="btnDel" data-target="${file.fi_num}">X</a></span>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<input type="file" name="file" class="form-control">
+		    	</c:otherwise>
+		    </c:choose>
+	  	</div>
 	  	<button class="btn btn-outline-warning col-12">글 수정</button>
 	</form>
 </div>
+<script type="text/javascript">
+	let btnDel = document.querySelector("#btnDel");
+	let attachment = document.querySelector("#attachment");
+	
+	btnDel.onclick = function(e){
+		e.preventDefault();
+		//input hidden으로 삭제할 첨부파일 번호를 추가
+		let num = this.getAttribute("data-target");
+		let str = `<input type="hidden" name="fi_num" value="\${num}">`;
+		attachment.innerHTML += str;
+		//sapn태그를 삭제
+		let span = attachment.querySelector("span.form-control");
+		attachment.removeChild(span);
+		let input = `<input type="file" name="file" class="form-control">`;
+		attachment.innerHTML += input;
+	}
+</script>
 </body>
 </html>

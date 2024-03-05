@@ -4,18 +4,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.service.BoardService;
 import kr.kh.app.service.BoardServiceImp;
 
 @WebServlet("/board/update")
+@MultipartConfig(
+	maxFileSize = 1024 * 1024 * 10, //10Mb
+	maxRequestSize = 1024 * 1024 * 10 * 3, //10Mb 최대 3개
+	fileSizeThreshold = 1024 * 1024 //1Mb : 파일 업로드 시 메모리에 저장되는 임시 파일 크기
+)
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private BoardService boardService = new BoardServiceImp();
@@ -48,6 +56,9 @@ public class BoardUpdateServlet extends HttpServlet {
 			return;
 		}
 		
+		//게시글의 첨부파일을 가져와서 화면에 전송
+		FileVO file = boardService.getFile(num);
+		request.setAttribute("file", file);
 		//같으면		
 		//게시판을 가져와서 화면에 전달
 		//서비스에게 게시판 리스트를 가져오라고 시킴
@@ -73,8 +84,18 @@ public class BoardUpdateServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		//게시글 객체로 생성
 		BoardVO board = new BoardVO(num, title, content, community);
+		
+		//새로 추가된 첨부파일 정보 가져옴
+		Part file = request.getPart("file");
+		//삭제할 첨부파일 정보 가져옴
+		int fi_num;
+		try {
+			fi_num = Integer.parseInt(request.getParameter("fi_num"));
+		}catch (Exception e) {
+			fi_num = 0;
+		}
 		//서비스에게 게시글과 회원정보를 주면서 게시글 수정하라고 요청
-		boolean res = boardService.updateBoard(board, user);
+		boolean res = boardService.updateBoard(board, user, fi_num, file);
 		//성공하면 성공했다고 알리고 게시글 상세로 이동
 		if(res) {
 			request.setAttribute("msg", "게시글을 수정했습니다.");	

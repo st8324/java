@@ -115,7 +115,7 @@ public class BoardServiceImp implements BoardService{
 	
 
 	@Override
-	public boolean updateBoard(BoardVO board, MemberVO user) {
+	public boolean updateBoard(BoardVO board, MemberVO user, int fi_num, Part file) {
 		if(user == null || user.getMe_id() == null) {
 			return false;
 		}
@@ -130,6 +130,14 @@ public class BoardServiceImp implements BoardService{
 		if(dbBoard == null || !dbBoard.getBo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
+		
+		//첨부파일 추가
+		uploadFile(file, board.getBo_num());
+		
+		//첨부파일 삭제
+		FileVO fileVo = boardDao.selectFile(fi_num);
+		deleteFile(fileVo);
+		
 		//같으면 게시글 수정
 		return boardDao.updateBoard(board);
 	}
