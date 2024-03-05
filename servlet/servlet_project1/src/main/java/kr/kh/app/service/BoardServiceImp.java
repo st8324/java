@@ -1,5 +1,6 @@
 package kr.kh.app.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -99,9 +100,19 @@ public class BoardServiceImp implements BoardService{
 		if(board == null || !board.getBo_me_id().equals(user.getMe_id())) {
 			return false;
 		}
+		
+		//게시글의 첨부파일을 서버 폴더에서 삭제(실제 파일)
+		//게시글의 첨부파일을 DB에서 삭제
+		//게시글에 있는 첨부파일 정보을 가져옴
+		FileVO file = boardDao.selectFileByBo_num(num);
+		
+		deleteFile(file);
+				
 		//같으면 게시글 삭제 후 삭제 여부를 반환
 		return boardDao.deleteBoard(num);
 	}
+
+	
 
 	@Override
 	public boolean updateBoard(BoardVO board, MemberVO user) {
@@ -140,6 +151,18 @@ public class BoardServiceImp implements BoardService{
 		String fileName = FileUploadUtils.upload(uploadPath, filePart);
 		FileVO file = new FileVO(bo_num, fileName, fileOriName);
 		boardDao.insertFile(file);
+	}
+	
+	private void deleteFile(FileVO fileVo) {
+		if(fileVo == null) {
+			return;
+		}
+		File file = new File(uploadPath 
+				+ fileVo.getFi_name().replace('/', File.separatorChar));
+		if(file.exists()) {
+			file.delete();
+		}
+		boardDao.deleteFile(fileVo.getFi_num());
 	}
 
 	@Override
