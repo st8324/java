@@ -97,4 +97,7 @@
 	<select id="selectFileList" resultType="kr.kh.app.model.vo.FileVO">
 		select * from file where fi_bo_num = #{bo_num}
 	</select>
+	<delete id="deleteFile">
+		delete from file where fi_num = #{fi_num}
+	</delete>
 </mapper>
