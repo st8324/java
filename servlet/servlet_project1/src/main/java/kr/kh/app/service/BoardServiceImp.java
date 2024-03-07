@@ -216,6 +216,14 @@ public class BoardServiceImp implements BoardService{
 		boardDao.deleteFile(fileVo.getFi_num());
 	}
 
+	@Override
+	public RecommendVO getRecommend(MemberVO user, int num) {
+		if(user == null) {
+			return null;
+		}
+		return boardDao.selectRecommend(user.getMe_id(), num);
+	}
+
 	
 }
 
