@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import kr.kh.app.model.vo.MemberVO;
 
 //로그인한 회원만 접근할 수 있는 URL에서 동작하는 필터
-@WebFilter({"/board/insert","/board/update","/board/delete"})
+@WebFilter({"/board/insert","/board/update","/board/delete", "/recommend"})
 public class MemberFilter extends HttpFilter implements Filter {
        
 	private static final long serialVersionUID = -5262224032098686359L;

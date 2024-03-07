@@ -103,4 +103,14 @@
 	<select id="selectFile" resultType="kr.kh.app.model.vo.FileVO">
 		select * from file where fi_num = #{fi_num}
 	</select>
+	<select id="selectRecommend"  resultType="kr.kh.app.model.vo.RecommendVO">
+		select * from recommend where re_bo_num = #{bo_num} and re_me_id = #{me_id}
+	</select>
+	<insert id="insertRecommend">
+		insert into recommend(re_me_id, re_bo_num, re_state)
+		values(#{re.re_me_id},#{re.re_bo_num},#{re.re_state})
+	</insert>
+	<update id="updateRecommend">
+		update recommend set re_state = #{re.re_state} where re_num = #{re.re_num}
+	</update>
 </mapper>
