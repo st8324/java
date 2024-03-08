@@ -176,7 +176,14 @@ $(".btn-comment-insert").click(function(){
 			num
 		},
 		success : function(data){
-			console.log(data);
+			if(data == "ok"){
+				alert("댓글을 등록했습니다.");
+				cri.page = 1;
+				getCommentList(cri);
+				$(".comment-content").val("");
+			}else{
+				alert("댓글을 등록하지 못했습니다.");
+			}
 		}, 
 		error : function(a, b, c){
 			
