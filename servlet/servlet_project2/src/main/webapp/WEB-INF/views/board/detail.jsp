@@ -37,7 +37,7 @@
 			</div>
 			<div class="mb-3 mt-3">
 				<label for="content" class="form-label">내용</label>
-				<textarea rows="10" class="form-control" readonly>${board.bo_content }</textarea>
+				<div class="form-control" style="min-height: 400px">${board.bo_content }</div>
 			</div>
 			<c:if test="${fileList != null && fileList.size() != 0 }">
 				<div class="mb-3 mt-3">
