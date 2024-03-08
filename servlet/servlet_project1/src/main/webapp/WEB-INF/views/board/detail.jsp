@@ -65,7 +65,11 @@
 						</div>
 			  		</div>
 			  		<!-- 댓글 페이지네이션 박스 -->
-			  		<div class="comment-pagination"></div>
+			  		<div class="comment-pagination">
+			  			<ul class="pagination justify-content-center">
+			  				
+			  			</ul>
+			  		</div>
 			  		<!-- 댓글 입력 박스 -->
 			  		<div class="comment-input-box">
 						<div class="input-group">
@@ -218,12 +222,47 @@ function getCommentList(cri){
 				`;
 			}
 			$(".comment-list").html(str);
+			//JSON.parse(문자열) : json형태의 문자열을 객체로 변환
+			//JSON.stringify(객체) : 객체를 json형태의 문자열로 변환
+			let pm = JSON.parse(data.pm);
+			let pmStr = "";
+			//이전 버튼 활성화 여부
+			if(pm.prev){
+				pmStr += `
+				<li class="page-item">
+					<a class="page-link" href="javascript:void(0);" data-page="\${pm.startPage-1}">이전</a>
+				</li>
+				`;
+			}
+			//숫자 페이지
+			for(i = pm.startPage; i<= pm.endPage; i++){
+				let active = pm.cri.page == i ? "active" :"";
+				pmStr += `
+				<li class="page-item \${active}">
+					<a class="page-link" href="javascript:void(0);" data-page="\${i}">\${i}</a>
+				</li>
+				`
+			}
+			//다음 버튼 활성화 여부
+			if(pm.next){
+				pmStr += `
+				<li class="page-item">
+					<a class="page-link" href="javascript:void(0);" data-page="\${pm.endPage+1}">다음</a>
+				</li>
+				`;
+			}
+			$(".comment-pagination>ul").html(pmStr);
 		}, 
 		error : function(a, b, c){
 			
 		}
 	});
 }
+
+$(document).on("click",".comment-pagination .page-link", function(){
+	cri.page = $(this).data("page");
+	getCommentList(cri);
+})
 
 getCommentList(cri);
 </script>

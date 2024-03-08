@@ -19,6 +19,7 @@ import kr.kh.app.model.vo.CommunityVO;
 import kr.kh.app.model.vo.FileVO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.model.vo.RecommendVO;
+import kr.kh.app.pagination.CommentCriteria;
 import kr.kh.app.pagination.Criteria;
 import kr.kh.app.utils.FileUploadUtils;
 
@@ -240,6 +241,14 @@ public class BoardServiceImp implements BoardService{
 			cri = new Criteria(1,2);
 		}
 		return boardDao.selectCommentList(cri);
+	}
+
+	@Override
+	public int getTotalCountComment(CommentCriteria cri) {
+		if(cri == null) {
+			return 0;
+		}
+		return boardDao.selectTotalCountComment(cri);
 	}
 
 	

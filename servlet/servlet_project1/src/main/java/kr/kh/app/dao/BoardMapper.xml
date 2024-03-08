@@ -109,4 +109,8 @@
 		order by cm_num desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	<select id="selectTotalCountComment" resultType="int">
+		select count(*) from comment 
+		where cm_bo_num = #{cri.boNum}
+	</select>
 </mapper>
