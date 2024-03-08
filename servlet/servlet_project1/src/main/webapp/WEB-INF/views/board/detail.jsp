@@ -213,11 +213,21 @@ function getCommentList(cri){
 			
 			let str = '';
 			for(comment of data.list){
+				let btns = '';
+				if('${user.me_id}' == comment.cm_me_id){
+					btns +=					
+					`
+						<button class="btn btn-outline-warning btn-comment-update">수정</button>
+						<button class="btn btn-outline-danger btn-comment-delete" data-num="\${comment.cm_num}">삭제</button>
+					`
+				}
+				
 				str +=
 				`
 				<div class="input-group mb-3">
 					<div class="col-3">\${comment.cm_me_id}</div>
-					<div class="col-9">\${comment.cm_content}</div>
+					<div class="col-6">\${comment.cm_content}</div>
+					\${btns}
 				</div>
 				`;
 			}
@@ -266,5 +276,35 @@ $(document).on("click",".comment-pagination .page-link", function(){
 
 getCommentList(cri);
 </script>
+<!-- 댓글 수정 기능 -->
+<script type="text/javascript">
+//이벤트를 등록할때 요소가 있으면 해당 요소에 이벤트를 등록. 요소가 나중에 추가되면 동작을 하지 않음
+//$("선택자").click(function(){});
+//document객체에 이벤트를 등록하기 때문에 요소가 나중에 추가되도 동작
+$(document).on("click",".btn-comment-delete", function(){
+	let num = $(this).data("num");
+	$.ajax({
+		url : '<c:url value="/comment/delete"/>',
+		method : "post",
+		data : {
+			num
+		},
+		success : function(data){
+			console.log(data);
+			if(data == 'ok'){
+				alert("댓글을 삭제했습니다.");
+				getCommentList(cri);
+			}else{
+				alert("댓글을 삭제하지 못했습니다.");
+			}
+			
+		}, 
+		error : function(a, b, c){
+			
+		}
+	});
+});
+</script>
+
 </body>
 </html>
