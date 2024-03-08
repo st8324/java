@@ -103,4 +103,9 @@
 		insert into comment(cm_bo_num, cm_content, cm_me_id)
 		values(#{co.cm_bo_num},#{co.cm_content},#{co.cm_me_id})
 	</insert>
+	<select id="selectCommentList" resultType="kr.kh.app.model.vo.CommentVO">
+		select * from comment 
+		order by cm_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 </mapper>

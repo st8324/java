@@ -142,7 +142,7 @@
 		}
 	</c:if>
 </script>
-<!-- 댓글 구현 -->
+<!-- 댓글 등록 구현 -->
 <script type="text/javascript">
 //(댓글)등록 버튼 클릭 이벤트를 등록
 $(".btn-comment-insert").click(function(){
@@ -176,8 +176,31 @@ $(".btn-comment-insert").click(function(){
 		error : function(a, b, c){
 			
 		}
-	})
+	});
 });//click end
+</script>
+<!-- 댓글 조회 구현 -->
+<script type="text/javascript">
+//댓글 현재 페이지 정보
+let cri = {
+	page : 1		
+}
+//댓글 리스트를 화면에 출력하는 함수
+function getCommentList(cri){
+	$.ajax({
+		url : '<c:url value="/comment/list"/>',
+		method : "post",
+		data : cri,
+		success : function(data){
+			console.log(data.list);
+		}, 
+		error : function(a, b, c){
+			
+		}
+	});
+}
+
+getCommentList(cri);
 </script>
 </body>
 </html>
