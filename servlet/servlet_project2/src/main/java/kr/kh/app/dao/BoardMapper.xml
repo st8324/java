@@ -113,4 +113,12 @@
 	<update id="updateRecommend">
 		update recommend set re_state = #{re.re_state} where re_num = #{re.re_num}
 	</update>
+	<select id="selectCommentList" resultType="kr.kh.app.model.vo.CommentVO">
+		select * from comment where cm_bo_num = #{cri.search} 
+		order by cm_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectTotalCommentCount" resultType="int">
+		select count(*) from comment where cm_bo_num = #{cri.search} 
+	</select>
 </mapper>
