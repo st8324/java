@@ -244,7 +244,7 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public int getTotalCountComment(CommentCriteria cri) {
+	public int getTotalCountComment(Criteria cri) {
 		if(cri == null) {
 			return 0;
 		}

@@ -48,7 +48,7 @@ public interface BoardDAO {
 
 	ArrayList<CommentVO> selectCommentList(@Param("cri")Criteria cri);
 
-	int selectTotalCountComment(@Param("cri")CommentCriteria cri);
+	int selectTotalCountComment(@Param("cri")Criteria cri);
 
 	CommentVO selectComment(@Param("cm_num")int num);
 
