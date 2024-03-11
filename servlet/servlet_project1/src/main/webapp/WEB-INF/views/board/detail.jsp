@@ -177,8 +177,8 @@ $(".btn-comment-insert").click(function(){
 		url : '<c:url value="/comment/insert"/>',
 		method : "post",
 		data : {
-			content,
-			num
+			content, //content : content
+			num //num : num
 		},
 		success : function(data){
 			if(data == "ok"){
@@ -210,24 +210,25 @@ function getCommentList(cri){
 		method : "post",
 		data : cri,
 		success : function(data){
-			console.log(data.list);
-			
+		
 			let str = '';
 			for(comment of data.list){
 				let btns = '';
 				if('${user.me_id}' == comment.cm_me_id){
 					btns +=					
 					`
+					<div class="btn-comment-group">
 						<button class="btn btn-outline-warning btn-comment-update">수정</button>
 						<button class="btn btn-outline-danger btn-comment-delete" data-num="\${comment.cm_num}">삭제</button>
+					</div>
 					`
 				}
 				
 				str +=
 				`
-				<div class="input-group mb-3">
+				<div class="input-group mb-3 box-comment">
 					<div class="col-3">\${comment.cm_me_id}</div>
-					<div class="col-6">\${comment.cm_content}</div>
+					<div class="col-6 cm_content">\${comment.cm_content}</div>
 					\${btns}
 				</div>
 				`;
@@ -277,7 +278,7 @@ $(document).on("click",".comment-pagination .page-link", function(){
 
 getCommentList(cri);
 </script>
-<!-- 댓글 수정 기능 -->
+<!-- 댓글 삭제 구능 -->
 <script type="text/javascript">
 //이벤트를 등록할때 요소가 있으면 해당 요소에 이벤트를 등록. 요소가 나중에 추가되면 동작을 하지 않음
 //$("선택자").click(function(){});
@@ -306,6 +307,15 @@ $(document).on("click",".btn-comment-delete", function(){
 	});
 });
 </script>
-
+<!-- 댓글 수정 구현 -->
+<script type="text/javascript">
+$(document).on("click", ".btn-comment-update", function(){
+	//현재 댓글 보여주는 창이 textarea태그로 변경
+	//기존 댓글 창을 감춤
+	$(this).parents(".box-comment").find(".cm_content").hide();
+	//수정 삭제 버튼 대신 수정 완료 버튼으로 변경
+	
+});//click end
+</script>
 </body>
 </html>
