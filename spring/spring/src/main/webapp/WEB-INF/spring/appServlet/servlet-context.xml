@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- url이 /resources로 시작하면 /webapp 폴더안에 resouces폴더에 있는 
+	파일들을 가져오도록 설정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 컨트롤러에서 문자열을 리턴하면 뷰리졸버에서 어떤 화면을 연결할지를 설정하는 코드 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 클래스들을 읽어 올 수 있게 기본 패키지를 지정 -->
+	<context:component-scan base-package="kr.kh.spring.*" />
+	
+	
+	
+</beans:beans>
