@@ -6,4 +6,7 @@
   <select id="selectMemberCount" resultType="int">
   	select count(*) from member
   </select>
+  <select id="selectMember" resultType="MemberVO">
+  	select * from member where me_id = #{id}
+  </select>
 </mapper>
