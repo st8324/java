@@ -6,5 +6,6 @@
 	<typeAliases>
 		<!-- Mapper에서 resultType을 간단히 줄여쓰기 위해 typeAlias를 활용 -->
 		<typeAlias type="kr.kh.spring.model.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="kr.kh.spring.model.vo.BoardVO" alias="BoardVO"/>
 	</typeAliases>
 </configuration>
