@@ -4,8 +4,6 @@ import kr.kh.spring.model.vo.MemberVO;
 
 public interface MemberService {
 
-	int testCountMember();
-
-	MemberVO getMember(String string);
+	boolean insertMember(MemberVO member);
 
 }

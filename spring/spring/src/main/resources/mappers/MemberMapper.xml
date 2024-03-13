@@ -9,4 +9,8 @@
   <select id="selectMember" resultType="MemberVO">
   	select * from member where me_id = #{id}
   </select>
+  <insert id="insertMember">
+  	insert into member(me_id, me_pw, me_email, me_ms_state) 
+  	values(#{me_id}, #{me_pw}, #{me_email}, "이용중")
+  </insert>
 </mapper>

@@ -12,14 +12,24 @@ public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 
-	@Override
-	public int testCountMember() {
-		return memberDao.selectMemberCount();
+	private boolean checkString(String str) {
+		return str != null && str.length() != 0; 
 	}
-
+	
 	@Override
-	public MemberVO getMember(String id) {
-		return memberDao.selectMember(id);
+	public boolean insertMember(MemberVO member) {
+		if( member == null ||
+			!checkString(member.getMe_id()) ||
+			!checkString(member.getMe_pw()) ||
+			!checkString(member.getMe_email())) {
+			return false;
+		}
+		//아이디 중복 체크
+		MemberVO user = memberDao.selectMember(member.getMe_id());
+		if(user != null) {
+			return false;
+		}
+		return memberDao.insertMember(member);
 	}
 	
 	

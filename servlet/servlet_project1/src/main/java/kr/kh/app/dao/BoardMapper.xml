@@ -43,7 +43,7 @@
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectCommunity" resultType="kr.kh.app.model.vo.CommunityVO">
-		select * from community where co_num = #{bo_co_num}
+		select * from community where co_num = #{co_num}
 	</select>
 	<select id="selectTotalCount" resultType="int">
 		SELECT count(*) 
