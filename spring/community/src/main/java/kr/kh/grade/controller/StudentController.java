@@ -1,17 +1,17 @@
-package kr.kh.community.controller;
+package kr.kh.grade.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.kh.community.service.BoardService;
+import kr.kh.grade.service.SutdentService;
 
 @Controller
 @RequestMapping("/board")
-public class BoardController {
+public class StudentController {
 
 	@Autowired
-	BoardService boardService;
+	SutdentService boardService;
 	
 	@RequestMapping("/regist")
 	public String regist() {

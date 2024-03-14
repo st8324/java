@@ -1,4 +1,4 @@
-package kr.kh.community.model.vo;
+package kr.kh.grade.model.vo;
 
 
 public class MemberVO {

@@ -1,4 +1,4 @@
-package kr.kh.community;
+package kr.kh.grade;
 
 import java.text.DateFormat;
 import java.util.Date;

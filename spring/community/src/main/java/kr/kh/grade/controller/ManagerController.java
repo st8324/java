@@ -1,32 +1,32 @@
-package kr.kh.community.controller;
+package kr.kh.grade.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.kh.community.service.MemberService;
+import kr.kh.grade.service.ManagerService;
 
 @Controller
-@RequestMapping("/member")
-public class MemberController {
+@RequestMapping("/manager")
+public class ManagerController {
 	
 	@Autowired
-	MemberService memberService;
+	ManagerService managerService;
 
 	@RequestMapping("/regist")
 	public String regist() {
-		return "/member/regist";
+		return "/manager/regist";
 	}
 	@RequestMapping("/list")
 	public String list() {
-		return "/member/list";
+		return "/manager/list";
 	}
 	@RequestMapping("/update")
 	public String update() {
-		return "/member/update";
+		return "/manager/update";
 	}
 	@RequestMapping("/delete")
 	public String delete() {
-		return "/member/delete";
+		return "/manager/delete";
 	}
 }
