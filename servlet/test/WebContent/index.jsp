@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>게시글 조회</h1>
-<form action="<c:url value="/select/board"/>">
-	<input type="text" name="boardNum">
+<h1>회원 정보 조회(회원 번호 검색)</h1>
+<form action="<c:url value="/select/user"/>">
+	<input type="text" name="num" placeholder="회원 번호 입력">
 	<button type="submit">조회</button>
 </form>
 </body>

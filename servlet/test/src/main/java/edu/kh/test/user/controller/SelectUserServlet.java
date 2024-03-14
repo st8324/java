@@ -1,4 +1,4 @@
-package kr.kh.test.controller;
+package edu.kh.test.user.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,39 +14,39 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import kr.kh.test.model.dao.BoardDAO;
-import kr.kh.test.model.vo.BoardVO;
+import edu.kh.test.user.model.UserDAO;
+import edu.kh.test.user.model.vo.UserDTO;
 
-@WebServlet("/select/board")
-public class SelectBoardServlet extends HttpServlet {
+@WebServlet("/select/user")
+public class SelectUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BoardDAO boardDao;
+	private UserDAO userDao;
 	
-    public SelectBoardServlet() {
-    	String resource = "kr/kh/test/config/mybatis-config.xml";
+    public SelectUserServlet() {
+    	String resource = "edu/kh/test/user/config/mybatis-config.xml";
 		InputStream inputStream;
 		SqlSession session;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			session = sessionFactory.openSession(true);
-			boardDao = session.getMapper(BoardDAO.class);
+			userDao = session.getMapper(UserDAO.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boNum = 0;
+		int num = 0;
 		try {
-			boNum = Integer.parseInt(request.getParameter("boardNum"));
+			num = Integer.parseInt(request.getParameter("num"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		BoardVO board = boardDao.selectBoard(boNum);
-		request.setAttribute("board", board);
-		if(board != null) {
+		UserDTO user = userDao.selectUser(num);
+		request.setAttribute("user", user);
+		if(user != null) {
 			request.getRequestDispatcher("/WEB-INF/views/searchSuccess.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/searchFail.jsp").forward(request, response);

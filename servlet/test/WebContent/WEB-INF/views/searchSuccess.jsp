@@ -8,20 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>게시글 정보</h1>
+<h1>회원 정보</h1>
 <table border="1">
 	<thead>
 		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
+			<th>회원번호</th>
+			<th>회원아이디</th>
+			<th>회원이름</th>
+			<th>회원나이</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>${board.bo_num}</th>
-			<th>${board.bo_title }</th>
-			<th>${board.bo_me_id }</th>
+			<th>${user.user_no}</th>
+			<th>${user.user_id }</th>
+			<th>${user.user_name }</th>
+			<th>${user.user_age }</th>
 		</tr>
 	</tbody>
 </table>
