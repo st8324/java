@@ -4,9 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.kh.spring.dao.BoardDAO">
 	<select id="selectBoardList" resultType="BoardVO">
-		select * from board 
-		order by bo_num desc
-		limit #{cri.pageStart}, #{cri.perPageNum}
+		SELECT 
+		    board.*,
+		    co_name AS bo_co_name,
+		    SUM(CASE WHEN re_state = 1 THEN 1 ELSE 0 END) AS bo_up,
+		    SUM(CASE WHEN re_state = - 1 THEN 1 ELSE 0 END) AS bo_down
+		FROM
+		    board
+		        JOIN
+		    community ON co_num = bo_co_num
+		        LEFT JOIN
+		    recommend ON re_bo_num = bo_num
+		GROUP BY bo_num
+		ORDER BY bo_num DESC
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectBoardTotalCount" resultType="int">
 		select count(*) from board
