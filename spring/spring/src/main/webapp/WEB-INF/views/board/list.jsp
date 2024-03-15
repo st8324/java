@@ -32,7 +32,13 @@
 				<td>${board.bo_num }</td>
 				<td>${board.bo_co_name }</td>
 				<td>${board.bo_title }</td>
-				<td>${board.bo_me_id }</td>
+				<td>
+					<c:url value="/board/list" var="url">
+						<c:param name="type" value="writer"/>
+						<c:param name="search" value="${board.bo_me_id}"/>
+					</c:url>
+					<a href="${url}">${board.bo_me_id }</a>
+				</td>
 				<td>${board.bo_view }</td>
 				<td>${board.bo_up }/${board.bo_down }</td>
 			</tr>
