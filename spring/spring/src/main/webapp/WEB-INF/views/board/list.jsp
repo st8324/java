@@ -31,7 +31,15 @@
 			<tr>
 				<td>${board.bo_num }</td>
 				<td>${board.bo_co_name }</td>
-				<td>${board.bo_title }</td>
+				<td>
+					<c:url value="/board/detail" var="url">
+						<c:param name="page" value="${pm.cri.page}"/>
+						<c:param name="type" value="${pm.cri.type}"/>
+						<c:param name="search" value="${pm.cri.search}"/>
+						<c:param name="boNum" value="${board.bo_num}"/>
+					</c:url>
+					<a href="${url}">${board.bo_title }</a>
+				</td>
 				<td>
 					<c:url value="/board/list" var="url">
 						<c:param name="type" value="writer"/>

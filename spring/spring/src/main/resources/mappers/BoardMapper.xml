@@ -56,4 +56,30 @@
 		insert into board(bo_title, bo_content, bo_co_num, bo_me_id)
 		values(#{bo.bo_title},#{bo.bo_content},#{bo.bo_co_num},#{bo.bo_me_id})
 	</insert>
+	
+	<insert id="insertFile">
+		insert into file(fi_bo_num, fi_name, fi_ori_name)
+		values(#{fi.fi_bo_num},#{fi.fi_name},#{fi.fi_ori_name})
+	</insert>
+	<select id="selectBoard" resultType="BoardVO">
+		SELECT 
+		    board.*,
+		    co_name AS bo_co_name,
+		    SUM(CASE WHEN re_state = 1 THEN 1 ELSE 0 END) AS bo_up,
+		    SUM(CASE WHEN re_state = - 1 THEN 1 ELSE 0 END) AS bo_down
+		FROM
+		    board
+		        JOIN
+		    community ON co_num = bo_co_num
+		        LEFT JOIN
+		    recommend ON re_bo_num = bo_num
+		WHERE
+			bo_num = #{bo_num}
+	</select>
+	<update id="updateView">
+		update board set bo_view = bo_view + 1 where bo_num = #{bo_num}
+	</update>
+	<select id="selectFileList" resultType="FileVO">
+		select * from file where fi_bo_num = #{bo_num}
+	</select>
 </mapper>
