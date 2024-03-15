@@ -15,11 +15,37 @@
 		    community ON co_num = bo_co_num
 		        LEFT JOIN
 		    recommend ON re_bo_num = bo_num
+		where
+			<choose>
+				<when test='cri.type == "all"'>
+					bo_title like concat('%', #{cri.search}, '%') or
+					bo_me_id = #{cri.search}
+				</when>
+				<when test='cri.type == "title"'>
+					bo_title like concat('%', #{cri.search}, '%')
+				</when>
+				<otherwise>
+					bo_me_id = #{cri.search}
+				</otherwise>
+			</choose>
 		GROUP BY bo_num
 		ORDER BY bo_num DESC
 		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectBoardTotalCount" resultType="int">
 		select count(*) from board
+		where
+		<choose>
+			<when test='cri.type == "all"'>
+				bo_title like concat('%', #{cri.search}, '%') or
+				bo_me_id = #{cri.search}
+			</when>
+			<when test='cri.type == "title"'>
+				bo_title like concat('%', #{cri.search}, '%')
+			</when>
+			<otherwise>
+				bo_me_id = #{cri.search}
+			</otherwise>
+		</choose>
 	</select>
 </mapper>
