@@ -48,4 +48,12 @@
 			</otherwise>
 		</choose>
 	</select>
+	<select id="selectCommunityList" resultType="CommunityVO">
+		select * from community
+	</select>
+	
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="bo.bo_num">
+		insert into board(bo_title, bo_content, bo_co_num, bo_me_id)
+		values(#{bo.bo_title},#{bo.bo_content},#{bo.bo_co_num},#{bo.bo_me_id})
+	</insert>
 </mapper>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import kr.kh.spring.model.vo.BoardVO;
+import kr.kh.spring.model.vo.CommunityVO;
 import kr.kh.spring.pagination.Criteria;
 
 public interface BoardDAO {
@@ -12,5 +13,9 @@ public interface BoardDAO {
 	ArrayList<BoardVO> selectBoardList(@Param("cri")Criteria cri);
 
 	int selectBoardTotalCount(@Param("cri")Criteria cri);
+
+	ArrayList<CommunityVO> selectCommunityList();
+
+	boolean insertBoard(@Param("bo")BoardVO board);
 
 }
