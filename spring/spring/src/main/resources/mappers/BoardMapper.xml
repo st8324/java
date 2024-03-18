@@ -88,4 +88,15 @@
 	<delete id="deleteBoard">
 		delete from board where bo_num = #{bo_num}
 	</delete>
+	<update id="updateBoard">
+		update board set 
+			bo_title = #{bo.bo_title},
+			bo_content = #{bo.bo_content},
+			bo_co_num = #{bo.bo_co_num}
+		where
+			bo_num = #{bo.bo_num}
+	</update>
+	<select id="selectFile" resultType="FileVO">
+		select * from file where fi_num = #{fi_num}
+	</select>
 </mapper>

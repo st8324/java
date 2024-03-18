@@ -31,4 +31,8 @@ public interface BoardDAO {
 
 	boolean deleteBoard(@Param("bo_num")int num);
 
+	boolean updateBoard(@Param("bo")BoardVO board);
+
+	FileVO selectFile(@Param("fi_num")int tmp);
+
 }

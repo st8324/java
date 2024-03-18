@@ -151,6 +151,47 @@ public class BoardServiceImp implements BoardService {
 		return boardDao.deleteBoard(num);
 	}
 
+	@Override
+	public boolean updateBoard(BoardVO board, MemberVO user, MultipartFile[] file, int[] delNums) {
+		if( board == null || 
+			!checkString(board.getBo_title()) || 
+			!checkString(board.getBo_content())) {
+			return false;
+		}
+		if(user == null) {
+			return false;
+		}
+		//작성자가 맞는지
+		BoardVO dbBoard = boardDao.selectBoard(board.getBo_num());
+		if( dbBoard == null || 
+			!dbBoard.getBo_me_id().equals(user.getMe_id())) {
+			return false;
+		}
+		//게시글 수정
+		boolean res = boardDao.updateBoard(board);
+		
+		if(!res) {
+			return false;
+		}
+		//첨부파일 수정
+		
+		//새 첨부파일 추가
+		if(file != null) {
+			for(MultipartFile tmp : file) {
+				uploadFile(board.getBo_num(), tmp);
+			}
+		}
+		//삭제할 첨부파일 삭제
+		if(delNums == null) {
+			return true;
+		}
+		for(int tmp : delNums) {
+			FileVO fileVo = boardDao.selectFile(tmp);
+			deleteFile(fileVo);
+		}
+		return true;
+	}
+
 	
 
 	
