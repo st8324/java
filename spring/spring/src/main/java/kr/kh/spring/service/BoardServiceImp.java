@@ -57,6 +57,7 @@ public class BoardServiceImp implements BoardService {
 		//서버에서 삭제
 		UploadFileUtils.delteFile(uploadPath, file.getFi_name());
 		//DB에서 삭제
+		boardDao.deleteFile(file.getFi_num());
 	}
 	
 	@Override
@@ -147,7 +148,7 @@ public class BoardServiceImp implements BoardService {
 		}
 		//게시글 삭제
 		
-		return false;
+		return boardDao.deleteBoard(num);
 	}
 
 	

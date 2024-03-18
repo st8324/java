@@ -74,12 +74,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/delete")
-	public String boardDelete(Model model, int num, HttpSession session) {
+	public String boardDelete(Model model, int boNum, HttpSession session) {
 		//회원 정보를 가져옴
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		
 		//서비스에게 게시글 번호와 회원 정보를 주면서 삭제하라고 요청
-		boolean res = boardService.deleteBoard(num, user);
+		boolean res = boardService.deleteBoard(boNum, user);
 		//삭제 성공시 성공 처리
 		if(res) {
 			model.addAttribute("url", "/board/list");
@@ -87,7 +87,7 @@ public class BoardController {
 		}
 		//삭제 실패시 실패 처리
 		else {
-			model.addAttribute("url", "/board/detail?boNum="+num);
+			model.addAttribute("url", "/board/detail?boNum=" + boNum);
 			model.addAttribute("msg", "게시글을 삭제하지 못했습니다.");
 		}
 		
