@@ -51,6 +51,7 @@
 		<c:param name="search" value="${cri.search}"/>
 	</c:url>
 	<a href="${url}" class="btn btn-outline-dark">목록으로</a>
+	<a href="<c:url value="/board/delete?num=${board.bo_num}"/>" class="btn btn-outline-success">삭제</a>
 </div>
 </body>
 </html>
