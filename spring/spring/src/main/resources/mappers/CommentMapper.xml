@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.spring.dao.CommentDAO">
+	<select id="selectCommentList" resultType="CommentVO">
+		select * from comment where cm_bo_num = #{cri.search}
+		order by cm_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from comment where cm_bo_num = #{cri.search}
+	</select>
+</mapper>
