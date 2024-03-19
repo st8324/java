@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.kh.spring.model.vo.BoardVO;
 import kr.kh.spring.model.vo.CommunityVO;
 import kr.kh.spring.model.vo.FileVO;
+import kr.kh.spring.model.vo.RecommendVO;
 import kr.kh.spring.pagination.Criteria;
 
 public interface BoardDAO {
@@ -34,5 +35,11 @@ public interface BoardDAO {
 	boolean updateBoard(@Param("bo")BoardVO board);
 
 	FileVO selectFile(@Param("fi_num")int tmp);
+
+	RecommendVO selectRecommend(@Param("re")RecommendVO recommend);
+
+	void insertRecommend(@Param("re")RecommendVO recommend);
+
+	void updateRecommend(@Param("re")RecommendVO recommend);
 
 }

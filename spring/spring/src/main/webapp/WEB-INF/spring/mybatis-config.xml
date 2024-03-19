@@ -10,5 +10,6 @@
 		<typeAlias type="kr.kh.spring.model.vo.CommunityVO" alias="CommunityVO"/>
 		<typeAlias type="kr.kh.spring.model.vo.FileVO" alias="FileVO"/>
 		<typeAlias type="kr.kh.spring.model.vo.CommentVO" alias="CommentVO"/>
+		<typeAlias type="kr.kh.spring.model.vo.RecommendVO" alias="RecommendVO"/>
 	</typeAliases>
 </configuration>

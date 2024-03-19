@@ -99,4 +99,18 @@
 	<select id="selectFile" resultType="FileVO">
 		select * from file where fi_num = #{fi_num}
 	</select>
+	<select id="selectRecommend" resultType="RecommendVO">
+		select * from recommend 
+		where 
+			re_me_id = #{re.re_me_id} and re_bo_num = #{re.re_bo_num}
+	</select>
+	<insert id="insertRecommend">
+		insert into recommend(re_me_id, re_bo_num, re_state)
+		values(#{re.re_me_id},#{re.re_bo_num},#{re.re_state})
+	</insert>
+	<update id="updateRecommend">
+		update recommend set re_state = #{re.re_state}
+		where
+			re_me_id = #{re.re_me_id} and re_bo_num = #{re.re_bo_num} 
+	</update>
 </mapper>

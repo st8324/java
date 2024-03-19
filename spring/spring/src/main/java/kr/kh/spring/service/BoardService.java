@@ -8,6 +8,7 @@ import kr.kh.spring.model.vo.BoardVO;
 import kr.kh.spring.model.vo.CommunityVO;
 import kr.kh.spring.model.vo.FileVO;
 import kr.kh.spring.model.vo.MemberVO;
+import kr.kh.spring.model.vo.RecommendVO;
 import kr.kh.spring.pagination.Criteria;
 
 public interface BoardService {
@@ -29,5 +30,7 @@ public interface BoardService {
 	boolean deleteBoard(int num, MemberVO user);
 
 	boolean updateBoard(BoardVO board, MemberVO user, MultipartFile[] file, int[] delNums);
+
+	boolean recommend(RecommendVO recommend, MemberVO user);
 
 }
