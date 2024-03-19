@@ -160,10 +160,21 @@ $(document).on('click','.box-pagination .page-link',function(){
 <script type="text/javascript">
 //댓글 등록 버튼의 클릭 이벤트를 등록
 $(".btn-comment-insert").click(function(){
+	//로그인 확인
+	if(!checkLogin()){
+		return;
+	}
+	
 	//서버에 보낼 데이터를 생성 => 댓글 등록을 위한 정보 => 댓글 내용, 게시글 번호
 	let comment = {
 		cm_content : $('.textarea-comment').val(),
 		cm_bo_num : '${board.bo_num}'
+	}
+	
+	//내용이 비어있으면 내용을 입력하라고 알림
+	if(comment.cm_content.length == 0){
+		alert('댓글 내용을 작성하세요.');
+		return;
 	}
 	
 	//서버에 데이터를 전송
@@ -190,6 +201,19 @@ $(".btn-comment-insert").click(function(){
 		}
 	});
 });
+
+function checkLogin(){
+	//로그인 했을 때
+	if('${user.me_id}' != ''){
+		return true;
+	}
+	//안했을 때
+	if(confirm("로그인이 필요한 기능입니다.\n로그인 페이지로 이동하겠습니까?")){
+		location.href = '<c:url value="/login"/>';
+	}
+	return false;
+}
+
 </script>
 
 </body>
