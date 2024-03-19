@@ -242,7 +242,12 @@ $(document).on('click', '.btn-comment-del', function(){
 		contentType : "application/json; charset=utf-8",
 		dataType : "json", 
 		success : function (data){
-			console.log(data);
+			if(data.result){
+				alert('댓글을 삭제했습니다.');
+				getCommentList(cri);
+			}else{
+				alert('댓글을 삭제하지 못했습니다.');
+			}
 		}, 
 		error : function(jqXHR, textStatus, errorThrown){
 
