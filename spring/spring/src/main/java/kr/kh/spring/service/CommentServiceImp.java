@@ -48,4 +48,19 @@ public class CommentServiceImp implements CommentService {
 	private boolean checkString(String str) {
 		return str != null && str.length() != 0;
 	}
+
+	@Override
+	public boolean deleteComment(CommentVO comment, MemberVO user) {
+		if(comment == null)
+			return false;
+		if(user == null )
+			return false;
+		//작성자인지 확인
+		CommentVO dbComment = commentDao.selectComment(comment.getCm_num());
+		if( dbComment == null ||
+			!dbComment.getCm_me_id().equals(user.getMe_id()))
+			return false;
+		//댓글 삭제
+		return commentDao.deleteComment(comment.getCm_num());
+	}
 }

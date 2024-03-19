@@ -15,4 +15,10 @@
 		insert into comment(cm_bo_num, cm_me_id, cm_content)
 		values(#{co.cm_bo_num},#{co.cm_me_id},#{co.cm_content})
 	</insert>
+	<select id="selectComment" resultType="CommentVO">
+		select * from comment where cm_num = #{cm_num}
+	</select>
+	<delete id="deleteComment">
+		delete from comment where cm_num = #{cm_num}
+	</delete>
 </mapper>
