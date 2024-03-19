@@ -118,17 +118,18 @@ function displayCommentList(list){
 	for(item of list){
 		let boxBtns = 
 			`<span class="box-btn float-right">
-				<button class="btn btn-outline-danger btn-comment-del" data-num="\${item.cm_num}">삭제</button>
+				<button class="btn btn-outline-danger btn-comment-del" 
+					data-num="\${item.cm_num}">삭제</button>
+				<button class="btn btn-outline-danger btn-comment-update" 
+					data-num="\${item.cm_num}">수정</button>
 			</span>`;
 		let btns = '${user.me_id}' == item.cm_me_id ? boxBtns : '';  
 		str += 
 		`
 			<div class="box-comment row">
 				<div class="col-3">\${item.cm_me_id}</div>
-				<div class="col-9 clearfix">
-					<span>
-					\${item.cm_content}
-					</span>
+				<div class="col-9 clearfix input-group">
+					<span class="text-comment">\${item.cm_content}</span>
 					\${btns}
 				</div>
 			</div>
@@ -254,6 +255,39 @@ $(document).on('click', '.btn-comment-del', function(){
 		}
 	});	
 });
+</script>
+<!-- 댓글 수정  -->
+<script type="text/javascript">
+$(document).on('click', '.btn-comment-update', function(){
+	initComment();
+	let contentBox = $(this).parents(".box-comment").find(".text-comment");
+	//댓글을 수정할 수 있는 textarea로 변경
+	let content = contentBox.text();
+	console.log(content)
+	let str = 
+	`<textarea class="form-control">\${content}</textarea>`;
+	contentBox.after(str);
+	contentBox.hide();
+	
+	//수정/삭제버튼을 감추고
+	$(this).parents(".box-comment").find('.box-btn').hide();
+	
+	//수정 완료 버튼을 추가
+	let cm_num = $(this).data("num");
+	str = `<button class="btn btn-outline-warning btn-complete" data-num="\${cm_num}">수정 완료</button>`;
+	$(this).parents(".box-comment").find('.box-btn').after(str);
+});
+
+$(document).on('click', '.btn-complete', function(){
+	
+})
+//수정 버튼을 누른 상태에서 다른 수정버튼을 누르면 기존에 누른 댓글을 원상태로 돌려주는 함수
+function initComment(){
+	$('.btn-complete').remove();
+	$('.box-comment').find('textarea').remove();
+	$('.box-btn').show();
+	$('.text-comment').show();
+}
 </script>
 </body>
 </html>
