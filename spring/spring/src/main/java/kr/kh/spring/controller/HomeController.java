@@ -1,5 +1,8 @@
 package kr.kh.spring.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.kh.spring.model.dto.LoginDTO;
 import kr.kh.spring.model.vo.MemberVO;
@@ -70,5 +75,13 @@ public class HomeController {
 		model.addAttribute("msg", "로그아웃 했습니다.");
 		model.addAttribute("url", "/");
 		return "message";
+	}
+	@ResponseBody
+	@GetMapping("/id/check/dup")
+	public Map<String, Object> idCheckDup(@RequestParam("id") String id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean res = memberService.idCheck(id);
+		map.put("result", res);
+		return map;
 	}
 }

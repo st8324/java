@@ -16,6 +16,7 @@
 		<label for="id">아이디</label>
 		<input type="text" class="form-control" id="id" name="me_id">
 		<label id="id-error" class="error text-danger" for="id"></label>
+		<label id="id-error2" class="error text-danger"></label>
 	</div>
 	<div class="form-group">
 		<label for="pw">비번</label>
@@ -34,7 +35,7 @@
 	</div>
 	<button class="btn btn-outline-success col-12">회원가입</button>
 </form>
-
+<!-- 유효성 검사 -->
 <script type="text/javascript">
 $("form").validate({
 	rules : {
@@ -70,6 +71,9 @@ $("form").validate({
 			required : "필수 항목입니다.",
 			email : "이메일 형식이 아닙니다."
 		}
+	},
+	submitHandler : function(form){
+		return idCheckDup();
 	}
 });
 
@@ -82,6 +86,45 @@ $.validator.addMethod(
 	"정규표현식에 맞지 않습니다."
 )
 
+</script>
+<!-- 아이디 중복 검사 -->
+<script type="text/javascript">
+function idCheckDup(){
+	$("#id-error2").text("");
+	$("#id-error2").hide();
+	//입력된 아이디를 가져옴
+	let id = $('[name=me_id]').val();
+	let obj = {
+		id : id
+	}
+	let idRegex = /^\w{6,13}$/;
+	if(!idRegex.test(id)){
+		return false;
+	}
+	let result = false;
+	//서버에 아이디를 전송해서 사용 가능/불가능 처리
+	$.ajax({
+		async : false,
+		url : '<c:url value="/id/check/dup"/>', 
+		type : 'get', 
+		data : obj, 
+		dataType : "json", 
+		success : function (data){
+			result = data.result;
+			if(!result){
+				$("#id-error2").text("이미 사용중인 아이디입니다.");
+				$("#id-error2").show();
+			}
+		}, 
+		error : function(jqXHR, textStatus, errorThrown){
+
+		}
+	});
+	return result;
+}
+$('[name=me_id]').on('input',function(){
+	idCheckDup();
+})
 </script>
 </body>
 </html>
