@@ -11,4 +11,8 @@
 	<select id="selectTotalCount" resultType="int">
 		select count(*) from comment where cm_bo_num = #{cri.search}
 	</select>
+	<insert id="insertComment">
+		insert into comment(cm_bo_num, cm_me_id, cm_content)
+		values(#{co.cm_bo_num},#{co.cm_me_id},#{co.cm_content})
+	</insert>
 </mapper>

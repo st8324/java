@@ -22,6 +22,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		//로그인 안했으면
 		if(user == null) {
+			response.getWriter().write("<script>alert(\"로그인이필요한서비스입니다.\"</script>");
 			response.sendRedirect(request.getContextPath() + "/login");
 			return false;
 		}
