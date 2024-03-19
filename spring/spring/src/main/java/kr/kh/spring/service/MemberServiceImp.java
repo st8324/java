@@ -1,6 +1,7 @@
 package kr.kh.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.kh.spring.dao.MemberDAO;
@@ -12,6 +13,9 @@ public class MemberServiceImp implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDao;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	private boolean checkString(String str) {
 		return str != null && str.length() != 0; 
@@ -30,6 +34,8 @@ public class MemberServiceImp implements MemberService {
 		if(user != null) {
 			return false;
 		}
+		String encPw = passwordEncoder.encode(member.getMe_pw());
+		member.setMe_pw(encPw);
 		return memberDao.insertMember(member);
 	}
 
@@ -43,7 +49,7 @@ public class MemberServiceImp implements MemberService {
 		//아이디와 일치하는 회원 정보 가져옴
 		MemberVO user = memberDao.selectMember(loginDto.getId());
 		//회원 정보가 없거나 비번이 다르면
-		if(user == null || !user.getMe_pw().equals(loginDto.getPw())) {
+		if(user == null || !passwordEncoder.matches(loginDto.getPw(), user.getMe_pw())) {
 			return null;
 		}
 		return user;
