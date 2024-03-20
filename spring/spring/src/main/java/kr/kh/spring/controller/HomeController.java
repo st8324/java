@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -81,6 +82,20 @@ public class HomeController {
 	public Map<String, Object> idCheckDup(@RequestParam("id") String id){
 		Map<String, Object> map = new HashMap<String, Object>();
 		boolean res = memberService.idCheck(id);
+		map.put("result", res);
+		return map;
+	}
+	
+	@GetMapping("/find/pw")
+	public String findPw() {
+		
+		return "/member/findpw";
+	}
+	@ResponseBody
+	@PostMapping("/find/pw")
+	public Map<String, Object> findPwPost(@RequestParam("id") String id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean res = memberService.findPw(id);
 		map.put("result", res);
 		return map;
 	}

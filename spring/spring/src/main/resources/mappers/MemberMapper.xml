@@ -13,4 +13,7 @@
   	insert into member(me_id, me_pw, me_email, me_ms_state) 
   	values(#{me_id}, #{me_pw}, #{me_email}, "이용중")
   </insert>
+  <update id="updatePassword">
+  	update member set me_pw = #{pw} where me_id = #{id}
+  </update>
 </mapper>

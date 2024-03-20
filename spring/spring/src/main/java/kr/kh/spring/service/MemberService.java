@@ -11,4 +11,6 @@ public interface MemberService {
 
 	boolean idCheck(String id);
 
+	boolean findPw(String id);
+
 }
