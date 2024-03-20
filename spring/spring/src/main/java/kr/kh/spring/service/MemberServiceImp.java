@@ -153,4 +153,40 @@ public class MemberServiceImp implements MemberService {
 	        return false;
 	    }
 	}
+
+	@Override
+	public boolean pwCheck(String pw, MemberVO user) {
+		if(user== null || pw == null)
+			return false;
+		
+		return passwordEncoder.matches(pw, user.getMe_pw());
+	}
+
+	@Override
+	public boolean updateMember(MemberVO member, MemberVO user) {
+		if(member == null || user == null) {
+			return false;
+		}
+		if(!checkString(member.getMe_email())) {
+			return false;
+		}
+		
+		//비번을 안 바꾸는 경우 : 기존 비밀번호를 이용
+		if(!checkString(member.getMe_pw())) {
+			member.setMe_pw(user.getMe_pw());
+		}else {
+			String encPw = passwordEncoder.encode(member.getMe_pw());
+			member.setMe_pw(encPw);
+		}
+		//로그이한 회원 아이디로 아이디를 설정
+		member.setMe_id(user.getMe_id());
+		boolean res = memberDao.updateMember(member);
+		if(!res) {
+			return false;
+		}
+		//세션에 회원 정보를 업데이트하기 위해 작업
+		user.setMe_pw(member.getMe_pw());
+		user.setMe_email(member.getMe_email());
+		return true;
+	}
 }

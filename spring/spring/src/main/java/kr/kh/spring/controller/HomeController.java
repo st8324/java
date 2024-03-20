@@ -99,4 +99,36 @@ public class HomeController {
 		map.put("result", res);
 		return map;
 	}
+	@GetMapping("/mypage")
+	public String mypage() {
+		
+		return "/member/mypage";
+	}
+	
+	@ResponseBody
+	@PostMapping("/check/pw")
+	public Map<String, Object> checkPw(@RequestParam("pw") String pw,
+			HttpSession session){
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = memberService.pwCheck(pw, user);
+		map.put("result", res);
+		return map;
+	}
+	@PostMapping("/mypage")
+	public String mypagePost(Model model, MemberVO member, HttpSession session) {
+		System.out.println(member);
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		boolean res = memberService.updateMember(member, user);
+		if(res) {
+			model.addAttribute("msg", "회원 정보를 수정했습니다.");
+			model.addAttribute("url", "/mypage");
+		}else {
+			model.addAttribute("msg", "회원 정보를 수정하지 못했습니다.");
+			model.addAttribute("url", "/mypage");
+		}
+		//세션에 회원 정보 수정
+		session.setAttribute("user", user);
+		return "message";
+	}
 }

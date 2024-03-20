@@ -62,12 +62,14 @@
 			<mapping path="/board/insert"/>
 			<mapping path="/board/update"/>
 			<mapping path="/board/delete"/>
+			<mapping path="/mypage"/>
 			<beans:ref bean="memberInterceptor"/>
 		</interceptor>
 		<!-- GuestInterceptor가 실행된 URL 지정 -->
 		<interceptor>
 			<mapping path="/login"/>
 			<mapping path="/signup"/>
+			<mapping path="/find/pw"/>
 			<beans:ref bean="guestInterceptor"/>
 		</interceptor>
 	</interceptors>
