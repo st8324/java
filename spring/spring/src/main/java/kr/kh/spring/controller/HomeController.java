@@ -71,9 +71,14 @@ public class HomeController {
 	}
 	@GetMapping(value = "/logout")
 	public String logout(Model model, HttpSession session) {
+		//DB에서 cookie정보를 삭제
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		user.setMe_cookie(null);
+		user.setMe_cookie_limit(null);
+		memberService.updateMemberCookie(user);
+		
 		//로그아웃 => 세션에 회원 정보를 제거
 		session.removeAttribute("user");
-		
 		model.addAttribute("msg", "로그아웃 했습니다.");
 		model.addAttribute("url", "/");
 		return "message";
