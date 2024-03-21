@@ -24,4 +24,17 @@
   	where 
   		me_id = #{me.me_id}
   </update>
+  <update id="updateMemberCookie">
+  	update member set 
+  		me_cookie = #{user.me_cookie},
+  		me_cookie_limit = #{user.me_cookie_limit}
+  	where
+  		me_id = #{user.me_id}
+  </update>
+  <select id="selectMemberByCookie" resultType="MemberVO">
+  	<![CDATA[
+  	select * from member where 
+  		me_cookie = #{session_id} and me_cookie_limit >= now()
+ 	]]>
+  </select>
 </mapper>

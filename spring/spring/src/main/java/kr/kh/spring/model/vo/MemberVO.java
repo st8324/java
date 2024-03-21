@@ -1,5 +1,7 @@
 package kr.kh.spring.model.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,4 +16,7 @@ public class MemberVO {
 	private String me_authority; 
 	private String me_stop;
 	private int me_fail;
+	private String me_cookie;
+	private Date me_cookie_limit;
+	private boolean autoLogin;
 }
