@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsx</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+
+	/*
+	배열의 0번지값을 appleCount에 저장하고, 배열의 1번지값을 bananaCount에
+	저장하는 코드를 작성하고, 콘솔에 출력하세요.
+	*/
+	let arr = [ 1, 10];
+	//let appleCount = arr[0];
+	//let bananaCount = arr[1];
+	//배열에 각 번지에 있는 값을 한번에 각 변수에 저장하는 방법
+	let [appleCount, bananaCount] = arr;
+	console.log(appleCount);
+	console.log(bananaCount);
+
+	
+	function App(){
+		//React.useStae는 0번지에는 변수값을, 1번지에는 0번지에 있는 변수값을 변경할 수 있는
+		//Setter가 저장이 됨(함수)
+		let [count, setCount] = React.useState(0);
+		function countUp(){
+			setCount(count+1);
+		}
+		function countDown(){
+			setCount(count-1);
+		}
+		return (
+			<div>
+				<button onClick={countDown}>-</button>
+				<span style={{"padding" : "0 10px"}}>{count}</span>
+				<button onClick={countUp}>+</button>
+			</div>
+		)
+	}
+
+	root.render(<App />);
+</script>
+</body>
+</html>
