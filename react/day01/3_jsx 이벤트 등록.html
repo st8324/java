@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsx</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	let count = 0;
+	function App(){
+		function countUp(){
+			alert(++count);
+		}
+		function countDown(){
+			alert(--count);
+		}
+		/* 
+		변수 값은 {변수명}을 통해 가져와서 사용할 수 있다. 
+		변수 값이 바뀌어도 {변수명}에 있는 값이 자동으로 바뀌지 않는다.
+		*/
+		return (
+			<div>
+				<button onClick={countDown}>-</button>
+				<span style={{"padding" : "0 10px"}}>{count}</span>
+				<button onClick={countUp}>+</button>
+			</div>
+		)
+	}
+
+	root.render(
+		<App />
+	);
+
+
+
+</script>
+</body>
+</html>
