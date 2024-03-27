@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<style>
+		.btn { height: 30px; border: 1px solid red; border-radius: 5px;}
+		.text-red { color : red}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				return (
+					<div>
+						<Btn text={"일반 버튼1"}/>
+						<Btn 
+							text={"일반 버튼2"}
+							className={"btn"}
+						/>
+						<Btn 
+							text={"일반 버튼3"}
+							className={"text-red"}
+						/>
+						<Btn 
+							text={"버튼4"}
+							style={{"color":"blue", "border":"1px solid blue"}}
+						/>
+						<Btn 
+							text={"클릭 버튼"}
+							clickFunction={()=>alert("클릭")}
+						/>
+					</div>
+				);
+			};
+			function Btn({text, className, style, clickFunction}){
+				return (
+					<button 
+						className={className}
+						style={style}
+						onClick={clickFunction}
+					>{text}</button>
+				)
+			}
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>

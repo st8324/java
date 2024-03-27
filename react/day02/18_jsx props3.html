@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			//Btn 컴포넌트를 만들고 App컴포넌트에 Btn 컴포넌트 2개를 배치
+			//토글버튼, 일반 버튼을 배치
+			//토글버튼을 클릭하면 일반 버튼이 토글이 되도록 코드를 작성
+			function App(){
+				let [show, setShow] = React.useState(true);
+				return (
+					<div>
+						<Btn text={"토글버튼"} click={()=>setShow(!show)} show={true}/>
+						<Btn text={"일반버튼"} show={show}/>
+					</div>
+				);
+			};
+			function Btn({text, click, show}){
+				return (show ? <button onClick={click}>{text}</button> : null);
+			}
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>

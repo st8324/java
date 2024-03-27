@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				
+				return (
+					<div>
+						<AddBtn/>
+						<DelBtn/>
+						<Btn1 text={"추가"} />
+						<Btn1 text={"삭제"} />
+						<Btn2 text={"추가"} />
+						<Btn2 text={"삭제"} />
+					</div>
+				);
+			};
+			function Btn1(props){
+				return (<button>{props.text}</button>);
+			}
+			function Btn2({text}){
+				return (<button>{text}</button>);
+			}
+			function AddBtn(){
+				return (<button>추가</button>);
+			}
+			function DelBtn(){
+				return (<button>삭제</button>);
+			}
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>
