@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열 복사</title>
+</head>
+<body>
+	<script>
+		let arr1 = [1,2,3,4];
+		let arr2 = arr1;//arr1과 공유
+		let arr3 = [...arr1];//arr1의 값을 복사한 새 배열
+		console.log(`arr1 : ${arr1.join(",")}`);
+		console.log(`arr2 : ${arr2.join(",")}`);
+		console.log(`arr3 : ${arr3.join(",")}`);
+		arr1[0] = 10;
+		console.log(`arr1[0] = 10;`)
+		console.log(`arr2 : ${arr2.join(",")}`);
+		console.log(`arr3 : ${arr3.join(",")}`);
+	</script>
+</body>
+</html>
