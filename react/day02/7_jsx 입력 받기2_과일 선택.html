@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JSX 복습</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				/* select 태그로 좋아하는 과일을 선택하도록 화면을 구성한 후,
+				좋아하는 과일을 선택하면, 화면에 h1태그로 좋아하는 과일을 출력하도록
+				코드를 작성.
+				- 과일 목록 : 사과, 바나나, 딸기
+				*/
+				let [fruit, setFruit] = React.useState("");
+				function onChange(e){
+					setFruit(e.target.value);
+				}
+				return (
+					<div>
+						<h1>좋아하는 과일은 선택하세요.</h1>
+						<select onChange={onChange}>
+							<option value="">과일을 선택하세요.</option>	
+							<option>사과</option>	
+							<option>바나나</option>	
+							<option>딸기</option>	
+						</select>
+						<h1>{fruit}</h1>
+					</div>
+				);
+			};
+			
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>
