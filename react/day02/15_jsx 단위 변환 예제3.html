@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트 : 여러 단위를 변환할 수 있는 화면
+			function App(){
+				let [choice, setChoice] = React.useState("");
+				return (
+					<div>
+						<select onChange={e=>setChoice(e.target.value)}>
+							<option value="">변환기 종류를 선택하세요.</option>	
+							<option value="time">minute &lt;-&gt; hour</option>
+							<option value="distance">m &lt;-&gt; km</option>
+						</select>
+						{choice == "" ? <h1>변환기 종류를 선택하세요</h1>: null}
+						{choice == "time" ? <ConverterTime/>: null}
+						{choice == "distance" ? <ConverterDistance/>: null}
+					</div>
+				);
+			};
+			//m -> h
+			function ConverterTime(){
+				let [amount, setAmount] = React.useState(0);
+				let [flag, setFlag] = React.useState(false);
+				return (
+					<div>
+						<h1>시간 계산기</h1>
+						<input 
+							type="text" 
+							disabled={flag}
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?amount:amount*60}
+						/>분
+						<br/>
+						<button onClick={()=>{
+							setFlag(!flag);
+							setAmount(0);
+						}}>토글</button>
+						<br/>
+						<input 
+							type="text" 
+							disabled={!flag} 
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?Math.floor(amount/60):amount}
+						/>시간
+					</div>
+				);
+			}
+			//m -> km
+			function ConverterDistance(){
+				let [amount, setAmount] = React.useState(0);
+				let [flag, setFlag] = React.useState(false);
+				return (
+					<div>
+						<h1>거리 계산기</h1>
+						<input 
+							type="text" 
+							disabled={flag}
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?amount:amount*1000}
+						/>m
+						<br/>
+						<button onClick={()=>{
+							setFlag(!flag);
+							setAmount(0);
+						}}>토글</button>
+						<br/>
+						<input 
+							type="text" 
+							disabled={!flag} 
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?amount/1000:amount}
+						/>km
+					</div>
+				);
+			}
+
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>

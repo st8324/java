@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				//분창이 활성화 되면 분을 입력했을 때 시간으로 변환을 하고
+				//시간창이 활성화 되면 시간을 입력했을 때 분으로 변환하는 코드
+				let [amount, setAmount] = React.useState(0);
+				let [flag, setFlag] = React.useState(false);
+				return (
+					<div>
+						<input 
+							type="text" 
+							disabled={flag}
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?amount:amount*60}
+						/>분
+						<br/>
+						<button onClick={()=>{
+							setFlag(!flag);
+							setAmount(0);
+						}}>토글</button>
+						<br/>
+						<input 
+							type="text" 
+							disabled={!flag} 
+							onChange={(e)=>setAmount(e.target.value)} 
+							value={!flag?Math.floor(amount/60):amount}
+						/>시간
+					</div>
+				);
+			};
+			
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>
