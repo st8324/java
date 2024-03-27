@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				/* 취미를 입력받고, 버튼을 클릭하면 입력된 취미가 ul태그에 추가되도록 코드를 작성
+				*/
+				let [data, setData] = React.useState("");
+				let [arr, setArr] = React.useState(["축구", "야구", "농구"]);
+
+				function inputChange(e){
+					//input창에 문자열이 입력될 때마다 data에 저장
+					setData(e.target.value);
+				}
+				function buttonClick(){
+					setArr(prevArr=>[...prevArr, data]);
+					setData("");//입력태그에 값을 비워주는 역할
+				}
+				return (
+					<div>
+						<h1>당신의 취미는?</h1>
+						<input onChange={inputChange} value={data}/>
+						<button onClick={buttonClick}>클릭</button>
+						<ul>
+							{arr.map((item)=>{
+								return <li>{item}</li>
+							})}
+						</ul>
+					</div>
+				);
+			};
+			
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>
