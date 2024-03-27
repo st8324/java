@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>State 두개 활용 예제</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+			const root = ReactDOM.createRoot(document.getElementById("root"));
+			
+			//App 컴포넌트
+			function App(){
+				/* 좋아하는 과일을 입력한 후, 버튼을 클릭하면 h1태그에 과일이 출력되도록 코드를 작성. */
+				let [fruit, setFruit] = React.useState("");
+				let [data, setData] = React.useState("");
+
+				function inputChange(e){
+					//input창에 문자열이 입력될 때마다 data에 저장
+					setData(e.target.value);
+				}
+				function buttonClick(){
+					//버튼을 클릭하면 저장된 data에 있는 값을 fruit에 저장
+					setFruit(data);
+				}
+
+				return (
+					<div>
+						<h1>좋아하는 과일은 입력하세요.</h1>
+						<input onChange={inputChange}/>
+						<button onClick={buttonClick}>클릭</button>
+						<h1>{fruit}</h1>
+					</div>
+				);
+			};
+			
+			root.render(<App/>)
+			
+	</script>
+</body>
+</html>
