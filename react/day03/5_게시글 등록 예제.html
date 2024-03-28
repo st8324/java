@@ -39,7 +39,11 @@
 				//setList(prevBoard=>[board, ...prevBoard]);
 				setList([board, ...list]);
 			}
-
+			function deleteBoard(index){
+				let tmpList = [...list];
+				tmpList.splice(index, 1);
+				setList(tmpList);
+			}
 			return (
 				<div>
 					<div>
@@ -71,19 +75,28 @@
 					<div>
 						<table board="1">
 							<thead>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
+								<tr>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>비고</th>
+								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								{list.map((item, index)=>{
+									return (
+										<tr key={index}>
+											<td>{item.title}</td>
+											<td>{item.writer}</td>
+											<td>{item.regDate}</td>
+											<td>
+												<button onClick={()=>deleteBoard(index)}>삭제</button>
+											</td>
+										</tr>
+									)
+								})}
 							</tbody>
 						</table>
-						{list.length != 0 ? list[0].title: ""}
 					</div>
 				</div>
 			);

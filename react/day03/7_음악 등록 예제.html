@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습1</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+	<style>
+		.form-group{
+			margin-top: 10px;
+		}
+		.form-group>label{
+			width: 150px; display: inline-block;
+		}
+		.form-group>select,
+		.form-group>input{
+			width: calc(100% - 150px); box-sizing: border-box;
+		}
+		.btn{
+			display: block; width: 100%; margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
+
+		/* 음악 장르, 제목, 가수를 입력받아 음악을 등록하고,
+		등록된 음악을 table태그로 화면에 출력하는 코드를 작성 */
+		function App(){
+			
+			let [list, setList] = React.useState([]);
+			return (
+				<div>
+					<Form setList={setList}/>
+					<Table list={list}/>
+				</div>
+			);
+		};
+		function Table({list}){
+			return (
+				<table>
+					<thead>
+						<tr>
+							<th>장르</th>
+							<th>제목</th>
+							<th>가수</th>
+						</tr>
+					</thead>
+					<tbody>
+						{list.map((item, index)=>{
+							return (
+							<tr key={index}>
+								<td>{item.genre}</td>
+								<td>{item.title}</td>
+								<td>{item.singer}</td>
+							</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			);
+		}
+
+		function Form({setList}){
+			let [genre, setGenre] = React.useState("댄스");
+			let [title, setTitle] = React.useState("");
+			let [singer, setSinger] = React.useState("");
+			function addMusic(){
+				let obj = { genre, title, singer};//{genre:genre, title:title, singer:singer}
+				setList((list)=>[...list, obj]);
+				setGenre("댄스");
+				setTitle("");
+				setSinger("");
+			}
+			return (
+				<form>
+					<div className="form-group">
+						<label htmlFor="">장르</label>	
+						<select onChange={(e)=>setGenre(e.target.value)} value={genre}>
+							<option>댄스</option>	
+							<option>발라드</option>	
+							<option>트로트</option>	
+						</select>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">제목</label>	
+						<input type="text" onChange={(e)=>setTitle(e.target.value)} value={title}/>
+					</div>
+					<div className="form-group">
+						<label htmlFor="">가수</label>	
+						<input type="text"  onChange={(e)=>setSinger(e.target.value)} value={singer}/>
+					</div>
+					<button type="button" className="btn" onClick={addMusic}>음악 추가</button>
+				</form>
+			);
+		}
+		root.render(<App/>)
+	</script>
+</body>
+</html>
