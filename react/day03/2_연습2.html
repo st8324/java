@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습1</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<style>
+		*{ margin: 0; padding: 0;}
+		.menu-list{
+			list-style: none; display: flex;
+		}
+		.menu-item{
+			width: 100%; border: 3px solid black; height: 50px;
+		}
+		.menu-item+.menu-item{
+			margin-left: -3px;
+		}
+		.menu-link{
+			width: 100%; height: 100%; text-align: center; line-height: 50px;
+			display: block; font-weight: bold; font-size: 20px; color: black;
+			text-decoration: none;
+		}
+		.box-list{
+			margin-top: 10px;
+		}
+		.box{
+			height: 400px; border: 3px solid;
+		}
+		.menu-item.active{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
+
+		/*
+		메뉴1, 메뉴2, 메뉴3을 화면에 구성
+		메뉴1을 클릭하면 box1이 보이고, 
+		메뉴2를 클릭하면 box2가 보이고,
+		메뉴3을 클릭하면 box3이 보이도록 작성
+		*/
+		function App(){
+			function menuClick1(){
+				setNum(1);
+			}
+			function menuClick2(){
+				setNum(2);
+			}
+			function menuClick3(){
+				setNum(3);
+			}
+			let [num, setNum] = React.useState(1);
+			return (
+				<div>
+					<nav>
+						<ul className="menu-list">
+							<li className={"menu-item " + (num == 1 ? "active" : "")}>
+								<a href="#" className="menu-link" onClick={menuClick1}>메뉴1</a>
+							</li>
+							<li className={"menu-item " + (num == 2 ? "active" : "")}>
+								<a href="#" className="menu-link" onClick={menuClick2}>메뉴2</a>
+							</li>
+							<li className={"menu-item " + (num == 3 ? "active" : "")}>
+								<a href="#" className="menu-link" onClick={menuClick3}>메뉴3</a>
+							</li>
+						</ul>
+					</nav>
+					<div className="box-list">
+						{num == 1 ? <div className="box box1">1</div> : null}
+						{num == 2 ? <div className="box box2">2</div> : null}
+						{num == 3 ? <div className="box box3">3</div> : null}
+					</div>
+				</div>
+			);
+		};
+
+		root.render(<App/>)
+	</script>
+</body>
+</html>
