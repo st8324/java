@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습1</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
+
+		/* 
+		1. 게시글 등록을 위한 제목, 내용, 작성자, 작성일을 입력할 수 있는 화면을 구성
+		2. 게시글 등록 버튼을 추가
+		3. 추가된 게시글이 table태그로 게시글 등록 아래에 출력되도록 구성
+			- state를 이용하여 제목, 작성자, 작성일, 내용이 각각 변경될때마다 변경된 내용을 state에
+			  저장하도록 구성(확인용으로 console.log로 출력)
+			- 게시글 등록 버튼을 클릭하면, 제목, 작성자, 작성일, 내용을 가져와서 객체를 생성한 후, 
+			  콘솔에 출력
+		*/
+		function App(){
+			let [title, setTitle] = React.useState("");
+			let [writer, setWriter] = React.useState("");
+			let [regDate, setRegDate] = React.useState("");
+			let [content, setContent] = React.useState("");
+			let [list, setList] = React.useState([]);
+			function insertBoard(){
+				let board = {
+					title,
+					writer,
+					regDate,
+					content
+				}
+				//setList(prevBoard=>[board, ...prevBoard]);
+				setList([board, ...list]);
+			}
+
+			return (
+				<div>
+					<div>
+						<label htmlFor="">제목</label>
+						<input 
+							type="text" 
+							onChange={(e)=>setTitle(e.target.value)}
+						/>
+					</div>
+					<div>
+						<label htmlFor="">작성자</label>
+						<input 
+							type="text" 
+							onChange={(e)=>setWriter(e.target.value)}
+						/>
+					</div>
+					<div>
+						<label htmlFor="">작성일</label>
+						<input 
+							type="date"
+							onChange={(e)=>setRegDate(e.target.value)}
+						/>
+					</div>
+					<div>
+						<label htmlFor="">내용</label>
+						<textarea onChange={(e)=>setContent(e.target.value)}></textarea>
+					</div>
+					<button onClick={insertBoard}>게시글 등록</button>
+					<div>
+						<table board="1">
+							<thead>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						{list.length != 0 ? list[0].title: ""}
+					</div>
+				</div>
+			);
+		};
+
+		root.render(<App/>)
+	</script>
+</body>
+</html>
