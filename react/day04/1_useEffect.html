@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습1</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const root = ReactDOM.createRoot(document.getElementById("root"));
+
+		
+		
+		function App(){
+			let [count, setCount]	 = React.useState(0);
+			let [text, setText]	 = React.useState("");
+
+			React.useEffect(()=>{
+				console.log("렌더링!");
+			});
+			React.useEffect(()=>{
+				console.log("마운트(처음 렌더링)!");
+				return ()=>{}
+			},[]);
+			React.useEffect(()=>{
+				console.log("count 상태 변경!");
+			},[count]);
+			return (
+				<div>
+					<button onClick={()=>setCount(count-1)}>-</button>
+					<span style={{"padding" : "0 10px"}}>{count}</span>
+					<button onClick={()=>setCount(count+1)}>+</button>
+					<br/>
+					<input type="text" onChange={(e)=>setText(e.target.value)}/>
+				</div>
+			);
+		};
+
+		root.render(<App/>)
+	</script>
+</body>
+</html>
