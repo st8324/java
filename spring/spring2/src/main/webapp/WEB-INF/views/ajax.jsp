@@ -11,7 +11,30 @@
 	<button class="btn1">json - json</button>
 	<br>
 	<button class="btn2">object - json</button>
-	
+	<br>
+	<!-- 
+	화면에서 이름과 나이를 입력받아 서버에 ajax로 전송하고,
+	서버에서는 화면에서 보내준 이름과 나이를 콘솔에 출력하고,
+	화면에 result값으로 "성공"을 전송.
+	화면에서는 서버에서 보낸 result를 alert으로 출력 
+	1. 화면 구성
+	2. 이벤트를 등록
+	3. 이벤트에서 ajax로 통신
+	  - 화면에 입력된 정보를 가져옴
+	  - ajax로 서버에 전송
+	  - 서버에서는 화면에서 보낸 정보를 받아서 콘솔에 출력
+	  - 서버에서 화면에 데이터를 전송
+	  - 화면에서는 서버에서 보낸 데이터를 alert로 출력
+	 -->
+	<form action="">	 
+		<input type="text" name="name" placeholder="이름을 입력하세요.">
+		<br>
+		<input type="text" name="age" placeholder="나이를 입력하세요.">
+		<br>
+		<button type="submit" class="btn3">전송</button>
+	</form>
+	<button type="button" class="btn4">object - object</button>
+	<br>
 	<script type="text/javascript">
 		//서버에서 보낸 이름을 가져오는 함수
 		function clickTest1(obj){
@@ -80,6 +103,45 @@
 			});
 		});
 	
+	</script>
+
+	<script type="text/javascript">
+		$("form").submit(function(){
+			//form에 있는 입력 태그들을 하나의 문자열로 만듬. name명=값& 형태로
+			let obj = $(this).serialize();
+			$.ajax({
+				async : true, 
+				url : '<c:url value="/ajax/object/json2"/>', 
+				type : 'get', 
+				data : obj, 
+				dataType : "json", 
+				success : function (data){
+					alert(data.result);
+				}, 
+				error : function(jqXHR, textStatus, errorThrown){
+
+				}
+			});
+			return false;
+		})
+	</script>
+
+	<script type="text/javascript">
+		$(".btn4").click(function(){
+			let obj = { name : "홍길동" };
+			$.ajax({
+				async : true, 
+				url : '<c:url value="/ajax/object/object"/>', 
+				type : 'get', 
+				data : obj, 
+				success : function (data){
+					console.log(data)
+				}, 
+				error : function(jqXHR, textStatus, errorThrown){
+
+				}
+			});
+		})
 	</script>
 </body>
 </html>
