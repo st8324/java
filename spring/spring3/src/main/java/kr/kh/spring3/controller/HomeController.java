@@ -21,7 +21,7 @@ public class HomeController {
 		log.info("안녕하세요. 스프링 메인입니다.");
 		int count = memberService.getMemberCount();
 		log.info("등록된 회원 수 : " + count);
-		return "home";
+		return "/main/home";
 	}
 	
 }
