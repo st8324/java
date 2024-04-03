@@ -9,7 +9,7 @@
 <body>
 <script type="text/javascript">
 alert('${msg}');
-location.href = '<c:url value="/"/>${url}';
+location.href = '<c:url value="${url}"/>';
 
 </script>
 </body>

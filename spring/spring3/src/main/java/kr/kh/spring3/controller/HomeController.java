@@ -1,5 +1,7 @@
 package kr.kh.spring3.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +65,13 @@ public class HomeController {
 			model.addAttribute("url", "/login");
 			model.addAttribute("msg", "로그인을 하지 못했습니다.");
 		}
+		return "message";
+	}
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		session.removeAttribute("user");
+		model.addAttribute("msg", "로그아웃 했습니다.");
+		model.addAttribute("url", "/");
 		return "message";
 	}
 }
