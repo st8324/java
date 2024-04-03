@@ -20,7 +20,7 @@
 		<tbody>
 			<c:forEach items="${list}" var="post" varStatus="vs">
 				<tr>
-					<td>${list.size() - vs.index }</td>
+					<td>${pm.totalCount - vs.index - pm.cri.pageStart }</td>
 					<td>
 						<a href="#">${post.bo_title}</a>
 					</td>
