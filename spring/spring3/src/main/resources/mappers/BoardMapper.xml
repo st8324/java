@@ -6,11 +6,35 @@
   <select id="selectBoardList" resultType="kr.kh.spring3.model.vo.BoardVO">
   	select * 
   		from board 
-  		order by bo_num desc
+  		<if test='cri.type == "all"'>
+  			where bo_title like concat('%', #{cri.search}, '%')
+  			or bo_content like concat('%', #{cri.search}, '%')
+  			or bo_me_id like concat('%', #{cri.search}, '%')
+  		</if>
+  		<if test='cri.type == "title"'>
+  			where bo_title like concat('%', #{cri.search}, '%')
+  			or bo_content like concat('%', #{cri.search}, '%')
+  		</if>
+  		<if test='cri.type == "writer"'>
+  			where bo_me_id like concat('%', #{cri.search}, '%')
+  		</if>
+  		order by ${cri.order} desc
   		limit #{cri.pageStart}, #{cri.perPageNum}
   </select>
   <select id="selectBoardTotalCount" resultType="int">
   	select count(*) 
-  		from board
+  		from board 
+  		<if test='cri.type == "all"'>
+  			where bo_title like concat('%', #{cri.search}, '%')
+  			or bo_content like concat('%', #{cri.search}, '%')
+  			or bo_me_id like concat('%', #{cri.search}, '%')
+  		</if>
+  		<if test='cri.type == "title"'>
+  			where bo_title like concat('%', #{cri.search}, '%')
+  			or bo_content like concat('%', #{cri.search}, '%')
+  		</if>
+  		<if test='cri.type == "writer"'>
+  			where bo_me_id like concat('%', #{cri.search}, '%')
+  		</if>
   </select>
 </mapper>

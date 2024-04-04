@@ -9,6 +9,6 @@ public interface BoardService {
 
 	ArrayList<BoardVO> getBoardList(Criteria cri);
 
-	int getBoardTotalCount();
+	int getBoardTotalCount(Criteria cri);
 
 }
