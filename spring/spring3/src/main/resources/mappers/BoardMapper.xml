@@ -37,4 +37,9 @@
   			where bo_me_id like concat('%', #{cri.search}, '%')
   		</if>
   </select>
+  
+  <insert id="insertBoard">
+  	insert into board(bo_title, bo_content, bo_me_id, bo_co_num)
+  	values(#{board.bo_title},#{board.bo_content},#{board.bo_me_id},1)
+  </insert>
 </mapper>

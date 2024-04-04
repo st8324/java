@@ -82,6 +82,7 @@
 			</li>
 		</c:if>
 	</ul>
+	<a href="<c:url value="/post/insert"/>" class="btn btn-outline-success">글 쓰기</a>
 </div>
 <script type="text/javascript">
 $("[name=order]").change(function(){

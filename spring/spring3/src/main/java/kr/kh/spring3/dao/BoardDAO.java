@@ -13,4 +13,6 @@ public interface BoardDAO {
 
 	int selectBoardTotalCount(@Param("cri")Criteria cri);
 
+	boolean insertBoard(@Param("board")BoardVO board);
+
 }
