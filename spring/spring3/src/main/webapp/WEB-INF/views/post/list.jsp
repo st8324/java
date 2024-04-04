@@ -8,7 +8,7 @@
 <body>
 <div class="container">
 	<h1>게시글 목록</h1>
-	<form action="<c:url value="/post/list"/>" method="get">
+	<form action="<c:url value="/post/list"/>" method="get" id="searchForm">
 		<div class="input-group mb-3">
 			<select class="form-control" name="type">
 				
@@ -83,5 +83,10 @@
 		</c:if>
 	</ul>
 </div>
+<script type="text/javascript">
+$("[name=order]").change(function(){
+	$("#searchForm").submit();
+});
+</script>
 </body>
 </html>
