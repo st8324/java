@@ -38,8 +38,17 @@
   		</if>
   </select>
   
-  <insert id="insertBoard">
+  <insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bo_num">
   	insert into board(bo_title, bo_content, bo_me_id, bo_co_num)
-  	values(#{board.bo_title},#{board.bo_content},#{board.bo_me_id},1)
+  	values(#{board.bo_title},#{board.bo_content},#{board.bo_me_id},#{board.bo_co_num})
+  </insert>
+  
+  <select id="selectCommunityList" resultType="kr.kh.spring3.model.vo.CommunityVO">
+  	select * from community
+  </select>
+  
+  <insert id="insertFile">
+  	insert into file(fi_bo_num, fi_name, fi_ori_name)
+  	values(#{file.fi_bo_num},#{file.fi_name},#{file.fi_ori_name})
   </insert>
 </mapper>
