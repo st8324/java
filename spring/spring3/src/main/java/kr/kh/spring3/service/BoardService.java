@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring3.model.vo.BoardVO;
 import kr.kh.spring3.model.vo.CommunityVO;
+import kr.kh.spring3.model.vo.FileVO;
 import kr.kh.spring3.model.vo.MemberVO;
 import kr.kh.spring3.pagination.Criteria;
 
@@ -18,5 +19,11 @@ public interface BoardService {
 	boolean insertBoard(BoardVO board, MemberVO user, MultipartFile[] files);
 
 	ArrayList<CommunityVO> getCommunityList();
+
+	void updateView(int num);
+
+	BoardVO getBoard(int num);
+
+	ArrayList<FileVO> getFileList(int num);
 
 }

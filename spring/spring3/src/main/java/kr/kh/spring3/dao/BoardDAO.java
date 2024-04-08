@@ -21,4 +21,10 @@ public interface BoardDAO {
 
 	void insertFile(@Param("file")FileVO fileVO);
 
+	void updateView(@Param("num")int num);
+
+	BoardVO selectBoard(@Param("num")int num);
+
+	ArrayList<FileVO> selectFileList(@Param("num")int num);
+
 }

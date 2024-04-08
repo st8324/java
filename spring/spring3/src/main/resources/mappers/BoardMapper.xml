@@ -51,4 +51,13 @@
   	insert into file(fi_bo_num, fi_name, fi_ori_name)
   	values(#{file.fi_bo_num},#{file.fi_name},#{file.fi_ori_name})
   </insert>
+  <update id="updateView">
+  	update board set bo_view = bo_view + 1 where bo_num = #{num}
+  </update>
+  <select id="selectBoard" resultType="kr.kh.spring3.model.vo.BoardVO">
+  	select * from board where bo_num = #{num}
+  </select>
+  <select id="selectFileList" resultType="kr.kh.spring3.model.vo.FileVO">
+  	select * from file where fi_bo_num = #{num}
+  </select>
 </mapper>
