@@ -12,7 +12,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<script type="text/javascript">
-	/* footer 위치 계산 */
 	$(function(){
 		bodyMinHeight();
 		$(window).resize(bodyMinHeight)
@@ -23,6 +22,28 @@
 		let navHeight = $("nav").outerHeight();
 		$("#body").css("min-height", "calc(100vh - " + (footerHeight + navHeight)+"px");
 	}
+	</script>
+	<script type="text/javascript">
+	//이벤트 생성
+	const sse = new EventSource("<c:url value='/sse/connect'></c:url>");
+	sse.addEventListener('connect', (e) => {
+		const { data: receivedConnectData } = e;
+		console.log('connect event data: ',receivedConnectData);  // "connected!"
+	});
+	sse.addEventListener('receive', e => {  
+	    const { data: receivedData } = e;  
+	    obj = JSON.parse(receivedData);
+	    console.log(obj)
+	    console.log("보낸 사람 : " + obj.from);
+	    console.log("메세지 : " + obj.msg)
+	});
+	
+	//페이지 이동 시 sse 연결 끊기.
+	window.addEventListener('beforeunload', function (e) {
+		if (sse) {
+	  	sse.close(); // SSE 연결 닫기
+	  }
+	});
 	</script>
 </head>
 <body>

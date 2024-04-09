@@ -39,5 +39,9 @@ public class HomeController {
 		else
 			return "redirect:/login";
 	}
-	
+	@GetMapping("/sse")
+	public String sse() {
+		
+		return "/ex/sse";
+	}
 }

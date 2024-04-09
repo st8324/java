@@ -6,7 +6,10 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>
+			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/spring-security.xml
+		</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -23,6 +26,7 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 		
 	<servlet-mapping>
@@ -41,11 +45,12 @@
 	        <param-name>encoding</param-name>
 	        <param-value>UTF-8</param-value>
 	    </init-param>
+	    <async-supported>true</async-supported>
 	</filter>
 	<!-- 필터 맵핑. 등록한 필터를 어떤 URL일 때 실행할 건지 설정 -->    
 	<filter-mapping>
-	    <filter-name>encoding</filter-name>
-	    <url-pattern>/*</url-pattern>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- 인코딩 설정 끝! -->
 </web-app>
