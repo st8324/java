@@ -10,6 +10,11 @@
   <a class="navbar-brand" href="#">Home</a>
 
   <ul class="navbar-nav">
+  	<c:if test="${user == null }">
+	  	<li class="nav-item">
+	      <a class="nav-link" href="<c:url value="/login"/>">로그인</a>
+	    </li>
+    </c:if>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
         예제링크
@@ -20,7 +25,10 @@
         <a class="dropdown-item" href="#">Link 3</a>
       </div>
     </li>
-  </ul>			
+  </ul>
+  <c:if test="${user != null }">			
+  	<a href="#" class="text-muted ml-auto">${user.me_id}님 환영합니다.</a>
+  </c:if>
 </nav>
 </body>
 </html>
