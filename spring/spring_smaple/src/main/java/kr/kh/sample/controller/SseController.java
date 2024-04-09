@@ -42,7 +42,7 @@ public class SseController {
 		}  
 		return ResponseEntity.ok(emitter);  
 	}
-	@PostMapping(value = "/sse/send")  
+	@PostMapping(value = "/sse/send", produces = "application/text; charset=UTF-8")  
 	public String send(HttpSession session, 
 			@RequestParam("to")String to, @RequestParam("msg") String msg) {  
 		MemberVO user = (MemberVO)session.getAttribute("user");
