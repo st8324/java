@@ -164,7 +164,22 @@ public class BoardController {
 		map.put("list", list);
 		return map;
 	}
-	
+	@ResponseBody
+	@PostMapping("/img/upload")
+	public Map<String, Object> imgUpload(MultipartFile file){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String uploadPath = boardService.uploadImg(file);
+		map.put("url", uploadPath);
+		return map;
+	}
+	@ResponseBody
+	@PostMapping("/img/delete")
+	public Map<String, Object> imgDelete(String file){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		boardService.deleteImg(file);
+		map.put("res", "삭제");
+		return map;
+	}
 }
 
 

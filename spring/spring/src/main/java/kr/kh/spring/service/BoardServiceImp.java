@@ -1,6 +1,7 @@
 package kr.kh.spring.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -225,6 +226,24 @@ public class BoardServiceImp implements BoardService {
 		RecommendVO recommend = 
 			boardDao.selectRecommend(new RecommendVO(num, user.getMe_id()));
 		return recommend == null ? -2 : recommend.getRe_state();
+	}
+
+	@Override
+	public String uploadImg(MultipartFile file) {
+		if(file == null || file.getOriginalFilename().length() == 0)
+			return null;
+		try {
+			return UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public void deleteImg(String file) {
+		System.out.println(file);
+		UploadFileUtils.delteFile(uploadPath, file);
 	}
 
 	
