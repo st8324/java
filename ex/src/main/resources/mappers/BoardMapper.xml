@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncs.test.dao.BoardDAO">
+	
+	<resultMap type="Board" id="BoardMap">
+		<id property="boNum" column="bo_num"/>
+		<result property="boTitle" column="bo_title"/>
+		<result property="boContent" column="bo_content"/>
+	</resultMap>
+	
+  <select id="selectBoard" resultMap="BoardMap">
+  	select * from board where bo_num = #{boNum}
+  </select>
+</mapper>
