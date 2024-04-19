@@ -26,7 +26,7 @@ public class SnsController {
 	}
 	@ResponseBody
 	@PostMapping("/sns/{sns}/signup")
-	public boolean snsSignup(@PathVariable("sns")String sns, @RequestParam("id")String id,@RequestParam("id")String email ) {
+	public boolean snsSignup(@PathVariable("sns")String sns, @RequestParam("id")String id,@RequestParam("email")String email ) {
 		
 		return memberService.signupSns(sns, id, email);
 	}
