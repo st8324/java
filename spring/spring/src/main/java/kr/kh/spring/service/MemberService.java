@@ -21,4 +21,10 @@ public interface MemberService {
 
 	MemberVO getMemberByCookie(String sessionId);
 
+	boolean idCheck(String sns, String id);
+
+	boolean signupSns(String sns, String id, String email);
+
+	MemberVO loginSns(String sns, String id);
+
 }

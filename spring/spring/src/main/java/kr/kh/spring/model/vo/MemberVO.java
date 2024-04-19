@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberVO {
 
+	
 	private String me_id;
 	private String me_pw;
 	private String me_ms_state; 
@@ -19,4 +20,9 @@ public class MemberVO {
 	private String me_cookie;
 	private Date me_cookie_limit;
 	private boolean autoLogin;
+	
+	public MemberVO(String id, String email) {
+		this.me_id = id;
+		this.me_email = email;
+	}
 }

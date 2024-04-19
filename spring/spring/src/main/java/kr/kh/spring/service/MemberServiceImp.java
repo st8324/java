@@ -201,4 +201,43 @@ public class MemberServiceImp implements MemberService {
 	public MemberVO getMemberByCookie(String sessionId) {
 		return memberDao.selectMemberByCookie(sessionId);
 	}
+
+	@Override
+	public boolean idCheck(String sns, String id) {
+		try {
+			int num = Integer.parseInt(id);
+			num = num * 2;
+			id = sns + "!" + num;
+		}catch(Exception e) {
+			id = sns + "!" + id;
+		}
+		MemberVO user = memberDao.selectMember(id);
+		System.out.println(id);
+		return user != null;
+	}
+
+	@Override
+	public boolean signupSns(String sns, String id, String email) {
+		try {
+			int num = Integer.parseInt(id);
+			num = num * 2;
+			id = sns + "!" + num;
+		}catch(Exception e) {
+			id = sns + "!" + id;
+		}
+		MemberVO memberVO = new MemberVO(id, email);
+		return memberDao.insertMember(memberVO);
+	}
+
+	@Override
+	public MemberVO loginSns(String sns, String id) {
+		try {
+			int num = Integer.parseInt(id);
+			num = num * 2;
+			id = sns + "!" + num;
+		}catch(Exception e) {
+			id = sns + "!" + id;
+		}
+		return memberDao.selectMember(id);
+	}
 }
