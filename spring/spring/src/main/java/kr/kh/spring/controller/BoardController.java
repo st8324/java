@@ -42,6 +42,7 @@ public class BoardController {
 		model.addAttribute("pm", pm);
 		return "/board/list";
 	}
+	
 	@GetMapping("/board/insert")
 	public String boardInsert(Model model) {
 		//커뮤니티 리스트를 가져와서 화면에 전송
@@ -179,6 +180,17 @@ public class BoardController {
 		boardService.deleteImg(file);
 		map.put("res", "삭제");
 		return map;
+	}
+	
+	@GetMapping("/board/list2")
+	public String boardList2(Model model, Criteria cri) {
+		cri.setPerPageNum(5);
+		ArrayList<BoardVO> list = boardService.getBoardList(cri);
+		int totalCount = boardService.getBoardTotalCount(cri);
+		PageMaker pm = new PageMaker(3, cri, totalCount);
+		model.addAttribute("list", list);
+		model.addAttribute("pm", pm);
+		return "board/list2";
 	}
 }
 
